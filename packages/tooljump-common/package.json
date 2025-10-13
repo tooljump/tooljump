@@ -1,7 +1,7 @@
 {
   "name": "@tooljump/common",
   "description": "Common functionality for ToolJump; Connect your dev tools (GitHub, AWS, monitoring, etc.) so knowledge and navigation live where engineers work - no context switching, no tribal knowledge.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "license": "Apache-2.0",
   "publishConfig": {
