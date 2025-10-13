@@ -81,7 +81,7 @@ async function createProject(projectName, tokenPassword) {
   await fs.writeFile(path.join(projectPath, '.env'), envContent + "\n");
   await fs.writeFile(path.join(projectPath, '.env.sample'), envSampleContent + "\n");
   
-  console.log(`Creating Tooljump project: ${projectName}`);
+  console.log(`Creating ToolJump project: ${projectName}`);
   
   // Create package.json
   const packageJson = {
@@ -117,7 +117,7 @@ async function createProject(projectName, tokenPassword) {
   // Create server.ts
   const serverTs = `import path from 'path';
 import 'dotenv/config';
-import { Tooljump } from '@tooljump/core';
+import { ToolJump } from '@tooljump/core';
 import { EnvSecrets } from '@tooljump/secrets-env';
 import { FsIntegrations } from '@tooljump/integrations-fs';
 import { VMRunner } from '@tooljump/runner-vm';
@@ -204,7 +204,7 @@ node_modules
   // Create README.md
   const readme = `# ${projectName}
 
-A Tooljump project for creating context-aware browser extensions.
+A ToolJump project for creating context-aware browser extensions.
 
 ## Getting Started
 
@@ -247,7 +247,7 @@ You can see the template in \`.env.sample\`. Update \`.env\` as needed.
 
 ## Learn More
 
-Visit the [Tooljump documentation](https://tooljump.dev) for more information about creating integrations and configuring your project.`;
+Visit the [ToolJump documentation](https://tooljump.dev) for more information about creating integrations and configuring your project.`;
   
   await fs.writeFile(path.join(projectPath, 'README.md'), readme);
   
