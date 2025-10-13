@@ -7,18 +7,14 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-interface ProjectConfig {
-  projectName: string;
-}
-
-async function promptForProjectName(): Promise<string> {
+async function promptForProjectName() {
   const answers = await inquirer.prompt([
     {
       type: 'input',
       name: 'projectName',
       message: 'What is your project name?',
       default: 'my-tooljump-project',
-      validate: (input: string) => {
+      validate: (input) => {
         if (!input.trim()) {
           return 'Project name cannot be empty';
         }
@@ -33,14 +29,14 @@ async function promptForProjectName(): Promise<string> {
   return answers.projectName;
 }
 
-async function promptForTokenPassword(): Promise<string> {
+async function promptForTokenPassword() {
   const answers = await inquirer.prompt([
     {
       type: 'password',
       name: 'tokenPassword',
       message: 'Enter TokenAuth password which protects your server (will be stored in a local .env file):',
       mask: '*',
-      validate: (input: string) => {
+      validate: (input) => {
         const token = input.trim();
         if (!token) {
           return 'Password cannot be empty';
@@ -72,7 +68,7 @@ async function promptForTokenPassword(): Promise<string> {
   return answers.tokenPassword;
 }
 
-async function createProject(projectName: string, tokenPassword: string): Promise<void> {
+async function createProject(projectName, tokenPassword) {
   const projectPath = path.join(process.cwd(), projectName);
   
   // Create project directory
@@ -309,11 +305,11 @@ Visit the [Tooljump documentation](https://tooljump.dev) for more information ab
   console.log(`Follow the documentation from https://tooljump.dev/docs/getting-started to learn more about ToolJump and how to create integrations.`);
 }
 
-async function main(): Promise<void> {
+async function main() {
   try {
     const args = process.argv.slice(2);
-    let projectName: string;
-    let tokenPassword: string;
+    let projectName;
+    let tokenPassword;
     
     if (args.length > 0) {
       projectName = args[0];
@@ -330,3 +326,4 @@ async function main(): Promise<void> {
 }
 
 main();
+

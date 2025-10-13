@@ -77,13 +77,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build package
-        run: |
-          cd create-tooljump
-          echo "🔨 Building create-tooljump..."
-          yarn build
-          echo "✅ Build completed"
-
       - name: Configure npm for GitHub Packages
         run: |
           # Configure npm to use GitHub Packages for @tooljump scope
@@ -109,12 +102,6 @@ jobs:
           echo "=========================================="
           echo "📦 Publishing: $PACKAGE_NAME@$VERSION"
           echo "=========================================="
-          
-          # Verify the package is built
-          if [ ! -d "dist" ]; then
-            echo "❌ Package is not built. Exiting..."
-            exit 1
-          fi
           
           # Check if package already exists at this version
           echo "🔍 Checking if $PACKAGE_NAME@$VERSION already exists..."
