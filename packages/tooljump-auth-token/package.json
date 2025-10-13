@@ -1,0 +1,24 @@
+{
+  "name": "@tooljump/auth-token",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:cov": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@tooljump/common": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0",
+    "@vitest/coverage-v8": "^2.1.4"
+  }
+}

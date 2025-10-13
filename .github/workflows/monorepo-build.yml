@@ -1,0 +1,92 @@
+name: Build Monorepo
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  build-all:
+    runs-on: ubuntu-latest
+    env:
+      TOOLJUMP_SECRET_TOKEN: ${{ secrets.TOOLJUMP_SECRET_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build all packages
+        run: yarn build
+
+      - name: Build extension
+        run: yarn build:extension
+
+      - name: Start VM server (background)
+        run: |
+          # Start the dev:vm script in background and capture PID
+          nohup bash -lc "yarn dev:filesystem" > server.log 2>&1 &
+          echo $! > server.pid
+
+          # Wait for server to be ready on port 3000 (max ~2 minutes)
+          for i in {1..30}; do
+            tail -n 100 server.log || true
+            if curl -sSf --retry 1 --retry-connrefused -H "Authorization: Bearer ${TOOLJUMP_SECRET_TOKEN}" http://localhost:3000/config >/dev/null; then
+              echo "Server is up on http://localhost:3000";
+              break;
+            fi
+            echo "Waiting for server on :3000... ($i)";
+            sleep 2;
+            curl -sf -H "Authorization: Bearer ${TOOLJUMP_SECRET_TOKEN}" http://localhost:3000/config || true
+          done
+
+          # If still not up, fail with helpful logs
+          if ! curl -sSf -H "Authorization: Bearer ${TOOLJUMP_SECRET_TOKEN}" http://localhost:3000/config >/dev/null; then
+            echo "❌ Server failed to start on :3000 after retries"
+            echo "==== server.log (last 200 lines) ===="
+            tail -n 200 server.log || true
+            exit 1
+          fi
+
+      - name: Install Playwright Chromium + deps
+        working-directory: extension
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E (Xvfb)
+        run: xvfb-run -a node extension/e2e/e2e.spec.js
+
+      - name: Stop VM server
+        if: always()
+        run: |
+          if [ -f server.pid ]; then
+            echo "Stopping server PID $(cat server.pid)";
+            kill $(cat server.pid) || true
+            # Best-effort kill children if any remain (ts-node-dev etc.)
+            pkill -f simple-filesystem.ts || true
+            pkill -f ts-node-dev || true
+          fi
+
+      - name: Package extension
+        run: yarn package:extension
+
+      - name: Upload extension artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tooljump-extension
+          path: extension/tooljump-extension.zip
+          retention-days: 30
+
+      - name: Show build summary
+        run: |
+          echo "✅ Monorepo build completed successfully!"
+          echo "📦 Extension ZIP: tooljump-extension.zip"
+          echo "📥 Download from Actions tab → Artifacts"

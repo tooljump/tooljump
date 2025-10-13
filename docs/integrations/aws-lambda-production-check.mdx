@@ -1,0 +1,81 @@
+---
+title: AWS Lambda Production Check
+description: Shows production environment status for AWS Lambda functions
+tags: [aws, lambda, production, environment]
+icons: [aws, lambda]
+slides:
+  - image: /img/slide-aws-lambda.png
+    alt: AWS Lambda
+    url: "https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/shop-order-processing?tab=code"
+    targetSpanIndex: 1
+    description: Shows the lambda is in the production environment, so be careful!
+    isLastSlide: true
+    data:
+      - type: text
+        content: "In production env"
+        status: important
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/aws-lambda-production-check.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import Slideshow from '@site/src/components/Slideshow';
+
+<Slideshow slides={frontMatter.slides} />
+
+This integration helps engineers quickly identify when they're working with AWS Lambda functions in production environments. It displays a warning when the AWS account ID matches a configured production account.
+
+## How does it help?
+
+A large number of mistakes are being done when engineers believe a resource is not in production, when it actually is.
+
+This integration:
+- Displays "In production env!" with important status if it's a production account
+- Shows nothing if it's not a production account
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'text',
+      content: 'In production env!',
+      status: 'important'
+    }
+  ]} title="How it looks in the extension" />
+
+## Configuration
+
+The integration uses a simple account ID check. You'll need to update the `PRODUCTION_ACCOUNT_ID` constant in the integration file with your actual production AWS account ID.
+
+```javascript
+const PRODUCTION_ACCOUNT_ID = '12345678'; // Replace with your production account ID
+```
+
+## When it runs
+
+This integration runs when:
+- You're on an AWS Lambda function page (`console.aws.amazon.com/lambda`)
+- The AWS account ID is available in the context
+- The service type is `lambda`
+
+:::tip Alternative Detection Methods
+While this integration only checks the account ID, you could also modify it to check for function name patterns like `-prod` or `-production` suffixes for additional environment detection.
+:::
+
+## Installation
+
+1. Copy the integration file to your `examples/data/` directory
+2. Update the `PRODUCTION_ACCOUNT_ID` with your actual production account ID
+3. The integration will automatically be available when you visit AWS Lambda function pages
+
+## Security Note
+
+This integration only reads the account ID from the page context and doesn't make any external API calls, making it safe to use without additional AWS credentials.
+
+## Code
+
+<CodeBlock language="javascript" title="aws-lambda-production-check.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

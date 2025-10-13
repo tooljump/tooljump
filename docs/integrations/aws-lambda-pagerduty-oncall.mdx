@@ -1,0 +1,68 @@
+---
+slug: aws-lambda-pagerduty-oncall
+title: "AWS Lambda → PagerDuty: Show who's on‑call"
+subtitle: See the current on‑call responder for this Lambda function's service
+tags: [aws, lambda, pagerduty, oncall]
+icons: [aws, pagerduty]
+slides:
+  - image: /img/slide-aws-lambda.png
+    alt: AWS Lambda
+    url: "https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/shop-order-processing?tab=code"
+    targetSpanIndex: 1
+    description: Check who is oncall for a given lambda function
+    data:
+      - type: link
+        content: "Oncall: John"
+        href: '#'
+        icon: pagerduty
+      - type: text
+        content: "Other integrations: ..."
+  - image: /img/slide-pagerduty.png
+    alt: Pagerduty
+    url: https://pagerduty.com/oncall/service/shop
+    description: They find the flags that were recently updated
+    isLastSlide: true
+    data:
+      - type: text
+        content: "Other integrations: ..."
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/aws-lambda-pagerduty-oncall.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import Slideshow from '@site/src/components/Slideshow';
+
+<Slideshow slides={frontMatter.slides} />
+
+## How does this help you?
+
+* See who is currently on‑call for the service associated with your Lambda function
+* Jump directly to PagerDuty's On‑Call view filtered to the service
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'link',
+      content: 'On-call: John',
+      href: '#',
+      icon: 'pagerduty'
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+We read the `service` tag from the Lambda function using the AWS Lambda API, then search for a PagerDuty service with a matching name. We resolve the service's escalation policy, fetch the current L1 on‑call user, and show their first name.
+
+## Prerequisites
+For the code below to work, please ensure you have:
+
+1. **AWS credentials** configured in your secrets (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`)
+2. **PagerDuty API token** configured in your secrets (`PAGERDUTY_API_TOKEN`)
+3. **Lambda functions tagged** with:
+   - `service` tag containing the PagerDuty service name (exact match required)
+4. **PagerDuty service** with a name that exactly matches the Lambda function's `service` tag value
+
+## Code
+<CodeBlock language="javascript" title="aws-lambda-pagerduty-oncall.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

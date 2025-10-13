@@ -1,0 +1,25 @@
+{
+  "name": "@tooljump/logger",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:cov": "vitest run --coverage"
+  },
+  "dependencies": {
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "vitest": "^2.0.0",
+    "@vitest/coverage-v8": "^2.1.4"
+  }
+}

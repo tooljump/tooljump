@@ -1,0 +1,23 @@
+---
+schema-version: v2
+dd-service: lunr-languages      # matches package.json “name” :contentReference[oaicite:0]{index=0}
+
+# Optional: assign to your owning team if you have one
+# team: library-maintainers
+
+# Code repositories
+repos:
+  - name: Source Code
+    provider: GitHub
+    url: https://github.com/mihaivalentin/lunr-languages
+
+# Documentation links
+docs:
+  - name: Homepage
+    provider: Website
+    url: https://github.com/mihaivalentin/lunr-languages
+
+# Any custom metadata you need
+extensions:
+  author: "Mihai Valentin"
+  github: https://github.com/mihaivalentin/lunr-languages

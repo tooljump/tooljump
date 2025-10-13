@@ -1,0 +1,27 @@
+{
+    "name": "tooljump-example-simple",
+    "private": true,
+    "dependencies": {
+        "@aws-sdk/client-lambda": "^3.840.0"
+    },
+    "scripts": {
+        "dev:filesystem": "ts-node-dev --respawn --transpile-only simple-filesystem.ts",
+        "dev:github": "ts-node-dev --respawn --transpile-only simple-github.ts"
+    },
+    "devDependencies": {
+        "npm-run-all": "^4.1.5",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.8.3"
+    },
+    "resolutions": {
+        "@tooljump/core": "../packages/tooljump/dist",
+        "@tooljump/common": "../packages/tooljump-common/dist",
+        "@tooljump/logger": "../packages/tooljump-logger/dist",
+        "@tooljump/secrets-env": "../packages/tooljump-secrets-env/dist",
+        "@tooljump/integrations-fs": "../packages/tooljump-integrations-fs/dist",
+        "@tooljump/runner-vm": "../packages/tooljump-runner-vm/dist",
+        "@tooljump/cache-local": "../packages/tooljump-cache-local/dist",
+        "@tooljump/auth-token": "../packages/tooljump-auth-token/dist",
+        "@tooljump/integrations-github": "../packages/tooljump-integrations-github/dist"
+    }
+}

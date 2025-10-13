@@ -1,0 +1,278 @@
+.tryItOut {
+  display: flex;
+  align-items: center;
+  padding: 8rem 0;
+  width: 100%;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .tryItOut {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.tryItOut::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+[data-theme='dark'] .title {
+  color: #f1f5f9;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+[data-theme='dark'] .highlight {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #64748b;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+[data-theme='dark'] .subtitle {
+  color: #94a3b8;
+}
+
+.stepCard {
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+  padding: 0;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .stepCard {
+  background: #1e293b;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.stepCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.stepCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.stepCard:hover::before {
+  transform: scaleX(1);
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2rem 1rem 2rem;
+  position: relative;
+}
+
+.stepIcon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.stepImage {
+  width: 2.5rem;
+  height: 2.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+  object-fit: contain;
+}
+
+.stepImage:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  color: #64748b;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.125rem;
+  box-shadow: none;
+}
+
+[data-theme='dark'] .stepNumber {
+  color: #94a3b8;
+}
+
+.stepContent {
+  padding: 0 2rem 2rem 2rem;
+  text-align: left;
+}
+
+.stepTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+[data-theme='dark'] .stepTitle {
+  color: #f1f5f9;
+}
+
+.stepDescription {
+  color: #64748b;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+[data-theme='dark'] .stepDescription {
+  color: #94a3b8;
+}
+
+.stepAction {
+  margin-top: auto;
+}
+
+.stepButton {
+  display: inline-block;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.stepButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.stepButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.stepButton:hover::before {
+  left: 100%;
+}
+
+.stepButton:active {
+  transform: translateY(0);
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 996px) {
+  .tryItOut {
+    padding: 4rem 0;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .stepCard {
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tryItOut {
+    padding: 3rem 0;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .stepHeader {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
+  
+  .stepContent {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .stepIcon {
+    font-size: 2rem;
+  }
+  
+  .stepNumber {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}

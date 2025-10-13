@@ -1,0 +1,62 @@
+---
+slug: github-pagerduty-oncall
+title: "GitHub → PagerDuty: Show who’s on‑call"
+subtitle: See the current on‑call responder for this repository
+tags: [github, pagerduty, oncall]
+icons: [github, pagerduty]
+slides:
+  - image: /img/slide-github.png
+    alt: AWS Lambda
+    url: "https://github.com/mycompany/webshop"
+    targetSpanIndex: 1
+    description: Check who is oncall for a given repo
+    data:
+      - type: link
+        content: "Oncall: John"
+        href: '#'
+        icon: pagerduty
+      - type: text
+        content: "Other integrations: ..."
+  - image: /img/slide-pagerduty.png
+    alt: Pagerduty
+    url: https://pagerduty.com/oncall/service/shop
+    description: They find the flags that were recently updated
+    isLastSlide: true
+    data:
+      - type: text
+        content: "Other integrations: ..."
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.pagerduty.oncall.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import Slideshow from '@site/src/components/Slideshow';
+
+<Slideshow slides={frontMatter.slides} />
+
+## How does this help you?
+
+* See who is currently on‑call for this repository
+* Jump directly to PagerDuty’s On‑Call view filtered to the service
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'link',
+      content: 'Oncall: John',
+      href: '#',
+      icon: 'pagerduty'
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+We assume PagerDuty services are tagged with the repository name (tag key `repository`, value matching the GitHub repo, e.g. `company/webshop`). We locate the first matching service, resolve its escalation policy, fetch the current L1 on‑call user, and show their first name.
+
+## Prerequisites
+For the code below to work, please follow the guide on [Connecting to PagerDuty](/docs/recipes/connecting-to-pagerduty). Provide `PAGERDUTY_API_TOKEN` as a secret.
+
+## Code
+<CodeBlock language="javascript" title="github.pagerduty.oncall.integration.example.js">
+{IntegrationCode}
+</CodeBlock>
