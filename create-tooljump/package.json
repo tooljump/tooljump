@@ -1,5 +1,5 @@
 {
-  "name": "create-tooljump",
+  "name": "@tooljump/create-tooljump",
   "version": "1.0.0",
   "description": "CLI tool to create new ToolJump projects",
   "type": "module",
@@ -17,6 +17,10 @@
   "keywords": ["tooljump", "cli", "generator"],
   "author": "",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
   "dependencies": {
     "inquirer": "^9.2.12",
     "fs-extra": "^11.1.1"

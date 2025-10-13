@@ -1,0 +1,149 @@
+name: Publish create-tooljump Package
+
+on:
+  push:
+    tags:
+      - 'c*'  # Triggers on tags like c1.0.0, c2.1.3, etc.
+
+jobs:
+  publish-create-tooljump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Allow pushing version bump commits
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main  # Checkout main branch instead of the tag
+          fetch-depth: 0  # Fetch all history so we can access the tag
+
+      - name: Verify GitHub Token Permissions
+        run: |
+          echo "🔍 Verifying GitHub token permissions..."
+          
+          # Test if we can access the repository
+          curl -H "Authorization: token ${{ secrets.NPM_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${{ github.repository }} || echo "❌ Cannot access repository"
+          
+          # Test if we can access packages
+          curl -H "Authorization: token ${{ secrets.NPM_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/user/packages || echo "❌ Cannot access packages"
+          
+          echo "✅ Token permission check completed"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+          token: '${{ secrets.NPM_TOKEN }}'
+
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          # Extract version from tag (c1.0.1 -> 1.0.1)
+          VERSION=${GITHUB_REF#refs/tags/c}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📌 Detected version: $VERSION"
+
+      - name: Update package version
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          echo "🔄 Updating create-tooljump/package.json to version $VERSION..."
+          
+          cd create-tooljump
+          # Update version in package.json
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.version = '$VERSION';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+          
+          echo "✅ Package version updated to $VERSION"
+
+      - name: Commit version changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add create-tooljump/package.json
+          git diff --staged --quiet || git commit -m "chore: bump create-tooljump version to ${{ steps.get_version.outputs.version }}"
+          git push origin main
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build package
+        run: |
+          cd create-tooljump
+          echo "🔨 Building create-tooljump..."
+          yarn build
+          echo "✅ Build completed"
+
+      - name: Configure npm for GitHub Packages
+        run: |
+          # Configure npm to use GitHub Packages for @tooljump scope
+          npm config set @tooljump:registry https://npm.pkg.github.com
+          npm config set //npm.pkg.github.com/:_authToken ${{ secrets.NPM_TOKEN }}
+          
+          # Create .npmrc file for better authentication
+          echo "@tooljump:registry=https://npm.pkg.github.com" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+          echo "//npm.pkg.github.com/:always-auth=true" >> .npmrc
+          
+          # Test authentication
+          echo "🔐 Testing authentication..."
+          npm whoami --registry=https://npm.pkg.github.com || echo "❌ Authentication failed"
+
+      - name: Publish package
+        run: |
+          cd create-tooljump
+          VERSION="${{ steps.get_version.outputs.version }}"
+          PACKAGE_NAME="@tooljump/create-tooljump"
+          
+          echo ""
+          echo "=========================================="
+          echo "📦 Publishing: $PACKAGE_NAME@$VERSION"
+          echo "=========================================="
+          
+          # Verify the package is built
+          if [ ! -d "dist" ]; then
+            echo "❌ Package is not built. Exiting..."
+            exit 1
+          fi
+          
+          # Check if package already exists at this version
+          echo "🔍 Checking if $PACKAGE_NAME@$VERSION already exists..."
+          
+          if npm view "$PACKAGE_NAME@$VERSION" --registry=https://npm.pkg.github.com > /dev/null 2>&1; then
+            echo "⚠️  Package $PACKAGE_NAME@$VERSION already exists. Skipping..."
+            exit 0
+          fi
+          
+          # Show what will be published
+          echo "📋 Files to be published:"
+          npm pack --dry-run 2>&1 | grep -E "^\s+[0-9]" || echo "  (unable to list files)"
+          echo ""
+          
+          # Publish the package
+          echo "🚀 Publishing $PACKAGE_NAME@$VERSION..."
+          
+          if npm publish --access restricted --registry=https://npm.pkg.github.com --verbose 2>&1; then
+            echo "✅ Successfully published $PACKAGE_NAME@$VERSION"
+          else
+            echo "❌ Failed to publish $PACKAGE_NAME@$VERSION"
+            exit 1
+          fi
+          
+          echo ""
+          echo "=========================================="
+          echo "✅ Package published successfully!"
+          echo "=========================================="
+          echo "📦 Package: $PACKAGE_NAME@$VERSION"
+          echo "🔒 Access: Restricted (private)"
+          echo "🏢 Registry: https://npm.pkg.github.com"
+
