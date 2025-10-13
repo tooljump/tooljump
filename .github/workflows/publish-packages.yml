@@ -9,7 +9,7 @@ jobs:
   publish-packages:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write  # Allow pushing version bump commits
       packages: write
     steps:
       - name: Checkout code
@@ -39,6 +39,48 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@tooljump'
           token: '${{ secrets.NPM_TOKEN }}'
+
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          # Extract version from tag (v1.0.1 -> 1.0.1)
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📌 Detected version: $VERSION"
+
+      - name: Update package versions
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          echo "🔄 Updating all package.json files to version $VERSION..."
+          
+          cd packages
+          for package in */; do
+            if [ -f "$package/package.json" ]; then
+              package_name=$(node -e "console.log(require('./$package/package.json').name)")
+              if [[ "$package_name" == @tooljump/* ]]; then
+                echo "  Updating $package_name to $VERSION"
+                cd "$package"
+                # Update version in package.json
+                node -e "
+                  const fs = require('fs');
+                  const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+                  pkg.version = '$VERSION';
+                  fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+                "
+                cd ..
+              fi
+            fi
+          done
+          
+          echo "✅ All package versions updated to $VERSION"
+
+      - name: Commit version changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add packages/*/package.json
+          git diff --staged --quiet || git commit -m "chore: bump package versions to ${{ steps.get_version.outputs.version }}"
+          git push origin main
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
