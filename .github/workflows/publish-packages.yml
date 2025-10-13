@@ -104,17 +104,27 @@ jobs:
         run: |
           # Discover and publish all @tooljump packages
           cd packages
+          
+          # Arrays to track results
+          declare -a published_packages
+          declare -a skipped_packages
+          declare -a failed_packages
+          
           for package in */; do
             if [ -f "$package/package.json" ]; then
               # Check if it's a @tooljump package
               package_name=$(node -e "console.log(require('./$package/package.json').name)")
               if [[ "$package_name" == @tooljump/* ]]; then
-                echo "📦 Publishing $package_name..."
+                echo ""
+                echo "=========================================="
+                echo "📦 Processing: $package_name"
+                echo "=========================================="
                 cd "$package"
                 
                 # Verify the package is built
                 if [ ! -d "dist" ]; then
                   echo "❌ Package $package_name is not built. Skipping..."
+                  skipped_packages+=("$package_name (no dist directory)")
                   cd ..
                   continue
                 fi
@@ -125,6 +135,7 @@ jobs:
                 
                 if npm view "$package_name@$version" --registry=https://npm.pkg.github.com > /dev/null 2>&1; then
                   echo "⚠️  Package $package_name@$version already exists. Skipping..."
+                  skipped_packages+=("$package_name@$version (already published)")
                   cd ..
                   continue
                 fi
@@ -132,20 +143,68 @@ jobs:
                 # Publish the package using npm (since we're publishing to GitHub Packages)
                 echo "🚀 Publishing $package_name@$version..."
                 echo "📁 Current directory: $(pwd)"
-                echo "📦 Package.json contents:"
-                cat package.json
-                echo ""
-                echo "🔧 Registry configuration:"
-                echo "Registry: https://npm.pkg.github.com"
-                echo "Scope: @tooljump"
+                echo "📋 Files to be published:"
+                npm pack --dry-run 2>&1 | grep -E "^\s+[0-9]" || echo "  (unable to list files)"
                 echo ""
                 
-                npm publish --access restricted --registry=https://npm.pkg.github.com --verbose
+                # Publish with error handling
+                if npm publish --access restricted --registry=https://npm.pkg.github.com --verbose 2>&1; then
+                  echo "✅ Successfully published $package_name@$version"
+                  published_packages+=("$package_name@$version")
+                else
+                  echo "❌ Failed to publish $package_name@$version"
+                  failed_packages+=("$package_name@$version")
+                fi
                 
                 cd ..
               fi
             fi
           done
+          
+          # Print summary
+          echo ""
+          echo "=========================================="
+          echo "📊 PUBLISH SUMMARY"
+          echo "=========================================="
+          
+          echo ""
+          echo "✅ Published (${#published_packages[@]}):"
+          if [ ${#published_packages[@]} -eq 0 ]; then
+            echo "  (none)"
+          else
+            for pkg in "${published_packages[@]}"; do
+              echo "  - $pkg"
+            done
+          fi
+          
+          echo ""
+          echo "⚠️  Skipped (${#skipped_packages[@]}):"
+          if [ ${#skipped_packages[@]} -eq 0 ]; then
+            echo "  (none)"
+          else
+            for pkg in "${skipped_packages[@]}"; do
+              echo "  - $pkg"
+            done
+          fi
+          
+          echo ""
+          echo "❌ Failed (${#failed_packages[@]}):"
+          if [ ${#failed_packages[@]} -eq 0 ]; then
+            echo "  (none)"
+          else
+            for pkg in "${failed_packages[@]}"; do
+              echo "  - $pkg"
+            done
+          fi
+          
+          echo ""
+          echo "=========================================="
+          
+          # Exit with error if any packages failed
+          if [ ${#failed_packages[@]} -gt 0 ]; then
+            echo "❌ Some packages failed to publish!"
+            exit 1
+          fi
 
       - name: Show publish summary
         run: |
