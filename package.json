@@ -1,0 +1,37 @@
+{
+  "name": "tooljump-monorepo",
+  "private": true,
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "lerna run build",
+    "build:extension": "cd extension && yarn install && yarn build",
+    "build:all": "yarn install && lerna run build && yarn build:extension",
+    "dev:extension": "cd extension && yarn install && yarn watch",
+    "dev:server:filesystem": "cd examples && yarn run dev:filesystem",
+    "dev:server:github": "cd examples && yarn run dev:github",
+    "dev": "npm-run-all --parallel dev:extension dev:server",
+    "dev:filesystem": "npm-run-all --parallel dev:extension dev:server:filesystem",
+    "dev:github": "npm-run-all --parallel dev:extension dev:server:github",
+    "package:extension": "cd extension && yarn install && yarn package",
+    "package:extension:dev": "cd extension && yarn install && yarn package:dev",
+    "test": "yarn --cwd extension test && lerna run test",
+    "test:cov": "yarn --cwd extension test:cov && lerna run test:cov",
+    "test:workflow": "./scripts/test-workflow.sh",
+    "icons:add-status": "node scripts/add-status-circles-sharp.js"
+  },
+  "devDependencies": {
+    "lerna": "^8.2.3",
+    "npm-run-all": "^4.1.5",
+    "sharp": "^0.33.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "build": "lerna run build"
+}

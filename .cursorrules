@@ -1,0 +1,32 @@
+# Cursor Rules for Tooljump Project
+
+# Project-wide rules
+- always use yarn, do not use npm
+- for requests that are not trivial, always ask clarifying questions before proceeding
+- use best practices for security, including input data sanitiziation, validation, prevention of injection
+
+## Tooljump-Specific Rules
+
+### Package Structure
+- All packages should be in the `packages/` directory
+- Use Yarn workspaces for monorepo management
+- Each package should have its own `package.json` and `tsconfig.json`
+
+### Integration Development
+- Place integrations in `examples/data/` directory
+- Use the `.integration.js` extension
+- Follow the metadata schema defined in `tooljump-common`
+- Implement proper context matching and caching
+
+### Extension Development
+- Use React for UI components
+- Follow the context-aware architecture
+- Implement proper site adapters for different websites
+- Use TypeScript for all extension code
+
+## Code Generation
+- Generate TypeScript interfaces for all data structures
+- Include proper JSDoc comments
+- Add error handling for all async operations
+- Use structured logging with context
+- Follow the established integration pattern

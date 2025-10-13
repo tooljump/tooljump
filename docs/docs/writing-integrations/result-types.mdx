@@ -1,0 +1,276 @@
+---
+id: result-types
+title: Result types
+sidebar_label: Result types
+---
+
+import BarContentPreview from '../../src/components/BarContentPreview';
+import IconShowcase from '../../src/components/IconShowcase';
+
+
+# Result Types
+
+Integrations can return different types of results to display information in various ways. Each result type has specific properties and use cases.
+
+## Available Result Types
+
+### 1. Text Results
+
+Simple text display for information, status messages, or data.
+
+```javascript
+{
+    type: 'text',
+    content: 'Next deployment in 3h'
+}
+```
+
+<BarContentPreview 
+  data={[
+    {
+      type: 'text',
+      content: 'Next deployment in 3h'
+    }
+  ]}
+  title="Text Result Preview"
+/>
+
+### 2. Link Results
+
+Clickable links that navigate to external resources or perform actions.
+
+```javascript
+{
+    type: 'link',
+    content: 'Oncall: John',
+    href: 'https://pagerduty.com/...',
+    icon: 'pagerduty',
+}
+```
+
+<BarContentPreview 
+  data={[
+    {
+        type: 'link',
+        content: 'Oncall: John',
+        href: 'https://pagerduty.com/...',
+        icon: 'pagerduty',
+    }
+  ]}
+  title="Link Result Preview"
+/>
+
+### 3. Dropdown Results
+
+Expandable menus with multiple related links or actions.
+
+```javascript
+{
+    type: 'dropdown',
+    content: 'Deployed URLs',
+    items: [
+        {
+            type: 'link',
+            content: 'Staging - https://myservice.staging.myapp.com',
+            href: 'https://myservice.staging.myapp.com',
+            icon: 'link'
+        },
+        {
+            type: 'link',
+            content: 'PROD US - https://myservice.prod.us.myapp.com',
+            href: 'https://myservice.prod.us.myapp.com',
+            icon: 'link',
+            status: 'important',
+        },
+        {
+            type: 'link',
+            content: 'PROD EU - https://myservice.prod.eu.myapp.com',
+            href: 'https://myservice.prod.eu.myapp.com',
+            icon: 'link',
+            status: 'important',
+        }
+    ]
+}
+```
+
+<BarContentPreview 
+  data={[
+    {
+      type: 'dropdown',
+      content: 'Deployed URLs',
+      items: [
+        {
+          type: 'link',
+          content: 'Staging - https://myservice.staging.myapp.com',
+          href: 'https://myservice.staging.myapp.com',
+          icon: 'link'
+        },
+        {
+          type: 'link',
+          content: 'PROD US - https://myservice.prod.us.myapp.com',
+          href: 'https://myservice.prod.us.myapp.com',
+          icon: 'link',
+          status: 'important',
+        },
+        {
+          type: 'link',
+          content: 'PROD EU - https://myservice.prod.eu.myapp.com',
+          href: 'https://myservice.prod.eu.myapp.com',
+          icon: 'link',
+          status: 'important',
+        }
+      ]
+    }
+  ]}
+  title="Dropdown Result Preview"
+/>
+
+## Status Values
+
+Status indicators help users quickly understand the importance or state of results:
+
+- `'important'` - High priority, requires attention
+- `'relevant'` - Contextually important
+- `'success'` - Positive status or completion
+- `'none'` - Default status
+
+<BarContentPreview 
+  data={[
+    {
+        type: 'dropdown',
+        content: 'Text with statuses',
+        items: [
+            {
+                type: 'text',
+                content: 'Text with important status',
+                status: 'important',
+            },
+            {
+                type: 'text',
+                content: 'with relevant status',
+                status: 'relevant',
+            },
+            {
+                type: 'text',
+                content: 'with success status',
+                status: 'success',
+            },
+            {
+                type: 'text',
+                content: 'with no status',
+            }
+        ]
+    },
+    {
+        type: 'dropdown',
+        content: 'Links with statuses',
+        items: [
+            {
+                type: 'link',
+                content: 'Link with important status',
+                href: '#',
+                status: 'important',
+            },
+            {
+                type: 'link',
+                content: 'with relevant status',
+                href: '#',
+                status: 'relevant',
+            },
+            {
+                type: 'link',
+                content: 'with success status (and with icon)',
+                href: '#',
+                status: 'success',
+                icon: 'datadog',
+            },
+            {
+                type: 'link',
+                href: '#',
+                content: 'with no status',
+            }
+        ]
+    }
+    
+  ]}
+  title="Open any dropdown below"
+/>
+
+## Tooltips
+
+Tooltips provide additional context and information when users hover over result items. They help explain what each item does or provides more details about the data being displayed.
+
+### Tooltip Properties
+
+- **Optional**: All result types support an optional `tooltip` field
+- **Length**: Must be between 1 and 500 characters
+- **Display**: Shown as native browser tooltips on hover
+- **Support**: Available for text, link, dropdown, and dropdown item types
+
+### Examples
+
+```javascript
+// Text with tooltip
+{
+    type: 'text',
+    content: '3 alerts active',
+    status: 'important',
+    tooltip: 'Critical alerts requiring immediate attention'
+}
+```
+
+<BarContentPreview 
+  data={[
+    {
+      type: 'text',
+      content: '3 alerts active',
+      status: 'important',
+      tooltip: 'Critical alerts requiring immediate attention'
+    }
+  ]}
+  title="Tooltip Result Preview - Move your mouse over the text"
+/>
+
+## Icons
+
+Icons provide visual context related to which tool the information comes from. Available icons include:
+
+In every element you return as a result, you can add `icon: 'icon-name'` to display an icon.
+
+<BarContentPreview 
+  data={[
+    {
+        type: 'text',
+        icon: 'aws',
+        content: 'Text with AWS icon'
+    },
+    {
+        type: 'link',
+        icon: 'datadog',
+        href: '#',
+        content: 'Link with Datadog icon'
+    },
+    {
+        type: 'dropdown',
+        icon: 'slack',
+        href: '#',
+        content: 'Dropdown with Slack icon',
+        items: [
+            {
+                type: 'text',
+                content: 'Text',
+            }
+        ]
+    }
+  ]}
+  title="Icon Result Preview"
+/>
+
+<IconShowcase />
+
+## Next Steps
+
+Now that you understand result types, learn about:
+- **[When to Run](./when-to-run.md)** - Controlling when integrations execute
+- **[Caching](./caching.md)** - Optimizing performance
+- **[Secrets](./secrets.md)** - Managing configuration

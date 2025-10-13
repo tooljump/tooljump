@@ -1,0 +1,40 @@
+---
+slug: github-slack-channel
+title: "GitHub → Slack: Show service channel"
+subtitle: Link the repository to its Slack channel
+tags: [github, slack, channel]
+icons: [github, slack]
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.slack.channel.integration.example.js';
+
+## How does this help you?
+
+* Quickly find the Slack channel associated with this repository
+* Jump straight into Slack via a deep link
+
+## High level approach
+We assume a local data file maps repositories to Slack channels. The integration reads the mapping, finds the channel for the current repo (tag key `repository`, value from the GitHub page), and renders a link to Slack.
+
+Example data file (`slack-channels.data.json`):
+```json
+{
+  "mappings": {
+    "company/webshop": "#webshop",
+    "company/notifier": "#alerts-notifier"
+  }
+}
+```
+
+:::tip
+The prefered way of obtaining this information is if you use a Service/Inventory Catalog solution, which you can read this information from via API access.
+:::
+
+## Prerequisites
+No external auth required. Add a data file (e.g., `slack-channels.data.json`) to your data directory. Learn more in [Data files](/docs/writing-integrations/data).
+
+## Code
+<CodeBlock language="javascript" title="github.slack.channel.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

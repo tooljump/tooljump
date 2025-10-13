@@ -1,0 +1,68 @@
+---
+slug: aws-lambda-browse-github-code
+title: "AWS Lambda → GitHub: Browse deployed code"
+subtitle: Jump directly to the GitHub repository at the specific version deployed to Lambda
+tags: [aws, lambda, github, code, deployment, version]
+icons: [aws, github]
+slides:
+  - image: /img/slide-aws-lambda.png
+    alt: AWS Lambda
+    url: "https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/shop-order-processing?tab=code"
+    targetSpanIndex: 1
+    description: Go to the code which is deployed in this lambda
+    data:
+      - type: link
+        content: "Browse code @ a1b2c3d"
+        href: '#'
+        icon: github
+      - type: text
+        content: "Other integrations ..."
+        href: '#'
+  - image: /img/slide-github.png
+    alt: GitHub Repository Screenshot
+    url: https://github.com/mycompany/webshop/tree/a1b2c3d
+    description: You can now browse the code that is deployed in the Lambda
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/aws-lambda-browse-github-code.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import Slideshow from '@site/src/components/Slideshow';
+
+<Slideshow slides={frontMatter.slides} />
+
+## How does this help you?
+
+* You can quickly navigate to the exact code version that's currently deployed to your Lambda function
+* No need to manually search for the repository or figure out which commit is deployed
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'link',
+      content: 'Browse code @ a1b2c3d',
+      icon: 'github',
+      href: 'https://github.com/my-org/my-repo/tree/a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0',
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+We read the `repository` and `version` tags from the Lambda function using the AWS Lambda API, then construct a GitHub URL to browse the code at that specific version/commit.
+
+## Prerequisites
+For the code below to work, please ensure you have:
+
+1. **AWS credentials** configured in your secrets
+2. **Lambda functions tagged** with:
+   - `repository` tag containing your GitHub repository in `org/repo` format
+   - `version` tag containing the commit SHA or version identifier
+
+## Code
+<CodeBlock language="javascript" title="aws-lambda-browse-github-code.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

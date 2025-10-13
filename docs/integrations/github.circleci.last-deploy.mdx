@@ -1,0 +1,69 @@
+---
+slug: github-circleci-last-deploy
+title: "GitHub → CircleCI: Last production deploy"
+subtitle: Show the most recent successful deploy workflow
+tags: [github, circleci, deploys, cicd]
+icons: [github, circleci]
+slides:
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 1
+    description: Check the last deploy directly from the repo
+    data:
+      - type: link
+        content: "Deployed 5m ago"
+        href: '#'
+        icon: circleci
+      - type: text
+        content: Other integrations ...
+  - image: /img/slide-circleci.png
+    alt: Github
+    url: https://app.circleci.com/project/mycompany/shop-orders
+    targetSpanIndex: 1
+    description: Review the workflow responsible for the last deployment
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.circleci.last-deploy.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import Slideshow from '@site/src/components/Slideshow';
+
+<Slideshow slides={frontMatter.slides} />
+
+## How does this help you?
+
+* See when this repo was last deployed to production
+* Jump directly to the corresponding successful workflow run in CircleCI
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'link',
+      content: 'Deployed 5m ago',
+      href: '#',
+      icon: 'circleci'
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+There are multiple ways to determine the last production deploy for a repository:
+
+1. Insights API by workflow name (simple): Query `GET /insights/{project-slug}/workflows/{workflow_name}` for the `deploy-prod` workflow on `main` and pick the most recent successful run.
+2. Pipelines → Workflows traversal: List pipelines for `main` via `GET /project/{project-slug}/pipeline?branch=main`, then for each pipeline call `GET /pipeline/{id}/workflow` and find the latest successful `deploy-prod` workflow.
+3. Job-level heuristics: If workflow names vary, filter workflow runs whose names contain both “deploy” and “prod”, or use a job name convention inside workflows.
+
+The implementation below uses the Insights API (option 1) for simplicity.
+
+## Prerequisites
+For the code below to work, please follow the guide on [Connecting to CircleCI](/docs/recipes/connecting-to-circleci). Provide `CIRCLECI_API_TOKEN` as a secret.
+
+## Code
+<CodeBlock language="javascript" title="github.circleci.last-deploy.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

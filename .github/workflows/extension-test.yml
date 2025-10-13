@@ -1,0 +1,44 @@
+name: Test Extension
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths: [ 'extension/**' ]
+  pull_request:
+    branches: [ main ]
+    paths: [ 'extension/**' ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: |
+          cd extension
+          yarn install --frozen-lockfile
+
+      - name: Run extension validation
+        run: |
+          cd extension
+          yarn build
+          node scripts/check-dist.js
+
+      - name: Test packaging
+        run: |
+          cd extension
+          yarn package
+          ls -la *.zip
+
+      - name: Show test results
+        run: |
+          echo "✅ Extension tests passed!"
+          echo "📦 Extension is ready for distribution"
