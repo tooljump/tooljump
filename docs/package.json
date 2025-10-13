@@ -1,5 +1,6 @@
 {
   "name": "docs",
+  "description": "Documentation for ToolJump; Connect your dev tools (GitHub, AWS, monitoring, etc.) so knowledge and navigation live where engineers work - no context switching, no tribal knowledge.",
   "version": "0.0.0",
   "private": true,
   "scripts": {

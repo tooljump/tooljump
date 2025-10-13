@@ -1,7 +1,7 @@
 {
   "name": "create-tooljump",
   "version": "1.0.0",
-  "description": "CLI tool to create new Tooljump projects",
+  "description": "CLI tool to create new ToolJump projects",
   "type": "module",
   "main": "dist/index.js",
   "bin": {

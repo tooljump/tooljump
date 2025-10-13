@@ -1,5 +1,6 @@
 {
-    "name": "tooljump-example-simple",
+    "name": "tooljump-examples",
+    "description": "Examples for ToolJump; Connect your dev tools (GitHub, AWS, monitoring, etc.) so knowledge and navigation live where engineers work - no context switching, no tribal knowledge.",
     "private": true,
     "dependencies": {
         "@aws-sdk/client-lambda": "^3.840.0"

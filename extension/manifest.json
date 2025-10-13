@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "ToolJump",
+  "name": "ToolJump - Connect your dev tools",
   "version": "1.0.0",
-  "description": "Connect your tools together",
+  "description": "Connect your dev tools (GitHub, AWS, monitoring, etc.) so knowledge and navigation live where engineers work - no context switching, no tribal knowledge.",
   "permissions": ["scripting", "activeTab", "storage"],
   "host_permissions": [
     "https://github.com/*",
