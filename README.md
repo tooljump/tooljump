@@ -23,6 +23,8 @@ Imagine a single bar that follows you across your tools - GitHub, AWS, Datadog, 
 
 Think of it as a **GPS for your engineering tools**: wherever you are, ToolJump shows you the path forward - whether it's debugging logs, exploring related infrastructure, or finding the right docs. All without leaving the screen you're already on.
 
+<video src="docs/static/img/slideshow.mp4" controls width="100%"></video>
+
 ### Real-World Examples
 
 - Jump instantly from a GitHub repo to the right logs in your monitoring system
@@ -232,7 +234,7 @@ ToolJump is designed with security as a core principle:
 - ✅ Implement strong authentication
 - ✅ Store integrations in GitHub with code review
 - ✅ Use read-only credentials with least privilege
-- ✅ Enable rate limiting
+- ✅ Enable rate limiting in your API Gateway
 - ✅ Keep dependencies updated
 
 [Learn more about security →](http://localhost:3001/docs/security)
