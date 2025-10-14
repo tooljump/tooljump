@@ -167,7 +167,7 @@ docker run -p 3000:3000 --env-file .env tooljump
 
 While ToolJump is fully open source and free to use, implementing it across your organization with battle-tested DevEx expertise can save weeks of trial and error. Professional implementation includes seamless integration with your internal auth, tailored rollout based on your biggest bottlenecks, team enablement, and enterprise features with ongoing support.
 
-[Learn more about professional implementation →](http://localhost:3001/implement)
+[Learn more about professional implementation →](http://localhost:3001/docs/implement)
 
 ---
 
