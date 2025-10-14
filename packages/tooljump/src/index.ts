@@ -114,7 +114,28 @@ export class ToolJump {
 
   private async handleContext(req: Request, res: Response): Promise<void> {
     try {
-      const integrations = await this.integrations.getIntegrationsByContext(req.body);
+      // Validate request body
+      const validationResult = this.validateContextRequest(req.body);
+      if (!validationResult.success) {
+        this.logger.warn({
+          operation: 'context-request-validation',
+          errors: validationResult.error.errors
+        }, 'Invalid context request body');
+        
+        res.status(400).json({
+          error: 'Invalid request body',
+          details: validationResult.error.errors.map(e => ({
+            path: e.path.join('.'),
+            message: e.message
+          })),
+          timestamp: new Date().toISOString()
+        });
+        return;
+      }
+
+      const context = validationResult.data;
+
+      const integrations = await this.integrations.getIntegrationsByContext(context);
       
       if (integrations.length === 0) {
         res.send(this.createEmptyResponse());
@@ -122,14 +143,14 @@ export class ToolJump {
       }
 
       const dataFiles = await this.integrations.getDataFiles();
-      const { results, failedIntegrations } = await this.processIntegrations(integrations, req.body, dataFiles);
+      const { results, failedIntegrations } = await this.processIntegrations(integrations, context, dataFiles);
 
       this.logIntegrationSummary(failedIntegrations, integrations.length);
       
       res.send({
         data: results,
         count: results.length,
-        cacheHits: this.calculateCacheHits(integrations, req.body),
+        cacheHits: this.calculateCacheHits(integrations, context),
         failedCount: failedIntegrations.length,
         timestamp: new Date().toISOString(),
         integrationNames: integrations.map(i => i.metadata.name)
@@ -137,6 +158,41 @@ export class ToolJump {
     } catch (error) {
       this.handleError(res, 'context-request', error, 'Unexpected error in context endpoint');
     }
+  }
+
+  private validateContextRequest(body: any): z.SafeParseReturnType<any, any> {
+    // Create recursive schema for nested values (up to 10 levels deep)
+    const createNestedValueSchema = (depth: number): z.ZodTypeAny => {
+      const primitiveSchema = z.union([
+        z.string(),
+        z.number(),
+        z.boolean(),
+        z.null()
+      ]);
+
+      if (depth === 0) {
+        return primitiveSchema;
+      }
+
+      const nestedSchema = z.lazy(() =>
+        z.union([
+          primitiveSchema,
+          z.array(createNestedValueSchema(depth - 1)),
+          z.record(z.string(), createNestedValueSchema(depth - 1))
+        ])
+      );
+
+      return nestedSchema;
+    };
+
+    // Build the context request schema
+    const contextRequestSchema = z.object({
+      type: z.enum(this.config.allowedAdapters as [string, ...string[]])
+        .describe('The adapter type must be one of the allowed adapters'),
+      url: z.string().url('URL must be a valid URL')
+    }).catchall(createNestedValueSchema(10));
+
+    return contextRequestSchema.safeParse(body);
   }
 
   private createEmptyResponse() {
