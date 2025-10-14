@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "yarn clean && npm-run-all --parallel build:popup build:main build:background && yarn copy-manifest",
+    "build": "yarn clean && npm-run-all --parallel build:popup build:main build:background && yarn copy-manifest:prod",
     "copy-manifest": "cp manifest.json dist/ && cp -r icons dist/",
     "copy-manifest:prod": "node scripts/copy-manifest-prod.js && cp -r icons dist/",
     "build:popup": "NODE_ENV=production vite build --config vite.popup.config.ts",
