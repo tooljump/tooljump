@@ -126,7 +126,7 @@ While ToolJump is designed with security in mind, proper deployment practices ar
 
 ✅ **Use Strong Authentication** - Implement strong, unique passwords that are not easily guessable
 
-✅ **Enable Rate Limiting** - Implement rate limiting to prevent abuse and limit requests from individual IP addresses
+✅ **Enable Rate Limiting** - Implement rate limiting to prevent abuse and limit requests from individual IP addresses (use your API Gateway or Load Balancer for this)
 
 ✅ **Maintain System Security** - Keep your operating system updated and properly configure firewalls when hosting on VPS, bare metal, or similar infrastructure
 
