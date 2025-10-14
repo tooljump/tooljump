@@ -5,6 +5,21 @@ sidebar_label: Hello World
 ---
 
 import BarContentPreview from '@site/src/components/BarContentPreview';
+import ConditionalQueryParam from '@site/src/components/ConditionalQueryParam';
+
+<ConditionalQueryParam param="from_extension">
+
+:::tip Welcome to ToolJump Demo Integration
+
+You clicked on a tool from the context bar - nice! 
+
+In a live environment, this button would take you directly to the tool you wanted.
+
+Since this is a demo integration that does not have the context of your organisation, please read below how to create your own integrations, adapted for your use-cases.
+
+:::
+
+</ConditionalQueryParam>
 
 # Hello World Integration
 
@@ -85,7 +100,7 @@ There are many types of results available, but for now let's stick with a simple
 2. Navigate to any Github repo that matches your context (e.g., `https://github.com/tooljump/tooljump`)
 3. The integration should run and display "Hello World!"
 
-If it doesn’t work, check the [Debugging](./debugging.md) guide.
+If it doesn't work, check the [Debugging](./debugging.md) guide.
 
 ## Next Steps
 
