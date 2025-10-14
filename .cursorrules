@@ -1,11 +1,11 @@
-# Cursor Rules for Tooljump Project
+# Cursor Rules for ToolJump Project
 
 # Project-wide rules
 - always use yarn, do not use npm
 - for requests that are not trivial, always ask clarifying questions before proceeding
 - use best practices for security, including input data sanitiziation, validation, prevention of injection
 
-## Tooljump-Specific Rules
+## ToolJump-Specific Rules
 
 ### Package Structure
 - All packages should be in the `packages/` directory

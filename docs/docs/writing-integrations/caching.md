@@ -6,7 +6,7 @@ sidebar_label: Caching
 
 # Caching
 
-Caching improves performance by storing integration results and avoiding unnecessary re-execution. Tooljump automatically caches your integration results based on the `cache` property in your metadata.
+Caching improves performance by storing integration results and avoiding unnecessary re-execution. ToolJump automatically caches your integration results based on the `cache` property in your metadata.
 
 :::note
 For where and how result caching is implemented, see [Server Architecture: caching](../server-architecture.md#caches-results-of-integrations-for-performance-reasons).
@@ -18,7 +18,7 @@ This page describes result caching at the integration level. For caching arbitra
 
 ## How Caching Works
 
-When you set a `cache` value in your metadata, Tooljump will:
+When you set a `cache` value in your metadata, ToolJump will:
 
 1. **Store results** after the first execution
 2. **Return cached results** for subsequent requests within the cache period

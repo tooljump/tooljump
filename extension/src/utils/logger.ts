@@ -23,7 +23,7 @@ class ExtensionLogger {
 
   private formatMessage(level: string, component: string, message: string, data?: any): string {
     const timestamp = new Date().toISOString();
-    const prefix = `[Tooljump:${component}]`;
+    const prefix = `[ToolJump:${component}]`;
     return `${timestamp} ${prefix} ${level}: ${message}`;
   }
 

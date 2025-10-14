@@ -44,7 +44,7 @@ class ErrorService {
     this.notifyListeners();
 
     // Also log to console for debugging
-    console.error(`[Tooljump:${component}] ERROR: ${message}`, error);
+    console.error(`[ToolJump:${component}] ERROR: ${message}`, error);
   }
 
   getErrors(): ErrorEntry[] {

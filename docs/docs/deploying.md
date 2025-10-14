@@ -1,12 +1,12 @@
 ---
 id: deploying
-title: Deploying Tooljump
+title: Deploying ToolJump
 sidebar_label: Deploying
 ---
 
-# Deploying Tooljump
+# Deploying ToolJump
 
-This guide covers deploying Tooljump in various environments, from local development to production deployments.
+This guide covers deploying ToolJump in various environments, from local development to production deployments.
 
 :::warning
 One of the key differences between the local and production deployment is the integration adapter you use. Locally, it is perfectly fine to use the `@tooljump/integration-fs` adapter which reads the integrations from the disk, however when running in production, we **strongly** recommend using the `@tooljump/integration-github`, which fetches the integrations from Github. Using the Github adapters ensure you can store your integrations in source control and apply the usual code review process, just like you do for every other project in your organisation

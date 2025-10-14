@@ -52,7 +52,7 @@ const BarContent: React.FC<BarContentProps> = ({ data }) => {
         border: '1px solid transparent',
         verticalAlign: 'middle',
       }}>
-        Tooljump
+        ToolJump
       </span>
       <span style={{
         color: '#d1d5db',

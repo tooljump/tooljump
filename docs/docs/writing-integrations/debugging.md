@@ -9,7 +9,7 @@ sidebar_label: Debugging
 When your integration isn't working as expected, debugging can help you identify and fix the issue. This guide covers various debugging techniques and common problems you might encounter.
 
 :::tip
-1. Enable debug logging when investigating issues (both in the Tooljump server config and in the Debug tab of the Chrome extension’s settings)
+1. Enable debug logging when investigating issues (both in the ToolJump server config and in the Debug tab of the Chrome extension’s settings)
 1. Try to reproduce the issue locally, so you can iterate on integrations quickly
 :::
 
@@ -18,21 +18,21 @@ When your integration isn't working as expected, debugging can help you identify
 ### Setup
 
 Before debugging, please check the setup is correct:
-- [ ] The Tooljump server started successfully and you can see a message like `Tooljump server started and listening on port ...` in the logs
-- [ ] The URL of the Tooljump server is accessible (the default route should output `Authorization header required`)
+- [ ] The ToolJump server started successfully and you can see a message like `ToolJump server started and listening on port ...` in the logs
+- [ ] The URL of the ToolJump server is accessible (the default route should output `Authorization header required`)
 - [ ] If hosting in production with HTTPS, make sure the certificate is properly configured
-- [ ] The latest version of the Tooljump Chrome Extension is installed
+- [ ] The latest version of the ToolJump Chrome Extension is installed
 - [ ] In the Chrome Extension's **Connection** tab:
-  - [ ] the **Host** field is set to the url of the Tooljump Server (including http/https). Example: `http://localhost:3000` for local.
-  - [ ] the **Secure token** field is populated with a secret string, which is also defined in the Tooljump Server
+  - [ ] the **Host** field is set to the url of the ToolJump Server (including http/https). Example: `http://localhost:3000` for local.
+  - [ ] the **Secure token** field is populated with a secret string, which is also defined in the ToolJump Server
 - [ ] The **Providers** tab in the extension's settings shows the active adapters (e.g., AWS, GitHub)
-- [ ] There is at least an integration being loaded in Tooljump Server (check presence of `Loaded _ integrations and _ data files` in server logs). If there are no integrations, Tooljump can't show any insights
+- [ ] There is at least an integration being loaded in ToolJump Server (check presence of `Loaded _ integrations and _ data files` in server logs). If there are no integrations, ToolJump can't show any insights
 
 ### Integrations
 
 If a specific integration does not work as expected, check:
 - [ ] The website you are entering is either AWS, GitHub, or a URL you specified in an integration using a Generic context.
-- [ ] Check the integration file ends in `.integration.js` and you can find a debug log in the Server like `Successfully loaded integration ___.integration.js`. If you don't, Tooljump is not loading the file correctly due to incorrect folder or lack of access.
+- [ ] Check the integration file ends in `.integration.js` and you can find a debug log in the Server like `Successfully loaded integration ___.integration.js`. If you don't, ToolJump is not loading the file correctly due to incorrect folder or lack of access.
 - [ ] Check match metadata field to ensure it matches the context/page correctly
 - [ ] If the extension's debug mode is enabled, and you see the context panel in the bottom right of the page, but you don't see the context bar, it's likely that the integration does not match, or the context bar rendering fails
 
@@ -144,7 +144,7 @@ The browser console is your primary debugging tool:
 
 - **Open DevTools:** Press `F12` or right-click and select "Inspect"
 - **Check Console tab:** Look for errors, warnings, and your log output
-- **Check Network tab:** Monitor API calls and see if requests are failing (e.g., the `/context` call to the Tooljump server)
+- **Check Network tab:** Monitor API calls and see if requests are failing (e.g., the `/context` call to the ToolJump server)
 
 ### 2. Integration Logging
 

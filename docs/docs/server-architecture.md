@@ -4,19 +4,19 @@ title: Server Architecture
 sidebar_label: (2/2) Server Architecture
 ---
 
-# Tooljump Server Architecture
+# ToolJump Server Architecture
 
-The Tooljump Server is the core orchestration engine that processes integration requests, executes workflows, and manages the entire integration ecosystem.
+The ToolJump Server is the core orchestration engine that processes integration requests, executes workflows, and manages the entire integration ecosystem.
 
 The server is responsible with:
-* processes the requests from the Tooljump Chrome extension via HTTP
+* processes the requests from the ToolJump Chrome extension via HTTP
 * loads all integration and is responsible for deciding which one runs for a given context
 * runs the integrations in an isolated manner
 * manages secrets required for connecting to external tools from integrations
 * caches results of integrations for performance reasons
 * responsible for authentication
 
-As every company runs their services in their own way, the Tooljump server was designed to be extremely flexible and extensible.
+As every company runs their services in their own way, the ToolJump server was designed to be extremely flexible and extensible.
 
 If you need help setting up ToolJump in your organisation with the help of the ToolJump authors, you can reach out [here](./docs/implement).
 
@@ -24,7 +24,7 @@ Next, let's go one by one and explore in detail how it happens:
 
 ## Server responsibilities
 
-### Process the requests from Tooljump Chrome extension
+### Process the requests from ToolJump Chrome extension
 
 The server uses the popular Express framework to process a number of endpoints required by the extensions.
 
@@ -62,21 +62,21 @@ Integrations require secrets to be able to connect to external tools.
 
 For example, to find out when a given GitHub repo was last released to production, the integration would need to access the CI/CD system.
 
-To store this secrets, Tooljump provides the package `@tooljump/secrets-env`, which reads the secrets from the process' env variables.
+To store this secrets, ToolJump provides the package `@tooljump/secrets-env`, which reads the secrets from the process' env variables.
 
 However, you can easily create secrets wrapper by using systems like AWS Secrets Manager, Vault, etc, by inheriting the `Secrets` class from `@tooljump/common` and implementing the `get` and `load` methods.
 
 ### Caches results of integrations for performance reasons
 
-In order to improve the performance and reduce the load of the server and external tools, Tooljump provides caching functionality.
+In order to improve the performance and reduce the load of the server and external tools, ToolJump provides caching functionality.
 
-For this, Tooljump provides the package `@tooljump/cache-local`, which stores the cache locally in a hashmap.
+For this, ToolJump provides the package `@tooljump/cache-local`, which stores the cache locally in a hashmap.
 
 However, you can easily create cache wrapper for existing cache systems (eg: Redis, Memcached) by inheriting the `Cache` class from `@tooljump/common` and implementing the `get`/`set` methods.
 
 ### Responsible for authentication
 
-For security reasons, every request must be authenticated. Tooljump provides a simple authentication based on a fixed token with the `@tooljump/auth-token`.
+For security reasons, every request must be authenticated. ToolJump provides a simple authentication based on a fixed token with the `@tooljump/auth-token`.
 
 A more advanced authentication system (eg: Okta, Google Workspaces, emai/password) can be created by extending `Auth` class and by implementing the `middleware` method.
 

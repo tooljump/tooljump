@@ -1,2 +1,2 @@
-# Tooljump Browser Extension
+# ToolJump Browser Extension
 

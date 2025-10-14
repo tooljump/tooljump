@@ -19,10 +19,10 @@ For example, any infrastructure for the "webshop" service should be labeled with
 
 Depending on your situation, there are a number of approaches you can use, all with pros and cons. Carefully review the options below and choose the one that best fits your scenario:
 
-### Option 1: Give Tooljump access to the resources you need
+### Option 1: Give ToolJump access to the resources you need
 
 Use this if:
-- ✅ Tooljump runs in GCP and all resources you are interested in are in the same project
+- ✅ ToolJump runs in GCP and all resources you are interested in are in the same project
 
 When your service runs **inside GCP** (Compute Engine, Cloud Run, Cloud Functions, GKE), you don’t need any long‑lived keys.  
 Instead, you attach a **service account** to the compute resource, and the GCP environment automatically provides **short‑lived credentials** to the application via the metadata server.  
@@ -55,16 +55,16 @@ console.log(files.map(f => f.name));
 
 Use this option if all the following are true:
 - ✅ You have multiple GCP projects
-- ✅ Tooljump runs in one project but needs to read from another project
+- ✅ ToolJump runs in one project but needs to read from another project
 
 When your service runs in **another GCP project** (e.g., same organization, vendor project, or partner project), you can grant it access without creating long‑lived keys.  
 You can do this by either granting the running service account direct IAM access on the target resources, or by allowing it to **impersonate** a service account in the target project.
 
 #### How It Works
-- In the **target project** (that Tooljump needs to read from):  
+- In the **target project** (that ToolJump needs to read from):  
   - Option A (direct): Grant your caller service account the minimal IAM roles on the target resources (e.g., Storage Object Viewer on a bucket).  
   - Option B (impersonation): Create or choose a **target service account** with the minimal roles needed on the resources. Grant the caller service account `roles/iam.serviceAccountTokenCreator` on this target service account.  
-- In the **caller project** (where Tooljump runs):  
+- In the **caller project** (where ToolJump runs):  
   - The application uses ADC for its own service account.  
   - If using impersonation, it requests short‑lived credentials to act as the target service account and uses those credentials for API calls.  
 
@@ -75,7 +75,7 @@ You can do this by either granting the running service account direct IAM access
 - Least‑privilege access with fine‑grained roles.
 
 ##### Example: IAM Binding on Target Bucket (direct access)
-Grant the Tooljump service account viewer access to a bucket in the target project:
+Grant the ToolJump service account viewer access to a bucket in the target project:
 
 ```json
 {

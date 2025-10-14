@@ -1,4 +1,4 @@
-# Tooljump
+# ToolJump
 
 A context-aware integration platform that provides intelligent tools and information based on the current context.
 
@@ -116,4 +116,4 @@ You can manually trigger builds:
 
 
 
-All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of Tooljump by those owners.
+All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of ToolJump by those owners.

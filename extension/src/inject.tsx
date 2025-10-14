@@ -181,7 +181,7 @@ export async function injectComponents() {
     return; // Already injected
   }
 
-  logger.info('Content', 'Initializing Tooljump extension on', window.location.href);
+  logger.info('Content', 'Initializing ToolJump extension on', window.location.href);
 
   // Initialize collector manager
   collectorManager = new CollectorManager();

@@ -26,7 +26,7 @@ export default function Demos(): React.ReactElement {
   return (
     <Layout
       title="Demos"
-      description="Watch live demonstrations of Tooljump integrations in action">
+      description="Watch live demonstrations of ToolJump integrations in action">
       <div className={styles.demosPage}>
         <div className={styles.header}>
           <Heading as="h1" className={styles.title}>

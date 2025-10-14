@@ -1,5 +1,5 @@
 /**
- * Tooljump Logger - Structured logging for the Tooljump ecosystem
+ * ToolJump Logger - Structured logging for the ToolJump ecosystem
  */
 
 // Export core types and interfaces

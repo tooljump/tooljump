@@ -1,3 +1,3 @@
 export const CONFIG = {
-    demoRepo: 'facebook/react',
+    demoRepo: 'tooljump/tooljump',
 };

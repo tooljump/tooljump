@@ -6,13 +6,13 @@ import {CONFIG} from './config';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Tooljump',
+  title: 'ToolJump',
   tagline: 'Connect your tools, automate your workflow',
   favicon: 'img/tooljump.png',
 
   customFields: {
     chromeExtensionUrl: 'https://chromewebstore.google.com/detail/tooljump/abcdefghijklmnopabcdefghijklmnop',
-    tooljumpRepoUrl: 'https://github.com/MihaiValentin/tl',
+    tooljumpRepoUrl: 'https://github.com/tooljump/tooljump',
     demoRepoUrl: `https://github.com/${CONFIG.demoRepo}`,
   },
 
@@ -99,9 +99,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/tooljump-social-card.jpg',
     navbar: {
-      title: 'Tooljump',
+      title: 'ToolJump',
       logo: {
-        alt: 'Tooljump Logo',
+        alt: 'ToolJump Logo',
         src: 'img/tooljump.png',
       },
       items: [
@@ -195,7 +195,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} ToolJump. Docs built with Docusaurus.<br/><br/><small>All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of Tooljump by those owners.</small>`,
+      copyright: `Copyright © ${new Date().getFullYear()} ToolJump. Docs built with Docusaurus.<br/><br/><small>All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of ToolJump by those owners.</small>`,
     },
     prism: {
       theme: prismThemes.github,

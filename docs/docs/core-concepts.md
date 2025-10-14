@@ -6,13 +6,13 @@ sidebar_label: Core concepts
 
 # Core concepts
 
-To make the best use of Tooljump, you need to have a basic understanding of its core concepts:
+To make the best use of ToolJump, you need to have a basic understanding of its core concepts:
 
 ## 1. Contexts
 
 A context is a JSON object containing the most important information of the currently visited website.
 
-It is produced by the Tooljump Chrome Extension and is sent to the Tooljump server in order to produce links and insights about the page visited.
+It is produced by the ToolJump Chrome Extension and is sent to the ToolJump server in order to produce links and insights about the page visited.
 
 For example, when you're visiting a Lambda function called my-test-lambda-function in AWS Console, your context will look like:
 
@@ -48,4 +48,4 @@ Read more about how integrations work and how to create your own integrations [h
 ## What's the relationship between the Contexts and Integrations?
 
 1. The contexts are produced by the Chrome Extensions, based on the page the user is currently visiting. The result is a JSON object.
-1. The context is sent to the Tooljump server, which analyses it and finds one or more integrations that match this context, runs them, and then returns the results to the Chrome Extension, which displays the insights and links.
+1. The context is sent to the ToolJump server, which analyses it and finds one or more integrations that match this context, runs them, and then returns the results to the Chrome Extension, which displays the insights and links.

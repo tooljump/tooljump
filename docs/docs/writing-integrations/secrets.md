@@ -11,11 +11,11 @@ Secrets allow you to securely store sensitive configuration like API keys, token
 A few examples: GitHub tokens, AWS access keys, passwords, connection strings, etc.
 
 :::tip
-For how Tooljump manages secrets, see [Server Architecture: secrets](../server-architecture.md#manages-secrets-required-for-connecting-to-external-tools-from-integrations).
+For how ToolJump manages secrets, see [Server Architecture: secrets](../server-architecture.md#manages-secrets-required-for-connecting-to-external-tools-from-integrations).
 :::
 
 ## Storing secrets
-Depending on the secrets adapter you use with Tooljump, store your secrets accordingly. For example, with the env secrets adapter, secrets should be provided as environment variables so the Tooljump server can read them and pass them to your integrations.
+Depending on the secrets adapter you use with ToolJump, store your secrets accordingly. For example, with the env secrets adapter, secrets should be provided as environment variables so the ToolJump server can read them and pass them to your integrations.
 
 To store the secrets in the env adapter (which stores them in the environment variables), you need to prefix them with `INTEGRATION_`. So, the secret in this case should be defined as `INTEGRATION_GITHUB_TOKEN=...`.
 

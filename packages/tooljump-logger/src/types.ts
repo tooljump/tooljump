@@ -1,5 +1,5 @@
 /**
- * Core logging interfaces for structured logging across the Tooljump ecosystem
+ * Core logging interfaces for structured logging across the ToolJump ecosystem
  */
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';

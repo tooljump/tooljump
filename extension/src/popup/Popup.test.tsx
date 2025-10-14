@@ -43,7 +43,7 @@ describe('Popup', () => {
     // Allow React to flush the initial render
     await new Promise((r) => setTimeout(r, 0));
     // Basic smoke test for title
-    expect(container.innerHTML).toContain('Tooljump Settings');
+    expect(container.innerHTML).toContain('ToolJump Settings');
     // Click the Display tab
     const buttons = Array.from(container.querySelectorAll('button')) as HTMLButtonElement[];
     const displayBtn = buttons.find((b) => b.textContent?.includes('Display'))!;

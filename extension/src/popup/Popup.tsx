@@ -873,7 +873,7 @@ const Popup: React.FC = () => {
 
   return (
     <PopupContainer>
-      <Title>Tooljump Settings</Title>
+      <Title>ToolJump Settings</Title>
       
       <TabContainer>
         <Tab 

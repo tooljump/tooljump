@@ -5,7 +5,7 @@ sidebar_label: Running code in an integration
 ---
 # Running code in an integration
 
-The `run` method in every integration executes when Tooljump matches your integration to the current context.
+The `run` method in every integration executes when ToolJump matches your integration to the current context.
 
 In `run`, write the code that connects tools across your organization. The method is async, so you can `await` I/O such as HTTP requests or SDK calls.
 
@@ -15,17 +15,17 @@ Here are a few things to keep in mind when writing integration code:
 
 ## Importing modules
 
-Use `require` to import modules that are declared in the Tooljump server's `package.json`.
+Use `require` to import modules that are declared in the ToolJump server's `package.json`.
 
-If you need a tool SDK or npm package (e.g., `@aws-sdk/client-s3`), add it to Tooljump’s `package.json`, then `require` it in your integration.
+If you need a tool SDK or npm package (e.g., `@aws-sdk/client-s3`), add it to ToolJump’s `package.json`, then `require` it in your integration.
 
 To make http requests to various endpoints, you can use the `fetch` native function.
 
-If you want to share code between integrations, create JavaScript modules and export functions or values using `module.exports`. Shared modules should not include `.integration.` in the filename; otherwise Tooljump will try to load them as integrations.
+If you want to share code between integrations, create JavaScript modules and export functions or values using `module.exports`. Shared modules should not include `.integration.` in the filename; otherwise ToolJump will try to load them as integrations.
 
 ## Logging
 
-Tooljump provides a `logger` object to every integration. Log messages are emitted by the Tooljump server and can be forwarded to your monitoring tools.
+ToolJump provides a `logger` object to every integration. Log messages are emitted by the ToolJump server and can be forwarded to your monitoring tools.
 
 The logger object supports both structured and non-structured logging.
 
@@ -39,7 +39,7 @@ You can use the usual methods: debug, info, warn, error.
 
 ## Cache
 
-A global `cache` object is available in integration code for operation-level caching. This is the same cache instance used by Tooljump for integration result caching and is namespaced per integration automatically.
+A global `cache` object is available in integration code for operation-level caching. This is the same cache instance used by ToolJump for integration result caching and is namespaced per integration automatically.
 
 - get: `await cache.get(key)`  -  returns the cached value or `undefined`
 - set: `await cache.set(key, value, ttlSeconds)`  -  stores a value with an explicit TTL in seconds
@@ -71,7 +71,7 @@ This is done to improve user experience and to prevent one integration to block 
 Here are some ideas on how you can mitigate this:
 1. Instead of doing everything in a single integration, split between integrations. In this way, every integration provides one or two insights, and it doesn't risk timing out.
 1. Use caching for longer running operations, so only the first user that accesses that information waits for it
-1. Pre-cache the most expensive operations from a process outside Tooljump so that expensive data is always cached and fresh
+1. Pre-cache the most expensive operations from a process outside ToolJump so that expensive data is always cached and fresh
 
 ## Next Steps
 

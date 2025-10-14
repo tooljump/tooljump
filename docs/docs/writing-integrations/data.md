@@ -12,7 +12,7 @@ As you link tools together, you will need to store the mapping information in a 
 
 If you already use a service catalog *(eg: Datadog Service Catalog)*, you can make use of it by querying it from your integration. One example can be: *"What is the team for this repository or service?"* or *"What are the SLOs for this service?"*
 
-However, not every organization uses a service catalog, so Tooljump provides a simple way to ship data along with your integrations.
+However, not every organization uses a service catalog, so ToolJump provides a simple way to ship data along with your integrations.
 
 ## Introducing Data Files
 

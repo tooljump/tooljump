@@ -6,7 +6,7 @@ sidebar_label: Security
 
 # Security
 
-This document outlines Tooljump's security architecture, best practices, and security considerations for deployment and operation.
+This document outlines ToolJump's security architecture, best practices, and security considerations for deployment and operation.
 
 :::info
 ToopJump is self-hosted. You can host it yourself, and you are responsible for its deployments, security, monitoring and storing the secrets for the tools that ToolJump communicates with. We do not store anything on our side.
@@ -14,7 +14,7 @@ ToopJump is self-hosted. You can host it yourself, and you are responsible for i
 
 ## Security Overview
 
-Tooljump is designed with security as a core principle, implementing multiple layers of protection to ensure your integrations and data remain secure. Our security approach is informed by enterprise-grade security requirements and industry best practices.
+ToolJump is designed with security as a core principle, implementing multiple layers of protection to ensure your integrations and data remain secure. Our security approach is informed by enterprise-grade security requirements and industry best practices.
 
 This document covers the following security domains:
 1. **Frontend Security** - Chrome Extension security measures
@@ -23,11 +23,11 @@ This document covers the following security domains:
 4. **Production Security** - Deployment and operational security
 
 :::warning
-The security practices described here assume you are running an official, supported version of Tooljump downloaded from the official repository. Modifying Tooljump or obtaining modified copies may compromise security.
+The security practices described here assume you are running an official, supported version of ToolJump downloaded from the official repository. Modifying ToolJump or obtaining modified copies may compromise security.
 :::
 
 :::tip
-Beyond the specific security features and recommendations provided for Tooljump, it is essential to maintain strong general security hygiene, just as you would for any other services or infrastructure in your organization. This includes practices such as keeping all systems and dependencies up to date, enforcing strong authentication and access controls, regularly monitoring for vulnerabilities, performing security reviews, and following your company's established security policies and incident response procedures. Adhering to these broader security best practices helps ensure that Tooljump remains a secure component within your overall technology environment.
+Beyond the specific security features and recommendations provided for ToolJump, it is essential to maintain strong general security hygiene, just as you would for any other services or infrastructure in your organization. This includes practices such as keeping all systems and dependencies up to date, enforcing strong authentication and access controls, regularly monitoring for vulnerabilities, performing security reviews, and following your company's established security policies and incident response procedures. Adhering to these broader security best practices helps ensure that ToolJump remains a secure component within your overall technology environment.
 
 :::
 
@@ -35,7 +35,7 @@ Beyond the specific security features and recommendations provided for Tooljump,
 
 ### Chrome Extension Permissions
 
-The Tooljump Chrome extension requires permissions to read content from GitHub and AWS websites. Additional permissions may be requested if you build integrations that operate on other websites and you as a user will need to manually enable them in the extension's "Settings -> Providers" section
+The ToolJump Chrome extension requires permissions to read content from GitHub and AWS websites. Additional permissions may be requested if you build integrations that operate on other websites and you as a user will need to manually enable them in the extension's "Settings -> Providers" section
 
 ### Data Collection and Processing
 
@@ -60,7 +60,7 @@ The ToolJump Chrome extention requires the following permissions:
 
 ### UI Injection and Styling
 
-The Tooljump interface is injected either at the top of the page (Integrated mode) or within the body (Floating mode). The injected interface is self-contained with isolated styles to prevent any impact on the host webpage.
+The ToolJump interface is injected either at the top of the page (Integrated mode) or within the body (Floating mode). The injected interface is self-contained with isolated styles to prevent any impact on the host webpage.
 
 ### Credential Storage
 
@@ -74,7 +74,7 @@ ToolJump uses React (developed by Meta more than 10 years ago), which is a battl
 
 ### Server Foundation
 
-The Tooljump server is built on Express.js, providing a secure, stable, and extensible foundation for handling integration requests.
+The ToolJump server is built on Express.js, providing a secure, stable, and extensible foundation for handling integration requests.
 
 ### Integration Isolation
 
@@ -82,9 +82,9 @@ Custom integrations are executed using Node.js's VM module, which provides proce
 
 ### Dependency Security
 
-Integrations can import various packages to interact with external tools. Your Tooljump server's security is dependent on the security of these imported SDKs. We recommend:
+Integrations can import various packages to interact with external tools. Your ToolJump server's security is dependent on the security of these imported SDKs. We recommend:
 
-- Enabling GitHub's vulnerability scanner for your Tooljump server repository
+- Enabling GitHub's vulnerability scanner for your ToolJump server repository
 - Regularly updating dependencies to address security vulnerabilities
 - Hosting integration files in GitHub for code review and approval processes
 
@@ -97,7 +97,7 @@ Store your integration files in GitHub to enable team review and approval proces
 Integrations requiring external tool access need appropriate secrets.
 
 :::danger
-**Never hardcode secrets in your code.** Use Tooljump's [secrets functionality](./writing-integrations/secrets) for secure secret management.
+**Never hardcode secrets in your code.** Use ToolJump's [secrets functionality](./writing-integrations/secrets) for secure secret management.
 :::
 
 :::danger
@@ -108,21 +108,21 @@ Integrations requiring external tool access need appropriate secrets.
 
 ### Dependency Management
 
-Tooljump leverages mature, battle-tested Node.js packages and utilizes GitHub's vulnerability scanner to identify and address potential security vulnerabilities promptly.
+ToolJump leverages mature, battle-tested Node.js packages and utilizes GitHub's vulnerability scanner to identify and address potential security vulnerabilities promptly.
 
 ### Input Validation
 
-Tooljump implements comprehensive input validation to ensure data received from the extension is properly formatted and safe for processing.
+ToolJump implements comprehensive input validation to ensure data received from the extension is properly formatted and safe for processing.
 
 ## Production Security
 
-While Tooljump is designed with security in mind, proper deployment practices are essential for maintaining security in production environments.
+While ToolJump is designed with security in mind, proper deployment practices are essential for maintaining security in production environments.
 
 ### Essential Security Measures
 
-✅ **Use HTTPS** - Deploy Tooljump with HTTPS to secure communication between the extension and server
+✅ **Use HTTPS** - Deploy ToolJump with HTTPS to secure communication between the extension and server
 
-✅ **Implement Network Access Controls** - If your organization uses IP-based security (e.g., Netskope, Zscaler), restrict Tooljump access to your organization's IP ranges via firewall rules
+✅ **Implement Network Access Controls** - If your organization uses IP-based security (e.g., Netskope, Zscaler), restrict ToolJump access to your organization's IP ranges via firewall rules
 
 ✅ **Use Strong Authentication** - Implement strong, unique passwords that are not easily guessable
 
@@ -142,7 +142,7 @@ While Tooljump is designed with security in mind, proper deployment practices ar
 
 **Q**: What if an integration's credentials are compromised?
 
-**A**: Immediately revoke the compromised credentials in the respective service (GitHub, AWS, etc.) and generate new ones. Update the secrets in your Tooljump configuration. Consider implementing credential rotation policies and monitoring for unusual access patterns. Also, to ensure a limited blast radius, make sure all the credentials stored on your server only have read only permissions and are limited to the resources that you need to read. In this way, even if the credentials are compromised, the attacker's ability to perform changes across your tools is zero.
+**A**: Immediately revoke the compromised credentials in the respective service (GitHub, AWS, etc.) and generate new ones. Update the secrets in your ToolJump configuration. Consider implementing credential rotation policies and monitoring for unusual access patterns. Also, to ensure a limited blast radius, make sure all the credentials stored on your server only have read only permissions and are limited to the resources that you need to read. In this way, even if the credentials are compromised, the attacker's ability to perform changes across your tools is zero.
 
 ### Network Interception
 
@@ -154,7 +154,7 @@ While Tooljump is designed with security in mind, proper deployment practices ar
 
 **Q**: What if a dependency used by an integration has a security vulnerability?
 
-**A**: Enable GitHub's Dependabot alerts and regularly update dependencies. Tooljump's VM isolation limits the impact, but you should patch vulnerabilities promptly. Consider using tools like `npm audit` or `yarn audit` to identify vulnerable packages on your side as a best practice, just like you'd do for any other code running in your organization.
+**A**: Enable GitHub's Dependabot alerts and regularly update dependencies. ToolJump's VM isolation limits the impact, but you should patch vulnerabilities promptly. Consider using tools like `npm audit` or `yarn audit` to identify vulnerable packages on your side as a best practice, just like you'd do for any other code running in your organization.
 
 ### Insider Threat Scenarios
 

@@ -19,10 +19,10 @@ For example, any infrastructure for the "webshop" service should be tagged with 
 
 Depending on your situation, there are a number of approaches you can use, all with pros and cons. Carefully review the options below and choose the one that best fits your scenario:
 
-### Option 1: Give Tooljump access to the resources you need
+### Option 1: Give ToolJump access to the resources you need
 
 Use this if:
-- ✅ Tooljump runs in Azure and all resources you are interested in are in the same tenant/subscription
+- ✅ ToolJump runs in Azure and all resources you are interested in are in the same tenant/subscription
 
 When your service runs **inside Azure** (VM, App Service, Functions, Container Apps, AKS), you don’t need any long‑lived secrets.  
 Instead, you attach a **Managed Identity** (system‑assigned or user‑assigned) to the compute resource. Azure automatically provides **short‑lived tokens** via the Instance Metadata Service (IMDS), and Azure SDKs use **DefaultAzureCredential** to obtain and refresh these credentials automatically.
@@ -63,7 +63,7 @@ console.log(names);
 
 Use this option if all the following are true:
 - ✅ You have multiple subscriptions or resource groups
-- ✅ Tooljump runs in one scope but needs to read from another
+- ✅ ToolJump runs in one scope but needs to read from another
 
 You can grant access without creating long‑lived secrets by either assigning RBAC on the target scope to the caller’s identity, or by using **Workload Identity Federation** to obtain short‑lived tokens for a target app identity.
 
@@ -81,7 +81,7 @@ You can grant access without creating long‑lived secrets by either assigning R
 - Least‑privilege access with fine‑grained roles.
 
 ##### Example: RBAC role assignment (conceptual)
-Grant the Tooljump identity read access to a storage account scope:
+Grant the ToolJump identity read access to a storage account scope:
 
 ```json
 {

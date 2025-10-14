@@ -6,7 +6,7 @@ sidebar_label: Writing Integrations
 
 # Writing Integrations
 
-Tooljump integrations are JavaScript modules that run in response to specific contexts and return structured data that can be displayed in the browser. This section covers everything you need to know to create your own integrations.
+ToolJump integrations are JavaScript modules that run in response to specific contexts and return structured data that can be displayed in the browser. This section covers everything you need to know to create your own integrations.
 
 ## What is an Integration?
 

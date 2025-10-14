@@ -21,7 +21,7 @@ export default function TryItOut(): ReactNode {
     {
       step: 1,
       title: 'Install Chrome Extension',
-      description: 'Add Tooljump to your browser in under 1 minute',
+      description: 'Add ToolJump to your browser in under 1 minute',
       action: (
         <Link
           className={styles.stepButton}
@@ -36,7 +36,7 @@ export default function TryItOut(): ReactNode {
     {
       step: 2,
       title: 'See It In Action',
-      description: 'Visit our demo repository to see Tooljump working with real tools',
+      description: 'Visit our demo repository to see ToolJump working with real tools',
       action: (
         <Link
           className={styles.stepButton}

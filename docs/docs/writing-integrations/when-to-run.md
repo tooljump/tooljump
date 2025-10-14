@@ -118,7 +118,7 @@ match: {
 }
 ```
 
-**What it means:** Run on GitHub pages with repositories owned by specific users or orgs. Useful for only running Tooljump on your GitHub org.
+**What it means:** Run on GitHub pages with repositories owned by specific users or orgs. Useful for only running ToolJump on your GitHub org.
 
 ### Matching via code
 

@@ -81,7 +81,7 @@ export class GithubIntegrations extends Integrations {
         this.enableWatching = config.enableWatching ?? true;
         this.watchInterval = config.watchInterval ?? 300; // 5 minutes default
         this.author = {
-                    name: 'Tooljump Auto-Updater',
+                    name: 'ToolJump Auto-Updater',
         email: 'tooljump@auto-updater.local'
         };
 

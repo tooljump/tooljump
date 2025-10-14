@@ -1,5 +1,5 @@
 /**
- * Shared types for the Tooljump extension
+ * Shared types for the ToolJump extension
  */
 
 import { Context } from '../adapters/types';

@@ -21,10 +21,10 @@ For example, any infrastructure for the "webshop" service should be tagged with 
 
 Depending on your situation, there are a number of approaches you can use, all with pros and cons. Carefully review the options below and choose the one that best fits your scenario:
 
-### Option 1: Give Tooljump access to the resources you need
+### Option 1: Give ToolJump access to the resources you need
 
 Use this if:
-- ✅ Tooljump runs in AWS and all resources you are interested in are in the same account
+- ✅ ToolJump runs in AWS and all resources you are interested in are in the same account
 
 When your service runs **inside AWS** (EC2, ECS, Lambda, EKS), you don’t need any long-lived keys.  
 Instead, you attach an **IAM role directly to the compute resource**, and the AWS environment automatically provides **temporary credentials** to the application.
@@ -81,16 +81,16 @@ The same approach can be used for ECS, EKS or Lambda, with small changes.
 
 Use this option if all the following are true:
 - ✅ You have multiple AWS accounts
-- ✅ Tooljump runs in one of the AWS accounts
+- ✅ ToolJump runs in one of the AWS accounts
 
 When your service runs in **another AWS account** (e.g., same Organization, vendor account, or partner account), you can grant it access without creating long-lived keys.  
 You do this by creating a **role in your account** and allowing the external AWS principal to **assume** it using AWS STS.
 
 #### How It Works
-- In **Account A** (the account that Tooljump needs to read from):  
+- In **Account A** (the account that ToolJump needs to read from):  
   - Create a role with the minimal permissions required.  
   - Define a trust policy allowing a specific AWS principal (role or user) in **Account B** to assume it.  
-- In **Account B** (where Tooljump runs):  
+- In **Account B** (where ToolJump runs):  
   - The service uses its existing AWS identity (role, user, or environment credentials).  
   - It calls `sts:AssumeRole` into Account A to receive short‑lived credentials (typically 15 minutes to 1 hour by default; up to 12 hours if allowed).  
 - The AWS SDK automatically uses these temporary credentials for API calls.  

@@ -4,17 +4,17 @@ title: Chrome Extension Architecture
 sidebar_label: (1/2) Chrome Extension Architecture
 ---
 
-# Tooljump Chrome Extension Architecture
+# ToolJump Chrome Extension Architecture
 
-The Tooljump Chrome Extension is a context-aware browser extension that automatically extracts the most relevant information from the pages you are visiting, provides them to the Tooljump Server and receives back actionable links and insights about the page you're looking at.
+The ToolJump Chrome Extension is a context-aware browser extension that automatically extracts the most relevant information from the pages you are visiting, provides them to the ToolJump Server and receives back actionable links and insights about the page you're looking at.
 
 ## How does it work?
 
 The Chrome extension has a number of adapters embedded that know how to extract key information from a number of tools.
 
-Once you are visiting a supported tool, the extension extracts the most relevant information in that page, structures it as a context (in JSON format), and then sends it to the Tooljump server.
+Once you are visiting a supported tool, the extension extracts the most relevant information in that page, structures it as a context (in JSON format), and then sends it to the ToolJump server.
 
-The Tooljump server then returns the suggested insights and links that are relevant for the page the user is viewing, adding them in a context bar that sits at the top of the page.
+The ToolJump server then returns the suggested insights and links that are relevant for the page the user is viewing, adding them in a context bar that sits at the top of the page.
 
 Everytime the url changes, or the DOM changes within the page[^1], the extension extracts the information on the page again and provides a new set of insights and links, based on what the user is visiting.
 
