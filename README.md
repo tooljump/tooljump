@@ -23,7 +23,7 @@ Imagine a single bar that follows you across your tools - GitHub, AWS, Datadog, 
 
 Think of it as a **GPS for your engineering tools**: wherever you are, ToolJump shows you the path forward - whether it's debugging logs, exploring related infrastructure, or finding the right docs. All without leaving the screen you're already on.
 
-<video src="docs/static/img/slideshow.mp4" controls width="100%"></video>
+![ToolJump Demo](docs/static/img/slideshow.gif)
 
 ### Real-World Examples
 
