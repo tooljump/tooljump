@@ -48,7 +48,11 @@ If you want to load the integrations from another source (eg: S3, DB, etc), you 
 
 Integrations are JavaScript files which are ran by the server using the native node `vm` module, as part of the `@tooljump/runner-vm`.
 
-When using the GitHub integration method above, this creates a great balance between isolation, functionality and security.
+:::warn
+The native `VM` node module does not offer full isolation, so if you do not store your integrations in Github and use a code review process (just like you should use for the rest of your organisation), an integration can exit outside of its isolation if not reviewed.
+:::
+
+When using the GitHub integration method above, this creates a balance between convenience, functionality and security.
 
 :::note
 If for whatever reason you want full isolation from the node process, you have two options:

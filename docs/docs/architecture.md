@@ -23,7 +23,7 @@ ToolJump is comprised of 3 main components:
 | **How to install/deploy it?**       | [Download the Chrome extension](./getting-started) to your browser and point it to your ToolJump server (5 mins)                | You or your DevOps team [can set it up](./deployment) in your company (1-5 days)           | Your senior engineers can [write the integrations](./writing-integrations) based on the knowhow of available tools in your company (1-5 days)                  |
 
 :::info
-ToopJump is self-hosted. You can host it yourself, and you are responsible for its deployments, security, monitoring and storing the secrets for the tools that ToolJump communicates with. We do not store anything on our side.
+ToolJump is self-hosted. You can host it yourself, and you are responsible for its deployments, security, monitoring and storing the secrets for the tools that ToolJump communicates with. We do not store anything on our side.
 :::
 
 ## End to end functionality

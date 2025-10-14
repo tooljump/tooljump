@@ -1,5 +1,6 @@
 import { Auth } from "@tooljump/common";
 import { Logger } from "@tooljump/logger";
+import { timingSafeEqual } from "crypto";
 
 export interface TokenAuthConfig {
   logger: Logger;
@@ -108,12 +109,34 @@ export class TokenAuth extends Auth {
             return res.status(401).json({ error: 'Invalid authorization header format' });
         }
 
-        if (token !== this.token) {
+        // Use constant-time comparison to prevent timing attacks
+        try {
+            const tokenBuffer = Buffer.from(token, 'utf8');
+            const expectedBuffer = Buffer.from(this.token, 'utf8');
+            
+            // Ensure both buffers are the same length to use timingSafeEqual
+            if (tokenBuffer.length !== expectedBuffer.length) {
+                this.logger.warn({
+                    operation: 'auth-check',
+                    issue: 'invalid-token',
+                    providedToken: token.substring(0, 4) + '...'
+                }, 'Invalid token provided');
+                return res.status(401).json({ error: 'Invalid token' });
+            }
+            
+            if (!timingSafeEqual(tokenBuffer, expectedBuffer)) {
+                this.logger.warn({
+                    operation: 'auth-check',
+                    issue: 'invalid-token',
+                    providedToken: token.substring(0, 4) + '...'
+                }, 'Invalid token provided');
+                return res.status(401).json({ error: 'Invalid token' });
+            }
+        } catch (error) {
             this.logger.warn({
                 operation: 'auth-check',
-                issue: 'invalid-token',
-                providedToken: token.substring(0, 4) + '...'
-            }, 'Invalid token provided');
+                issue: 'token-comparison-error'
+            }, 'Error during token comparison');
             return res.status(401).json({ error: 'Invalid token' });
         }
 

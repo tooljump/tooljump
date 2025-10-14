@@ -223,7 +223,6 @@ ToolJump is designed with security as a core principle:
 
 - **Self-hosted**: You control your data and infrastructure
 - **No external storage**: All data stays within your organization
-- **Integration isolation**: Integrations run in isolated VM environments
 - **Credential security**: Secrets stored locally, never transmitted
 - **Input validation**: Comprehensive validation of all inputs
 - **HTTPS recommended**: Secure communication in production

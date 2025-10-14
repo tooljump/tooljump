@@ -9,7 +9,7 @@ sidebar_label: Security
 This document outlines ToolJump's security architecture, best practices, and security considerations for deployment and operation.
 
 :::info
-ToopJump is self-hosted. You can host it yourself, and you are responsible for its deployments, security, monitoring and storing the secrets for the tools that ToolJump communicates with. We do not store anything on our side.
+ToolJump is self-hosted. You can host it yourself, and you are responsible for its deployments, security, monitoring and storing the secrets for the tools that ToolJump communicates with. We do not store anything on our side.
 :::
 
 ## Security Overview
@@ -76,9 +76,9 @@ ToolJump uses React (developed by Meta more than 10 years ago), which is a battl
 
 The ToolJump server is built on Express.js, providing a secure, stable, and extensible foundation for handling integration requests.
 
-### Integration Isolation
+### Integration Sandboxing
 
-Custom integrations are executed using Node.js's VM module, which provides process isolation. For detailed information about this architecture, see [Server Architecture](./server-architecture#runs-the-integrations-in-an-isolated-manner).
+Custom integrations are executed using Node.js's VM module, which provides context sandboxing. Integrations should be treated as trusted code and go through your code review process (stored in GitHub) before deployment. For detailed information about this architecture and security considerations, see [Server Architecture](./server-architecture#runs-the-integrations-in-an-isolated-manner).
 
 ### Dependency Security
 

@@ -21,11 +21,11 @@ sidebar_label: FAQ
 
 **Absolutely.** ToolJump is built with enterprise security in mind:
 
-- **VM isolation** for integration execution prevents code from affecting your server
+- **VM sandboxing** for integration execution - integrations are treated as trusted code that goes through your code review process (see [Server Architecture](/docs/server-architecture) for details)
 - **Read-only credentials by design** - integrations can only read data, never modify anything
 - **HTTPS encryption** for all communication between extension and server
 - **Input validation** and comprehensive security measures built-in
-- **Battle-tested dependencies** using Node.js's VM module and React
+- **Battle-tested dependencies** using Node.js and React
 - **Principle of least privilege** - credentials only have minimum required permissions
 
 ### What if someone adds malicious code to an integration?
