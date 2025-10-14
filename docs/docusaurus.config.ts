@@ -194,6 +194,15 @@ const config: Config = {
             },
           ],
         },
+        {
+          title: 'Legal',
+          items: [
+            {
+              label: 'Privacy Policy',
+              to: '/docs/privacy',
+            },
+          ],
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} ToolJump. Docs built with Docusaurus.<br/><br/><small>All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of ToolJump by those owners.</small>`,
     },
