@@ -19,12 +19,63 @@ const PopupContainer = styled.div`
   flex-direction: column;
 `;
 
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
 const Title = styled.h1`
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 20px;
   color: #2c3e50;
-  text-align: center;
+  margin: 0;
+`;
+
+const HelpIcon = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 2px solid #3498db;
+  background-color: white;
+  color: #3498db;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: #3498db;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+`;
+
+const QuestionCircle = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  
+  ${HelpIcon}:hover & {
+    background-color: white;
+    color: #3498db;
+  }
 `;
 
 // Tab Components
@@ -873,7 +924,18 @@ const Popup: React.FC = () => {
 
   return (
     <PopupContainer>
-      <Title>ToolJump Settings</Title>
+      <TitleContainer>
+        <Title>ToolJump Settings</Title>
+        <HelpIcon 
+          href="http://localhost:3001/docs/getting-started" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          title="Open documentation"
+        >
+          <QuestionCircle>?</QuestionCircle>
+          <span>docs</span>
+        </HelpIcon>
+      </TitleContainer>
       
       <TabContainer>
         <Tab 
