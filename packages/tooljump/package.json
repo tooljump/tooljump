@@ -5,7 +5,10 @@
   "main": "dist/index.js",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:cov": "vitest run --coverage"
   },
   "dependencies": {
     "@types/cors": "^2.8.19",
