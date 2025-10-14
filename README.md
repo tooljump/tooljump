@@ -27,11 +27,12 @@ Think of it as a **GPS for your engineering tools**: wherever you are, ToolJump 
 
 ### Real-World Examples
 
-- Jump instantly from a GitHub repo to the right logs in your monitoring system
-- See a clear label in your cloud provider when you're working in production vs staging
-- Navigate from a CI/CD pipeline to the related infrastructure in your cloud provider with a single click
-- Discover the URLs of every service, for every environment, by just looking at its repository
+- [Jump instantly from a GitHub repo to the right logs in your monitoring system](http://localhost:3001/integrations/github-datadog-logs-alerts)
+- [See a clear label in your cloud provider when you're working in production vs staging](http://localhost:3001/integrations/aws-lambda-production-check)
+- [Discover the URLs of every service, for every environment, by just looking at its repository](http://localhost:3001/integrations/github-show-deployed-service-urls)
 - Define your company's knowledge base as small, reviewable code snippets stored in source control - safe, auditable, and versioned
+
+[More demos](http://localhost:3001/demos)
 
 ### The Impact
 
@@ -45,60 +46,7 @@ With ToolJump, **teams spend less time wandering around and more time shipping**
 
 ## Getting Started: 3 Simple Steps
 
-### Step 1: Install the Chrome Extension
-
-Install the ToolJump Chrome extension from the Chrome Web Store. The extension installs in **Demo Mode**, so you can see ToolJump in action immediately.
-
-**Make sure to pin the extension** to your Chrome toolbar for easy access.
-
-[Learn more →](http://localhost:3001/docs/getting-started#step-1-install-the-chrome-extension)
-
----
-
-### Step 2: Try the Demo
-
-Visit the demo repository to see ToolJump in action. You'll see a context bar at the top of the GitHub page showing:
-
-- **Real-time alerts** from your monitoring tools
-- **Quick links** to logs, costs, and deployment status
-- **Team information** like who's on-call
-- **Environment URLs** for different deployments
-
-This is demo data to show you what's possible. To connect your real tools, continue to Step 3.
-
-[Learn more →](http://localhost:3001/docs/getting-started#step-2-try-the-demo)
-
----
-
-### Step 3: Set Up Your Server Locally
-
-To connect your actual tools and data, you'll need to run your own ToolJump server.
-
-**Prerequisites:**
-- Node.js 20+
-- Yarn or NPM
-
-**Quick Setup:**
-
-```bash
-# Create your server
-npx create-tooljump
-
-# Start the server
-npm run dev
-```
-
-**Configure the extension:**
-- Open ToolJump extension settings
-- Turn off "Demo Mode"
-- Enter your server URL and the secure token you chose at step 1
-
-**Test the connection:**
-Visit your GitHub repository and you should see your ToolJump bar!
-
-The server comes with demo integrations that showcase what's possible. To adapt it to your company and workflows, start building custom integrations.
-
-[Learn more →](http://localhost:3001/docs/getting-started#step-3-set-up-your-server-locally)
+Follow the [Getting started →](http://localhost:3001/docs/getting-started#step-1-install-the-chrome-extension) guide to set it up
 
 ---
 
@@ -127,64 +75,6 @@ ToolJump is comprised of 3 main components:
 **Important:** ToolJump is self-hosted. You host it yourself and are responsible for deployment, security, monitoring, and storing secrets. We do not store anything on our side.
 
 [Learn more about architecture →](http://localhost:3001/docs/architecture)
-
----
-
-## Core Concepts
-
-### Contexts
-
-A **context** is a JSON object containing the most important information from the currently visited website. It's produced by the ToolJump Chrome Extension and sent to the server.
-
-For example, when visiting a Lambda function in AWS Console:
-
-```json
-{
-  "url": "https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/my-test-lambda-function?tab=code",
-  "type": "aws",
-  "global": {
-    "accountId": "123456789012"
-  },
-  "scope": {
-    "region": "eu-central-1"
-  },
-  "service": {
-    "name": "lambda",
-    "section": "functions",
-    "resourceName": "my-test-lambda-function",
-    "arn": "arn:aws:lambda:eu-central-1:123456789012:function:my-test-lambda-function"
-  }
-}
-```
-
-### Integrations
-
-**Integrations** are JavaScript files that provide links or insights for a given context. They analyze the context, connect to external tools (like GitHub, Datadog, PagerDuty), and return relevant information to display in the context bar.
-
-**Example Integration:**
-
-```javascript
-module.exports = {
-    metadata: {
-        name: 'hello-world',
-        description: 'A simple hello world integration',
-        match: {
-            contextType: 'github'
-        }
-    },
-    run: async function () {
-        return [
-            {
-                type: 'text',
-                content: 'Hello World!',
-                status: 'important'
-            }
-        ];
-    }
-};
-```
-
-[Learn more about core concepts →](http://localhost:3001/docs/core-concepts)
 
 ---
 
