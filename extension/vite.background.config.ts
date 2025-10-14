@@ -20,7 +20,7 @@ export default defineConfig({
       },
     },
     outDir: 'dist',
-    sourcemap: 'inline',
+    sourcemap: process.env.NODE_ENV === 'development' ? 'inline' : false,
     emptyOutDir: false, // Don't empty the output directory
   },
   base: './', // Use relative paths
