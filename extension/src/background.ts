@@ -49,9 +49,11 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         if (hasPermission) {
           // If permission exists, inject the content script.
           logger.info('Background', `Injecting content script into ${currentUrl} (permission found for ${origin})`);
+          // Use 'dist/content.js' in development (loading from root), 'content.js' in production (loading from dist/)
+          const contentScriptPath = process.env.NODE_ENV === 'development' ? 'dist/content.js' : 'content.js';
           await chrome.scripting.executeScript({
             target: { tabId: tabId },
-            files: ['dist/content.js'],
+            files: [contentScriptPath],
           });
         }
       } catch (e) {
