@@ -1,119 +1,320 @@
 # ToolJump
 
-A context-aware integration platform that provides intelligent tools and information based on the current context.
+**Knowledge as a Service for Engineering Teams**
 
-## Launch
+---
 
-1. one command to start the server, install the extension and open a github repo to show it augemented. like /onboarding
-    - one command starts the server
-    - at the end opens the /onboading URL in google chrome
-    - marks the page with green when the extension is installed
-    - presses a button to configure it
-    - presses a link to open a demo repository to show the bar at the top
-    - next guides etc etc
-2. running in your company
+## What is ToolJump?
 
-# When starting locally (easy mode)
-## Server
-1. Load files under integrations
-    - load `*.data.yml` (and store all data as an array)
-    - load `data.process.js` (pass data for processing)
-    - load `*.integration.js` (build an internal array with the integrations metadata and run function)
-2. Run server on `localhost:3999` (for safety)
-3. Install the extension
+Modern software engineering runs on an ecosystem of tools: GitHub, AWS, GCP, Azure, Datadog, PagerDuty, Terraform, CI/CD pipelines, feature flags, and many more. These tools are powerful but have a major flaw: **they're not connected and don't talk to each other**.
 
-# When starting in a company environment
-## Server
-1. Use the arg to point to a github repo (and path) where the data exist. Also, a gh token with read access is needed
-2. Periodically reload (git pull) (every 5 minutes)
-3. Parse the files
-4. Listen on a given port, and require a token that must be set in the extension
+**The result?**
+- Engineers spend countless hours context-switching, clicking through tabs, and hunting for information, losing focus and negatively impacting developer productivity.
+- Critical knowledge lives in Slack threads, stale documentation, or in the heads of a few senior engineers, negatively affecting the overall developer experience.
+- Onboarding new engineers takes weeks, and mistakes happen more often than anyone admits (debugging the wrong environment, shipping to production instead of staging).
 
+For leaders, this translates into **millions lost every year in wasted engineering time, slower delivery, and costly mistakes** - a silent tax on every software project.
 
-# TODO
-- check how I can get the extension verified/signed by Google
-- guides on how to generate read only tokens
-- add 3 ways to run custom stuff: require, vm or isolated-vm
+### ToolJump's Solution
 
+ToolJump brings **Knowledge as a Service** directly into the tools your engineers already use.
 
+Imagine a single bar that follows you across your tools - GitHub, AWS, Datadog, CI/CD - and instantly shows you valuable insights by connecting them together into one ecosystem. **No searching, no bookmarks, no context switching - just answers where you need them.**
 
+Think of it as a **GPS for your engineering tools**: wherever you are, ToolJump shows you the path forward - whether it's debugging logs, exploring related infrastructure, or finding the right docs. All without leaving the screen you're already on.
 
-# Secrets
-- read from ENV (only once, on startup)
-- read from external store, eg: AWS, Vault
+### Real-World Examples
 
+- Jump instantly from a GitHub repo to the right logs in your monitoring system
+- See a clear label in your cloud provider when you're working in production vs staging
+- Navigate from a CI/CD pipeline to the related infrastructure in your cloud provider with a single click
+- Discover the URLs of every service, for every environment, by just looking at its repository
+- Define your company's knowledge base as small, reviewable code snippets stored in source control - safe, auditable, and versioned
 
-# TODO CODE
-[v] - auth that is based on a shared token [express middleware]
-- data provider
-- config UI for extension to set server url  and token (if token based)
+### The Impact
 
-# DATA
-1. One big call to get everything (at startup)
-2. Go through files that include .data.yml or .data.json, then execute some data.preprocess.js
-2. Call something (or read some file) from within integrations (eg: read the service-catalog.yml in the current repo)
+With ToolJump, **teams spend less time wandering around and more time shipping**. That means higher focus, higher productivity, faster delivery with fewer operational mistakes, and greater output with the same headcount.
 
-# EXTENSION
-1. get corresponding configuration, driven by the server preferably (like /config) which will return how the FE should behave
-2. implement context for AWS
+- What used to take 5-10 minutes of tool-hopping now takes a few seconds. Multiply that by 10, 50, or 200 engineers, and the impact becomes massive across the entire organization.
+- What used to require tribal knowledge is now encoded and shared across the entire organization.
+- What used to be risky guesswork is now a guided, reliable, deterministic path.
 
+---
 
+## Getting Started: 3 Simple Steps
 
-## 📋 Requirements
+### Step 1: Install the Chrome Extension
 
-- **Node.js**: Version 20 or higher (required for lru-cache compatibility)
-- **Yarn**: Package manager
-- **Git**: Version control
+Install the ToolJump Chrome extension from the Chrome Web Store. The extension installs in **Demo Mode**, so you can see ToolJump in action immediately.
 
-## 🚀 Automated Builds
+**Make sure to pin the extension** to your Chrome toolbar for easy access.
 
-This project uses GitHub Actions for automated builds. All builds are **private** and generate ZIP artifacts only.
+[Learn more →](http://localhost:3001/docs/getting-started#step-1-install-the-chrome-extension)
 
-### Available Workflows:
+---
 
-1. **Extension Build** (`.github/workflows/extension-build.yml`)
-   - Triggers on changes to `extension/` folder
-   - Builds and packages the extension
-   - Creates production and development ZIP files
-   - Uploads as private artifacts
+### Step 2: Try the Demo
 
-2. **Extension Test** (`.github/workflows/extension-test.yml`)
-   - Validates extension build process
-   - Ensures all files are present
-   - Tests packaging functionality
+Visit the demo repository to see ToolJump in action. You'll see a context bar at the top of the GitHub page showing:
 
-3. **Monorepo Build** (`.github/workflows/monorepo-build.yml`)
-   - Builds all packages in the monorepo
-   - Includes extension packaging
-   - Uploads extension ZIP as artifact
+- **Real-time alerts** from your monitoring tools
+- **Quick links** to logs, costs, and deployment status
+- **Team information** like who's on-call
+- **Environment URLs** for different deployments
 
-### How to Access Build Artifacts:
+This is demo data to show you what's possible. To connect your real tools, continue to Step 3.
 
-1. Go to your GitHub repository
-2. Click on "Actions" tab
-3. Select a completed workflow run
-4. Scroll down to "Artifacts" section
-5. Download the ZIP files
+[Learn more →](http://localhost:3001/docs/getting-started#step-2-try-the-demo)
 
-### Manual Trigger:
+---
 
-You can manually trigger builds:
-1. Go to "Actions" tab
-2. Select a workflow
-3. Click "Run workflow" button
-4. Choose branch and click "Run workflow"
+### Step 3: Set Up Your Server Locally
 
-### Privacy:
+To connect your actual tools and data, you'll need to run your own ToolJump server.
 
-- ✅ All builds are **private**
-- ✅ No public releases created
-- ✅ ZIP files only available to you
-- ✅ No Chrome Web Store integration
-- ✅ No public distribution
+**Prerequisites:**
+- Node.js 20+
+- Yarn or NPM
 
+**Quick Setup:**
 
+```bash
+# Create your server
+npx create-tooljump
 
+# Start the server
+npm run dev
+```
 
+**Configure the extension:**
+- Open ToolJump extension settings
+- Turn off "Demo Mode"
+- Enter your server URL and the secure token you chose at step 1
 
+**Test the connection:**
+Visit your GitHub repository and you should see your ToolJump bar!
 
-All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of ToolJump by those owners.
+The server comes with demo integrations that showcase what's possible. To adapt it to your company and workflows, start building custom integrations.
+
+[Learn more →](http://localhost:3001/docs/getting-started#step-3-set-up-your-server-locally)
+
+---
+
+## Architecture
+
+ToolJump is comprised of 3 main components:
+
+### 1. ToolJump Chrome Extension
+- Understands the pages you visit
+- Sends context summary to the ToolJump server
+- Displays insights and links in a context bar
+- Deployed in user's browser (client-side)
+
+### 2. ToolJump Server
+- Receives context data from the extension
+- Runs user-defined integrations
+- Returns results to the extension
+- Deployed on your cloud/on-prem infrastructure
+
+### 3. ToolJump Integrations
+- Provides the logic for connecting tools together
+- Written in JavaScript
+- Stored in your GitHub repository
+- Maintained by your engineering team
+
+**Important:** ToolJump is self-hosted. You host it yourself and are responsible for deployment, security, monitoring, and storing secrets. We do not store anything on our side.
+
+[Learn more about architecture →](http://localhost:3001/docs/architecture)
+
+---
+
+## Core Concepts
+
+### Contexts
+
+A **context** is a JSON object containing the most important information from the currently visited website. It's produced by the ToolJump Chrome Extension and sent to the server.
+
+For example, when visiting a Lambda function in AWS Console:
+
+```json
+{
+  "url": "https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/my-test-lambda-function?tab=code",
+  "type": "aws",
+  "global": {
+    "accountId": "123456789012"
+  },
+  "scope": {
+    "region": "eu-central-1"
+  },
+  "service": {
+    "name": "lambda",
+    "section": "functions",
+    "resourceName": "my-test-lambda-function",
+    "arn": "arn:aws:lambda:eu-central-1:123456789012:function:my-test-lambda-function"
+  }
+}
+```
+
+### Integrations
+
+**Integrations** are JavaScript files that provide links or insights for a given context. They analyze the context, connect to external tools (like GitHub, Datadog, PagerDuty), and return relevant information to display in the context bar.
+
+**Example Integration:**
+
+```javascript
+module.exports = {
+    metadata: {
+        name: 'hello-world',
+        description: 'A simple hello world integration',
+        match: {
+            contextType: 'github'
+        }
+    },
+    run: async function () {
+        return [
+            {
+                type: 'text',
+                content: 'Hello World!',
+                status: 'important'
+            }
+        ];
+    }
+};
+```
+
+[Learn more about core concepts →](http://localhost:3001/docs/core-concepts)
+
+---
+
+## Writing Integrations
+
+Integrations are the heart of ToolJump. They connect your tools and provide contextual information exactly where you need it.
+
+**Getting Started:**
+1. Create a file with `.integration.js` extension
+2. Define metadata (name, description, when to run)
+3. Implement the `run` function to fetch and return data
+4. Store in your GitHub repository
+
+**Result Types:**
+- **Text** - Display simple information
+- **Link** - Clickable links to other tools
+- **Dropdown** - Multiple links grouped together
+
+**Available Integrations:**
+
+Browse our gallery of pre-built integrations connecting 10+ tools:
+- GitHub ↔ AWS Infrastructure
+- GitHub ↔ Datadog Logs & Alerts
+- GitHub ↔ CircleCI Deployments
+- AWS Lambda ↔ GitHub Code
+- AWS Lambda ↔ PagerDuty On-call
+- And many more...
+
+[Start writing integrations →](http://localhost:3001/docs/writing-integrations)
+
+[Browse integration gallery →](http://localhost:3001/integrations)
+
+---
+
+## Security
+
+ToolJump is designed with security as a core principle:
+
+- **Self-hosted**: You control your data and infrastructure
+- **No external storage**: All data stays within your organization
+- **Integration isolation**: Integrations run in isolated VM environments
+- **Credential security**: Secrets stored locally, never transmitted
+- **Input validation**: Comprehensive validation of all inputs
+- **HTTPS recommended**: Secure communication in production
+
+**Security Best Practices:**
+- ✅ Use HTTPS in production
+- ✅ Implement strong authentication
+- ✅ Store integrations in GitHub with code review
+- ✅ Use read-only credentials with least privilege
+- ✅ Enable rate limiting
+- ✅ Keep dependencies updated
+
+[Learn more about security →](http://localhost:3001/docs/security)
+
+---
+
+## Deployment Options
+
+ToolJump can be deployed in various environments:
+
+### Local Development
+```bash
+npx create-tooljump
+npm run dev
+```
+
+### VPS Deployment
+- Direct Node.js application
+- Use process managers (pm2, systemd)
+- Configure HTTPS with Let's Encrypt
+- Set up reverse proxy (Nginx)
+
+### Docker Deployment
+```bash
+docker build -t tooljump .
+docker run -p 3000:3000 --env-file .env tooljump
+```
+
+### Kubernetes Deployment
+- Production-grade orchestration
+- Auto-scaling and self-healing
+- Rolling updates with zero downtime
+- ConfigMaps and Secrets management
+
+[Learn more about deployment →](http://localhost:3001/docs/deploying)
+
+---
+
+## Fast-track Implementation in Your Company
+
+While ToolJump is fully open source and free to use, implementing it across your organization with battle-tested DevEx expertise can save weeks of trial and error. Professional implementation includes seamless integration with your internal auth, tailored rollout based on your biggest bottlenecks, team enablement, and enterprise features with ongoing support.
+
+[Learn more about professional implementation →](http://localhost:3001/implement)
+
+---
+
+## Documentation
+
+**Full documentation is available at:** http://localhost:3001/docs/
+
+### Quick Links
+- [Getting Started](http://localhost:3001/docs/getting-started)
+- [Core Concepts](http://localhost:3001/docs/core-concepts)
+- [Writing Integrations](http://localhost:3001/docs/writing-integrations)
+- [Integration Gallery](http://localhost:3001/integrations)
+- [Architecture](http://localhost:3001/docs/architecture)
+- [Security](http://localhost:3001/docs/security)
+- [Deployment](http://localhost:3001/docs/deploying)
+- [FAQ](http://localhost:3001/docs/faq)
+
+---
+
+## Requirements
+
+- **Node.js**: Version 20 or higher
+- **Yarn**: Package manager (or NPM)
+- **Chrome Browser**: For the extension
+
+---
+
+## Contributing
+
+ToolJump is fully open source. Contributions are welcome!
+
+---
+
+## License
+
+See [LICENSE](./LICENSE) file for details.
+
+---
+
+*All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of ToolJump by those owners.*
+
