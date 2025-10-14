@@ -31,8 +31,8 @@ function mockChrome() {
     storage: {
       local: {
         get: vi.fn((keys: any, cb: Function) => {
-          // default to integrated display and no debug overlay
-          cb({ displayMode: 'integrated', debugShowContext: false });
+          // default to integrated display, no debug overlay, and demo mode disabled for testing
+          cb({ displayMode: 'integrated', debugShowContext: false, demoMode: false });
         }),
       },
       onChanged: { addListener: vi.fn(), removeListener: vi.fn() },
