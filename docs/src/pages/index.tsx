@@ -19,11 +19,12 @@ function HomepageHeader() {
         <div className={styles.heroContent}>
           <div className={styles.heroText}>
             <Heading as="h1" className={styles.heroTitle}>
-              Onboard your engineers in <span className={styles.highlight}>days</span> instead of weeks
+            {/* <span className={styles.highlight}>days</span> */}
+            Your engineering tools don&apos;t talk to each other.<br/><span style={{marginTop: '18px', display: 'inline-block'}}>We fix that.</span>
             </Heading>
-            {/* <p className={styles.heroSubtitle}>
-              Unlock faster workflows without skyrocketing complexity.
-            </p> */}
+            <p className={styles.heroSubtitle}>
+            Knowledge as a Service - embedded directly where your engineers work
+            </p>
             <div className={styles.heroButtons}>
               <Link
                 className={styles.primaryButton}
