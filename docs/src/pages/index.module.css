@@ -201,6 +201,9 @@
   justify-content: center;
   position: relative;
   z-index: 2;
+  /* Allow the slideshow inside to shrink within the grid column */
+  min-width: 0;
+  width: 100%;
 }
 
 .heroImage::before {
