@@ -363,6 +363,10 @@
   color: var(--ifm-color-primary);
 }
 
+.navbar-sidebar__items--show-secondary {
+  transform: none !important;
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 996px) {
   .navbar__item {
@@ -741,6 +745,9 @@ h6 {
   border-color: var(--ifm-color-primary);
   box-shadow: var(--ifm-global-shadow-md);
 }
+
+
+
 
 /* Ensure mobile navbar drawer overlays all page content */
 @media (max-width: 996px) {
