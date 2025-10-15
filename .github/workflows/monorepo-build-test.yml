@@ -81,15 +81,7 @@ jobs:
       - name: Package extension
         run: yarn package:extension
 
-      - name: Upload extension artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: tooljump-extension
-          path: extension/tooljump-extension.zip
-          retention-days: 30
-
       - name: Show build summary
         run: |
           echo "✅ Monorepo build completed successfully!"
           echo "📦 Extension ZIP: tooljump-extension.zip"
-          echo "📥 Download from Actions tab → Artifacts"
