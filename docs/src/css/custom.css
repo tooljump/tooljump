@@ -742,6 +742,42 @@ h6 {
   box-shadow: var(--ifm-global-shadow-md);
 }
 
+/* Ensure mobile navbar drawer overlays all page content */
+@media (max-width: 996px) {
+  .navbar-sidebar__backdrop {
+    z-index: 9998;
+  }
+  .navbar-sidebar {
+    z-index: 9999;
+    background: var(--ifm-background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .navbar__toggle {
+    z-index: 10000;
+  }
+
+  /* Ensure sidebar content renders and is scrollable */
+  .navbar-sidebar__items {
+    display: block;
+    height: calc(100vh - var(--ifm-navbar-height));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .navbar-sidebar__brand {
+    z-index: 10001;
+  }
+  .navbar-sidebar .menu {
+    display: block;
+  }
+  .navbar-sidebar .menu__link {
+    color: var(--ifm-navbar-link-color);
+  }
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
