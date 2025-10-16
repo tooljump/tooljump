@@ -2,6 +2,8 @@
 id: chrome-extension-architecture
 title: Chrome Extension Architecture
 sidebar_label: (1/2) Chrome Extension Architecture
+keywords: [chrome extension architecture, browser extension, context extraction, developer tool extension, tooljump extension]
+description: Detailed architecture of ToolJump's Chrome extension including context extraction, communication with server, and how it delivers contextual information to developers.
 ---
 
 # ToolJump Chrome Extension Architecture

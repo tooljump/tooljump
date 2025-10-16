@@ -2,6 +2,8 @@
 id: data
 title: Data
 sidebar_label: Data
+keywords: [integration data, data sources, data fetching, tooljump data, external data]
+description: Learn how to fetch and work with data in ToolJump integrations, including API calls, data transformation, and handling external data sources.
 ---
 
 # Data

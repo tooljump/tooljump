@@ -1,6 +1,8 @@
 ---
 id: connecting-to-github
 title: Connecting to GitHub
+keywords: [connecting to github, github integration, source control integration, repository integration, tooljump github]
+description: Learn how to connect GitHub repositories, pull requests, and issues with ToolJump to improve developer workflow and eliminate context switching.
 ---
 
 import Icon from '@site/src/components/Icon';

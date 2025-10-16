@@ -1,6 +1,8 @@
 ---
 id: generic-context
 title: Generic context
+keywords: [generic context, universal context, any website context, tooljump generic, context matching]
+description: Learn how to use ToolJump's generic context to create integrations that work on any website or tool, not just specific platforms like GitHub or AWS.
 ---
 
 # Generic context

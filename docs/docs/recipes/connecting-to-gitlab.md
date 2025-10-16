@@ -1,6 +1,8 @@
 ---
 id: connecting-to-gitlab
 title: Connecting to GitLab
+keywords: [connecting to gitlab, gitlab integration, source control integration, repository integration, tooljump gitlab]
+description: Connect GitLab repositories, merge requests, and CI/CD pipelines with ToolJump to streamline your GitLab-based development workflow.
 ---
 
 # Connecting to GitLab

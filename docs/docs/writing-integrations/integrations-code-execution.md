@@ -2,6 +2,8 @@
 id: integrations-code-execution
 title: Running code in an integration
 sidebar_label: Running code in an integration
+keywords: [code execution, integration code, javascript execution, tooljump code, integration runtime]
+description: Understand how ToolJump executes integration code, including security considerations, runtime environment, and best practices for code execution.
 ---
 # Running code in an integration
 

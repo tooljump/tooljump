@@ -1,6 +1,8 @@
 ---
 id: connecting-to-circleci
 title: Connecting to CircleCI
+keywords: [connecting to circleci, circleci integration, ci cd integration, continuous integration, tooljump circleci]
+description: Connect CircleCI continuous integration with ToolJump to provide build status, deployment information, and pipeline insights in your development workflow.
 ---
 
 import Icon from '@site/src/components/Icon';

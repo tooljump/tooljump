@@ -1,6 +1,8 @@
 ---
 id: connecting-to-aws
 title: Connecting to AWS
+keywords: [connecting to aws, aws integration, amazon web services, cloud integration, tooljump aws]
+description: Step-by-step guide to connect AWS services with ToolJump including Lambda, EC2, S3, and other AWS resources for improved developer productivity.
 ---
 
 import Icon from '@site/src/components/Icon';

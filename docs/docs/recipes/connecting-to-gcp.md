@@ -1,6 +1,8 @@
 ---
 id: connecting-to-gcp
 title: Connecting to GCP
+keywords: [connecting to gcp, google cloud platform, gcp integration, cloud integration, tooljump gcp]
+description: Connect Google Cloud Platform services with ToolJump including Compute Engine, Cloud Functions, and other GCP resources for enhanced developer productivity.
 ---
 
 # Connecting to GCP

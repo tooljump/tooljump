@@ -93,6 +93,15 @@ const config: Config = {
   // Using Algolia DocSearch for better compatibility
   plugins: [
     './plugins/integrations-data-plugin.js',
+    [
+      '@docusaurus/plugin-sitemap',
+      {
+        changefreq: 'weekly',
+        priority: 0.5,
+        ignorePatterns: ['/integrations/archive/**', '/integrations/tags/**'],
+        filename: 'sitemap.xml',
+      },
+    ],
   ],
 
   // Global script to periodically remove any accidental `inert` attributes

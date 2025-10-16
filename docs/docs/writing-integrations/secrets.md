@@ -2,6 +2,8 @@
 id: secrets
 title: Secrets
 sidebar_label: Secrets
+keywords: [secrets management, api keys, credentials, secure storage, tooljump secrets]
+description: Learn how to securely manage API keys, credentials, and secrets in ToolJump integrations using environment variables and secure storage patterns.
 ---
 
 # Secrets

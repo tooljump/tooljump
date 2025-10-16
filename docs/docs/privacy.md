@@ -1,3 +1,11 @@
+---
+id: privacy
+title: Privacy Policy
+sidebar_label: Privacy Policy
+keywords: [privacy policy, data protection, tooljump privacy, user data, chrome extension privacy]
+description: ToolJump's privacy policy explaining how we handle your data, what information we collect, and your rights regarding privacy when using our developer tool integration platform.
+---
+
 # Privacy Policy
 
 **Last Updated: October 14, 2025**

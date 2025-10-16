@@ -2,6 +2,8 @@
 id: deploying
 title: Deploying ToolJump
 sidebar_label: Deploying
+keywords: [deploying tooljump, production deployment, docker deployment, kubernetes, self-hosted deployment]
+description: Complete guide to deploying ToolJump in production environments including Docker, Kubernetes, and cloud deployment strategies for enterprise teams.
 ---
 
 # Deploying ToolJump

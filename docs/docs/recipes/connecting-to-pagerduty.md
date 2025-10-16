@@ -1,6 +1,8 @@
 ---
 id: connecting-to-pagerduty
 title: Connecting to PagerDuty
+keywords: [connecting to pagerduty, pagerduty integration, incident management, on-call integration, tooljump pagerduty]
+description: Connect PagerDuty incident management with ToolJump to show on-call information, alerts, and incident status directly in your development tools.
 ---
 
 import Icon from '@site/src/components/Icon';

@@ -1,6 +1,8 @@
 ---
 id: when-to-run
 title: When to Run (and contexts)
+keywords: [when to run, integration contexts, context matching, integration triggers, tooljump contexts]
+description: Learn when and where ToolJump integrations execute using context matching. Understand how to control integration behavior based on page content and URLs.
 ---
 
 # When to Run

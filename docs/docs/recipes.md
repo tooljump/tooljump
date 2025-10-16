@@ -2,6 +2,8 @@
 id: recipes
 title: Integration Recipes
 sidebar_label: Recipes
+keywords: [integration recipes, tooljump recipes, pre-built integrations, developer tool recipes, workflow examples]
+description: Collection of pre-built ToolJump integration recipes with step-by-step instructions for connecting GitHub, AWS, Datadog, and other developer tools.
 ---
 
 # Integration Recipes

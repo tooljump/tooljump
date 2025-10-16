@@ -2,6 +2,8 @@
 id: debugging
 title: Debugging
 sidebar_label: Debugging
+keywords: [debugging integrations, integration troubleshooting, tooljump debugging, integration logs, error handling]
+description: Learn how to debug ToolJump integrations including logging, error handling, testing, and troubleshooting common integration issues.
 ---
 
 # Debugging Integrations

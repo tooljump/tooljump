@@ -2,6 +2,8 @@
 id: writing-integrations
 title: Writing Integrations
 sidebar_label: Writing Integrations
+keywords: [writing integrations, tooljump integrations, custom integrations, developer tool integration, javascript modules]
+description: Learn how to write custom ToolJump integrations in JavaScript to connect your developer tools and create contextual information displays for your engineering team.
 ---
 
 # Writing Integrations

@@ -2,6 +2,8 @@
 id: security
 title: Security
 sidebar_label: Security
+keywords: [tooljump security, self-hosted security, enterprise security, developer tool security, data protection]
+description: Comprehensive security guide for ToolJump including architecture, best practices, and security considerations for enterprise deployment and operation.
 ---
 
 # Security

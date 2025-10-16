@@ -2,6 +2,8 @@
 id: faq
 title: FAQ - Connecting Tools and Developer Experience | ToolJump
 sidebar_label: FAQ
+keywords: [tooljump faq, frequently asked questions, connecting tools, developer experience, security, self-hosted]
+description: Frequently asked questions about ToolJump's security, architecture, and how it connects developer tools to improve developer experience and eliminate context switching.
 ---
 
 import StructuredData from '@site/src/components/StructuredData';

@@ -2,6 +2,8 @@
 id: server-architecture
 title: Server Architecture
 sidebar_label: (2/2) Server Architecture
+keywords: [tooljump server, server architecture, integration engine, developer tool server, self-hosted]
+description: Deep dive into ToolJump's server architecture including the integration engine, workflow processing, and how it orchestrates developer tool connections.
 ---
 
 # ToolJump Server Architecture

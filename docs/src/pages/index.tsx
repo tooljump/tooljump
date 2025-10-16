@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import TryItOut from '@site/src/components/TryItOut';
 import ProblemSolution from '@site/src/components/ProblemSolution';
 import ForCompanies from '@site/src/components/ForCompanies';
@@ -88,8 +89,11 @@ export default function Home(): ReactNode {
 
   return (
     <Layout
-      title="ToolJump - Knowledge as a Service for Developer Tools | Connect Your Engineering Tools"
-      description="Connect your developer tools with ToolJump's Knowledge as a Service platform. Improve developer experience by linking GitHub, AWS, Datadog, and CI/CD tools. Stop context switching, start shipping faster.">
+      title="Connect Your Developer Tools | Knowledge as a Service Platform"
+      description="Connect GitHub, AWS, Datadog, CI/CD and more with a Knowledge as a Service platform embedded where engineers work. Improve developer experience and eliminate context switching.">
+      <Head>
+        <meta name="keywords" content="connecting tools, knowledge as a service, developer experience, developer tool integration, engineering productivity" />
+      </Head>
       <StructuredData type="Organization" data={{}} />
       <StructuredData type="SoftwareApplication" data={{}} />
       <HomepageHeader />

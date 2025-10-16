@@ -2,6 +2,8 @@
 id: caching
 title: Caching
 sidebar_label: Caching
+keywords: [integration caching, data caching, performance optimization, tooljump caching, cache strategy]
+description: Learn how to implement caching in ToolJump integrations to improve performance, reduce API calls, and optimize data retrieval for better user experience.
 ---
 
 # Caching

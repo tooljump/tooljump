@@ -2,6 +2,8 @@
 id: architecture
 title: High level architecture
 sidebar_label: High level architecture
+keywords: [tooljump architecture, chrome extension, server architecture, integrations, developer tool platform]
+description: Learn how ToolJump's architecture works with Chrome extension, server, and integrations to connect developer tools and deliver contextual information where engineers work.
 ---
 
 # ToolJump Architecture

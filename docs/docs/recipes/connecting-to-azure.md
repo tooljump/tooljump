@@ -1,6 +1,8 @@
 ---
 id: connecting-to-azure
 title: Connecting to Azure
+keywords: [connecting to azure, microsoft azure, azure integration, cloud integration, tooljump azure]
+description: Learn how to connect Microsoft Azure services with ToolJump including Azure Functions, App Service, and other Azure resources for improved workflow.
 ---
 
 # Connecting to Azure

@@ -2,6 +2,8 @@
 id: connecting-your-tools-resources
 title: Connecting Tools - Complete Guide to Developer Tool Integration
 sidebar_label: Connecting your tools
+keywords: [connecting tools, tool integration, developer tool connectivity, service integration, connect engineering tools]
+description: Complete guide to connecting developer tools across your organization. Learn best practices for tool integration, tagging strategies, and building a connected toolchain.
 ---
 
 # Connecting Tools - Complete Guide to Developer Tool Integration

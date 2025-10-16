@@ -1,6 +1,8 @@
 ---
 id: connecting-to-other-tools
 title: Connecting to other tools
+keywords: [connecting other tools, custom tool integration, generic integration, tooljump custom tools, developer tool integration]
+description: Learn how to connect any custom or third-party developer tool with ToolJump using generic adapters and custom integration patterns.
 ---
 
 import Icon from '@site/src/components/Icon';

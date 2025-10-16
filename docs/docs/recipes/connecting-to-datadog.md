@@ -1,6 +1,8 @@
 ---
 id: connecting-to-datadog
 title: Connecting to Datadog
+keywords: [connecting to datadog, datadog integration, monitoring integration, observability, tooljump datadog]
+description: Connect Datadog monitoring, logs, and alerts with ToolJump to provide contextual observability data directly in your development workflow.
 ---
 
 import Icon from '@site/src/components/Icon';
