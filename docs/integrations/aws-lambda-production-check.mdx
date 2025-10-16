@@ -1,10 +1,9 @@
 ---
 title: AWS Lambda Production Check
-description: Shows production environment status for AWS Lambda functions
+description: AWS Lambda integration that shows production environment status and warnings to prevent accidental changes in production environments.
 tags: [aws, lambda, production, environment]
 icons: [aws, lambda]
 keywords: [aws lambda production, production environment check, aws lambda monitoring, production safety, aws integration]
-description: AWS Lambda integration that shows production environment status and warnings to prevent accidental changes in production environments.
 slides:
   - image: /img/slide-aws-lambda.png
     alt: AWS Lambda
@@ -23,9 +22,9 @@ slides:
 import CodeBlock from '@theme/CodeBlock';
 import IntegrationCode from '!!raw-loader!@site/../examples/data/aws-lambda-production-check.integration.example.js';
 import BarContentPreview from '@site/src/components/BarContentPreview';
-import Slideshow from '@site/src/components/Slideshow';
+import SlideshowWrapper from '@site/src/components/SlideshowWrapper';
 
-<Slideshow slides={frontMatter.slides} />
+<SlideshowWrapper slides={frontMatter.slides} />
 
 This integration helps engineers quickly identify when they're working with AWS Lambda functions in production environments. It displays a warning when the AWS account ID matches a configured production account.
 

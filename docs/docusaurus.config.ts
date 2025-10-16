@@ -83,6 +83,50 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/integrations/archive/**', '/integrations/tags/**'],
+          filename: 'sitemap.xml',
+          createSitemapItems: async (params) => {
+            const {defaultCreateSitemapItems, ...rest} = params;
+            const items = await defaultCreateSitemapItems(rest);
+            
+            // Add homepage if not present
+            const homepageUrl = 'https://tooljump.dev/';
+            const hasHomepage = items.some(item => item.url === homepageUrl);
+            if (!hasHomepage) {
+              items.unshift({
+                url: homepageUrl,
+                changefreq: 'weekly',
+                priority: 1.0,
+                lastmod: new Date().toISOString()
+              });
+            }
+            
+            // Set priority levels based on page type
+            return items.map((item) => {
+              if (item.url === homepageUrl) {
+                return {...item, priority: 1.0};
+              }
+              if (item.url.includes('/docs/connecting-your-tools-resources') || 
+                  item.url.includes('/docs/knowledge-as-a-service') || 
+                  item.url.includes('/docs/developer-experience')) {
+                return {...item, priority: 0.9};
+              }
+              if (item.url.includes('/docs/') && !item.url.includes('/docs/recipes/')) {
+                return {...item, priority: 0.8};
+              }
+              if (item.url.includes('/integrations/') && !item.url.includes('/tags/')) {
+                return {...item, priority: 0.6};
+              }
+              if (item.url.includes('/tags/') || item.url.includes('/recipes/')) {
+                return {...item, priority: 0.4};
+              }
+              return {...item, priority: 0.5};
+            });
+          },
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -93,53 +137,6 @@ const config: Config = {
   // Using Algolia DocSearch for better compatibility
   plugins: [
     './plugins/integrations-data-plugin.js',
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        changefreq: 'weekly',
-        priority: 0.5,
-        ignorePatterns: ['/integrations/archive/**', '/integrations/tags/**'],
-        filename: 'sitemap.xml',
-        createSitemapItems: async (params) => {
-          const {defaultCreateSitemapItems, ...rest} = params;
-          const items = await defaultCreateSitemapItems(rest);
-          
-          // Add homepage if not present
-          const homepageUrl = 'https://tooljump.dev/';
-          const hasHomepage = items.some(item => item.url === homepageUrl);
-          if (!hasHomepage) {
-            items.unshift({
-              url: homepageUrl,
-              changefreq: 'weekly',
-              priority: 1.0,
-              lastmod: new Date().toISOString()
-            });
-          }
-          
-          // Set priority levels based on page type
-          return items.map((item) => {
-            if (item.url === homepageUrl) {
-              return {...item, priority: 1.0};
-            }
-            if (item.url.includes('/docs/connecting-your-tools-resources') || 
-                item.url.includes('/docs/knowledge-as-a-service') || 
-                item.url.includes('/docs/developer-experience')) {
-              return {...item, priority: 0.9};
-            }
-            if (item.url.includes('/docs/') && !item.url.includes('/docs/recipes/')) {
-              return {...item, priority: 0.8};
-            }
-            if (item.url.includes('/integrations/') && !item.url.includes('/tags/')) {
-              return {...item, priority: 0.6};
-            }
-            if (item.url.includes('/tags/') || item.url.includes('/recipes/')) {
-              return {...item, priority: 0.4};
-            }
-            return {...item, priority: 0.5};
-          });
-        },
-      },
-    ],
   ],
 
   // Global script to periodically remove any accidental `inert` attributes
