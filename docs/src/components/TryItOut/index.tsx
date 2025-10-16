@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -16,6 +17,18 @@ type StepItem = {
 export default function TryItOut(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   const tooljumpRepoUrl = siteConfig.customFields?.tooljumpRepoUrl as string;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const steps: StepItem[] = [
     {
@@ -62,6 +75,35 @@ export default function TryItOut(): ReactNode {
       icon: '⚡',
     },
   ];
+
+  if (isMobile) {
+    return (
+      <section className={styles.tryItOut}>
+        <div className="container">
+          <div className="row">
+            <div className="col col--12">
+              <div className={styles.header}>
+                <Heading as="h2" className={styles.title}>
+                  Setup ToolJump
+                </Heading>
+                <div className={styles.mobileMessage}>
+                  <div className={styles.mobileIcon}>💻</div>
+                  <p className={styles.mobileText}>
+                    To setup ToolJump, you need to do it on a computer, as it requires to install a Chrome Extension
+                  </p>
+                  <Link
+                    className={styles.mobileButton}
+                    to="/docs/getting-started">
+                    Learn more about setup
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.tryItOut}>

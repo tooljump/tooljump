@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -49,16 +50,47 @@ function HomepageHeader() {
 
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const renderMainContent = () => {
+    if (isMobile) {
+      // Mobile: Show ProblemSolution first, then TryItOut
+      return (
+        <main>
+          <ProblemSolution />
+          <TryItOut />
+          <ForCompanies />
+        </main>
+      );
+    } else {
+      // Desktop: Keep original order
+      return (
+        <main>
+          <TryItOut />
+          <ProblemSolution />
+          <ForCompanies />
+        </main>
+      );
+    }
+  };
+
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
-      <main>
-        <TryItOut />
-        <ProblemSolution />
-        <ForCompanies />
-      </main>
+      {renderMainContent()}
     </Layout>
   );
 }
