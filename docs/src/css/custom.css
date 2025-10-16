@@ -836,3 +836,7 @@ html {
 .navbar-sidebar__items--show-secondary {
   transform: none !important;
 }
+
+.btn-primary p {
+  margin-bottom: 0;
+}

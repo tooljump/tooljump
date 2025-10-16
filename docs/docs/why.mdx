@@ -43,6 +43,8 @@ slides:
         content: Other integrations ...
 ---
 
+import Link from '@docusaurus/Link';
+
 Modern software engineering runs on an ecosystem of tools: GitHub, AWS, GCP, Azure, Datadog, PagerDuty, Terraform, CI/CD pipelines, feature flags, data warehouses, marketing tools and many more.
 
 These tools are powerful but they have a major flaw: **they're not connected and don’t talk to each other**!
@@ -67,10 +69,11 @@ Imagine a single bar that follows you across your tools - GitHub, AWS, Datadog, 
 Think of it as a GPS for your engineering tools: wherever you are, ToolJump shows you the path forward - whether it’s debugging logs, exploring related infra, or finding the right docs. **All without leaving the screen you’re already on.**
 
 Here are just a few examples of how ToolJump can help:
-- Jump instantly from a GitHub repo to the right logs in your monitoring system.  
-- See a clear label in your cloud provider when you’re working in production vs staging.  
-- Navigate from a CI/CD pipeline to the related infrastructure in your cloud provider with a single click.  
-- Discover the URLs of every service, for every environment, by just looking at its repository.  
+- Jump instantly from a GitHub repo to the right logs in your monitoring system. <Link to="./integrations/github-datadog-logs-alerts" target="_blank" rel="noopener noreferrer">demo</Link>
+- Navigate from a Github repo to the related infrastructure in your cloud provider with a single click. <Link to="./integrations/github-aws-infrastructure" target="_blank" rel="noopener noreferrer">demo</Link>
+- Discover the URLs of every service, for every environment, by just looking at its repository. <Link to="./integrations/github-show-deployed-service-urls" target="_blank" rel="noopener noreferrer">demo</Link> 
+- See a clear label in your cloud provider when you’re working in production vs staging. <Link to="./integrations/aws-lambda-production-check" target="_blank" rel="noopener noreferrer">demo</Link> 
+- Show feature flags for a given repository <Link to="./integrations/github-launchdarkly" target="_blank" rel="noopener noreferrer">demo</Link> 
 - Define your company’s knowledge base as small, reviewable code snippets stored in source control - safe, auditable, and versioned.
 
 import Slideshow from '@site/src/components/Slideshow';
@@ -78,6 +81,26 @@ import Slideshow from '@site/src/components/Slideshow';
 <Slideshow slides={frontMatter.slides} autostart={false} />
 
 <br/>
+
+<div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+  <Link
+    className="btn-primary"
+    to="/demos"
+    style={{
+      fontSize: '1.1rem',
+      padding: '0.85rem 2.2rem',
+      borderRadius: '0.5rem',
+      fontWeight: 600,
+      boxShadow: 'var(--ifm-global-shadow-md)',
+      textDecoration: 'none',
+      transition: 'all 0.2s',
+    }}
+  >
+    View All Demos
+  </Link>
+</div>
+
+
 With ToolJump, **teams spend less time wandering around and more time shipping.** That means higher focus, higher productivity, faster delivery with less operational mistakes and greater output with the same headcount.
 
 - What used to take 5 - 10 minutes of tool-hopping now takes a few seconds. And that’s just for a single developer - now multiply it by 10, 50, or 200 engineers, and the impact becomes massive across the entire organization.  
