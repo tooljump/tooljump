@@ -1,12 +1,12 @@
 ---
 id: writing-integrations
-title: Writing Integrations
+title: Writing Integrations - Connect Your Developer Tools
 sidebar_label: Writing Integrations
 keywords: [writing integrations, tooljump integrations, custom integrations, developer tool integration, javascript modules]
 description: Learn how to write custom ToolJump integrations in JavaScript to connect your developer tools and create contextual information displays for your engineering team.
 ---
 
-# Writing Integrations
+# Writing Integrations - Connect Your Developer Tools
 
 ToolJump integrations are JavaScript modules that run in response to specific contexts and return structured data that can be displayed in the browser. This section covers everything you need to know to create your own integrations.
 

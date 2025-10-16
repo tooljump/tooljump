@@ -1,12 +1,12 @@
 ---
 id: core-concepts
-title: Core concepts
+title: Core Concepts - How ToolJump Connects Developer Tools
 sidebar_label: Core concepts
 keywords: [tooljump concepts, core concepts, developer tool integration, knowledge as a service, context matching]
 description: Learn ToolJump's core concepts including integrations, contexts, data types, and how the platform connects developer tools to improve engineering workflows.
 ---
 
-# Core concepts
+# Core Concepts - How ToolJump Connects Developer Tools
 
 To make the best use of ToolJump, you need to have a basic understanding of its core concepts:
 

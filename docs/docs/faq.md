@@ -3,7 +3,8 @@ id: faq
 title: FAQ - Connecting Tools and Developer Experience | ToolJump
 sidebar_label: FAQ
 keywords: [tooljump faq, frequently asked questions, connecting tools, developer experience, security, self-hosted]
-description: Frequently asked questions about ToolJump's security, architecture, and how it connects developer tools to improve developer experience and eliminate context switching.
+description: Get answers to common questions about ToolJump's self-hosted security, connecting tools architecture, and how our Knowledge as a Service platform improves developer experience.
+canonical: https://tooljump.dev/docs/faq
 ---
 
 import StructuredData from '@site/src/components/StructuredData';
@@ -96,13 +97,14 @@ If you follow the best practices, no! ToolJump integrations:
 
 ### How does ToolJump compare to other tool integration solutions?
 
-**ToolJump is the only solution that works inside your existing tools:**
+**ToolJump is the only solution that works inside your existing tools for [connecting tools](/docs/connecting-your-tools-resources):**
 
 - **No workflow disruption** - works within GitHub, AWS, Datadog, etc.
 - **Self-hosted** - complete control over your data and security
 - **Open source** - no vendor lock-in, fully customizable
 - **Code-based integrations** - stored in Git, reviewable, versioned
 - **Zero maintenance overhead** - no complex configurations or UI to manage
+- **Knowledge as a Service** - delivers contextual information exactly where you need it
 
 ### Why not use an AI solution that indexes all company information?
 
@@ -114,7 +116,7 @@ If you follow the best practices, no! ToolJump integrations:
 - **No context awareness** - Doesn't understand what you're currently working on
 - **Generic responses** - Can't adapt to your specific tooling and workflows
 
-**ToolJump is fundamentally different:**
+**ToolJump is fundamentally different with its [Knowledge as a Service](/docs/knowledge-as-a-service) approach:**
 
 | ToolJump | AI Solutions |
 |----------|--------------|
@@ -123,6 +125,7 @@ If you follow the best practices, no! ToolJump integrations:
 | ✅ **Consistent** - same reliable results every time | ❌ Variable - different answers on repeat |
 | ✅ **Actionable** - direct links to tools and resources | ❌ Informational - just text responses |
 | ✅ **Customizable** - easy to modify and update workflows | ❌ Black box - hard to customize or debug |
+| ✅ **Developer Experience** - designed for engineering workflows | ❌ Generic - not optimized for dev teams |
 
 ### What about tools like Zapier or IFTTT?
 

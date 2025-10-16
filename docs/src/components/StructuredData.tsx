@@ -44,7 +44,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             "price": "0",
             "priceCurrency": "USD"
           },
-          "screenshot": "https://tooljump.dev/img/tooljump-social-card.jpg",
+          "screenshot": "https://tooljump.dev/img/tooljump.png",
           "softwareVersion": "1.0",
           "aggregateRating": {
             "@type": "AggregateRating",
@@ -96,6 +96,38 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Start by installing the Chrome extension, then connect your core tools like GitHub, AWS, and monitoring platforms. ToolJump provides step-by-step guides for connecting tools and creating custom integrations."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the best way to connect developer tools?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The best way to connect developer tools is through consistent tagging and naming conventions across all platforms. Use service names as primary identifiers and implement a Knowledge as a Service approach that delivers contextual information directly in your workflow."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does Knowledge as a Service improve developer experience?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Knowledge as a Service improves developer experience by eliminating context switching, providing real-time contextual information, encoding tribal knowledge, and delivering insights exactly where developers work - directly in their existing tools."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What tools can I connect with ToolJump?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ToolJump can connect GitHub, AWS, GCP, Azure, Datadog, PagerDuty, Terraform, CI/CD pipelines, feature flags, and many other developer tools through its extensible integration framework for comprehensive tool connectivity."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I improve developer experience with tool integration?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Improve developer experience by connecting tools to eliminate context switching, implementing Knowledge as a Service for real-time insights, and creating consistent workflows that reduce cognitive load and boost productivity."
               }
             }
           ]

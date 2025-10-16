@@ -104,10 +104,27 @@ const config: Config = {
           const {defaultCreateSitemapItems, ...rest} = params;
           const items = await defaultCreateSitemapItems(rest);
           
+          // Add homepage if not present
+          const homepageUrl = 'https://tooljump.dev/';
+          const hasHomepage = items.some(item => item.url === homepageUrl);
+          if (!hasHomepage) {
+            items.unshift({
+              url: homepageUrl,
+              changefreq: 'weekly',
+              priority: 1.0,
+              lastmod: new Date().toISOString()
+            });
+          }
+          
           // Set priority levels based on page type
           return items.map((item) => {
-            if (item.url === 'https://tooljump.dev/') {
+            if (item.url === homepageUrl) {
               return {...item, priority: 1.0};
+            }
+            if (item.url.includes('/docs/connecting-your-tools-resources') || 
+                item.url.includes('/docs/knowledge-as-a-service') || 
+                item.url.includes('/docs/developer-experience')) {
+              return {...item, priority: 0.9};
             }
             if (item.url.includes('/docs/') && !item.url.includes('/docs/recipes/')) {
               return {...item, priority: 0.8};
@@ -118,7 +135,7 @@ const config: Config = {
             if (item.url.includes('/tags/') || item.url.includes('/recipes/')) {
               return {...item, priority: 0.4};
             }
-            return item;
+            return {...item, priority: 0.5};
           });
         },
       },
@@ -132,7 +149,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/tooljump-social-card.jpg',
+    image: 'img/tooljump.png',
     metadata: [
       {name: 'keywords', content: 'connecting tools, knowledge as a service, developer experience, tool integration, engineering productivity'},
       {property: 'og:type', content: 'website'},

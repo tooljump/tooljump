@@ -6,6 +6,8 @@ tags: [github, aws, lambda, infrastructure]
 icons: [github, aws, lambda]
 keywords: [github aws integration, lambda infrastructure, connecting github aws, developer tool integration, repository infrastructure]
 description: Connect GitHub repositories with AWS Lambda infrastructure. See deployed Lambda functions, costs, and monitoring data directly from your GitHub repository page.
+canonical: https://tooljump.dev/integrations/github-aws-infrastructure
+---
 slides:
   - image: /img/slide-github.png
     alt: Github
@@ -50,6 +52,18 @@ import CodeBlock from '@theme/CodeBlock';
 import IntegrationCode from '!!raw-loader!@site/../examples/data/github.aws.infrastructure.integration.example.js';
 import BarContentPreview from '@site/src/components/BarContentPreview';
 import Slideshow from '@site/src/components/Slideshow';
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData 
+  type="Article" 
+  data={{
+    headline: "GitHub → AWS: Show infrastructure (Lambdas) for this repo",
+    description: "Connect GitHub repositories with AWS Lambda infrastructure. See deployed Lambda functions, costs, and monitoring data directly from your GitHub repository page.",
+    url: "https://tooljump.dev/integrations/github-aws-infrastructure",
+    datePublished: "2024-01-01T00:00:00Z",
+    dateModified: new Date().toISOString()
+  }} 
+/>
 
 <Slideshow slides={frontMatter.slides} />
 

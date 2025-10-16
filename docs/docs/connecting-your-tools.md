@@ -3,14 +3,54 @@ id: connecting-your-tools-resources
 title: Connecting Tools - Complete Guide to Developer Tool Integration
 sidebar_label: Connecting your tools
 keywords: [connecting tools, tool integration, developer tool connectivity, service integration, connect engineering tools, knowledge as a service]
-description: Complete guide to connecting developer tools across your organization. Learn best practices for tool integration, tagging strategies, and building a connected toolchain with Knowledge as a Service.
+description: Master connecting tools with our complete guide to developer tool integration. Learn proven strategies for connecting GitHub, AWS, Datadog, and more to eliminate context switching and boost developer experience.
+canonical: https://tooljump.dev/docs/connecting-your-tools-resources
 ---
+
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData 
+  type="BreadcrumbList" 
+  data={{
+    breadcrumbs: [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tooljump.dev/"
+      },
+      {
+        "@type": "ListItem", 
+        "position": 2,
+        "name": "Documentation",
+        "item": "https://tooljump.dev/docs/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Connecting Tools",
+        "item": "https://tooljump.dev/docs/connecting-your-tools-resources"
+      }
+    ]
+  }} 
+/>
 
 # Connecting Tools - Complete Guide to Developer Tool Integration
 
-You probably use many tools in your organisation. From source control, to observability, from code/security scanners to data platforms, from ci/cd to documentation platforms, all of these tools perform vital roles in your software delivery process.
+Modern engineering teams rely on dozens of disconnected tools - from source control and observability platforms to CI/CD pipelines and monitoring systems. While each tool serves a critical purpose in your software delivery process, the lack of connectivity between them creates significant [developer experience](/docs/developer-experience) challenges that impact productivity and team efficiency.
 
 [**ToolJump**](./) is a [Knowledge as a Service](/docs/knowledge-as-a-service) platform that helps you quickly navigate between these tools by automatically detecting context and providing one-click access to related resources across your entire toolchain. Instead of manually searching for the same service or repository across different platforms, ToolJump connects the dots for you, dramatically improving your [developer experience](/docs/developer-experience) through intelligent [connecting tools](/docs/connecting-your-tools-resources) strategies.
+
+## Why Connecting Tools Matters for Developer Experience
+
+The modern engineering workflow involves constant context switching between disconnected tools, which significantly impacts [developer experience](/docs/developer-experience). When tools aren't properly connected, teams face:
+
+- **Knowledge silos** that slow down decision-making
+- **Context switching overhead** that reduces productivity  
+- **Tribal knowledge** that creates bottlenecks and dependencies
+- **Inconsistent information** across different platforms
+
+By implementing a systematic approach to [connecting tools](/docs/connecting-your-tools-resources), engineering teams can transform their workflow into a seamless, [Knowledge as a Service](/docs/knowledge-as-a-service) experience that eliminates these productivity killers.
 
 To operate these tools at lightning speed and make your organisation truly efficient, you need to have consistent information across these tools. For example, a given service (say webshop) should be called the same across the source control tool, the CI/CD tool, the observability tool, the code scanning tool etc.
 

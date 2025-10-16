@@ -26,7 +26,7 @@ function HomepageHeader() {
             Your engineering tools don&apos;t talk to each other.<br/><span style={{marginTop: '18px', display: 'inline-block'}}>We fix that.</span>
             </Heading>
             <p className={styles.heroSubtitle}>
-            Knowledge as a Service platform for connecting tools - embedded directly where your engineers work to improve developer experience
+            <a href="/docs/knowledge-as-a-service" style={{color: 'inherit', textDecoration: 'none'}}>Knowledge as a Service</a> platform for <a href="/docs/connecting-your-tools-resources" style={{color: 'inherit', textDecoration: 'none'}}>connecting tools</a> - embedded directly where your engineers work to improve <a href="/docs/developer-experience" style={{color: 'inherit', textDecoration: 'none'}}>developer experience</a>
             </p>
             <div className={styles.heroButtons}>
               <Link
@@ -90,7 +90,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title="Connecting Tools | Knowledge as a Service for Developer Experience"
-      description="Connect GitHub, AWS, Datadog, CI/CD and more with Knowledge as a Service. Improve developer experience by connecting tools and eliminating context switching.">
+      description="Stop context switching between tools. ToolJump connects GitHub, AWS, Datadog, CI/CD and more with Knowledge as a Service to boost developer experience and eliminate productivity killers.">
       <Head>
         <meta name="keywords" content="connecting tools, knowledge as a service, developer experience, developer tool integration, engineering productivity, tool connectivity" />
         <meta property="og:type" content="website" />

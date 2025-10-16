@@ -1,17 +1,19 @@
 ---
 id: architecture
-title: High level architecture
+title: ToolJump Architecture - How Connecting Tools Works
 sidebar_label: High level architecture
 keywords: [tooljump architecture, chrome extension, server architecture, integrations, developer tool platform]
-description: Learn how ToolJump's architecture works with Chrome extension, server, and integrations to connect developer tools and deliver contextual information where engineers work.
+description: Explore ToolJump's self-hosted architecture for connecting developer tools. Learn how Chrome extension, server, and integrations work together to deliver Knowledge as a Service and improve developer experience.
+canonical: https://tooljump.dev/docs/architecture
 ---
 
-# ToolJump Architecture
+# ToolJump Architecture - How Connecting Tools Works
 
-ToolJump is comprised of 3 main components:
-1. ToolJump Chrome Extension
-1. ToolJump Server
-1. ToolJump Integrations
+ToolJump's architecture enables powerful [connecting tools](/docs/connecting-your-tools-resources) capabilities through a [Knowledge as a Service](/docs/knowledge-as-a-service) approach that dramatically improves [developer experience](/docs/developer-experience). The system is comprised of 3 main components:
+
+1. **ToolJump Chrome Extension** - Delivers contextual information directly in your workflow
+2. **ToolJump Server** - Processes context and runs integrations for connecting tools
+3. **ToolJump Integrations** - JavaScript modules that connect your specific tools
 
 
 

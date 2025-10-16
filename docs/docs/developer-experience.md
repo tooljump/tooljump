@@ -3,14 +3,43 @@ id: developer-experience
 title: Developer Experience - How ToolJump Transforms Engineering Workflows
 sidebar_label: Developer Experience
 keywords: [developer experience, DX, improve developer productivity, engineering workflow, developer tools, connecting tools, knowledge as a service]
-description: Improve developer experience by eliminating context switching and connecting engineering tools. Learn how ToolJump transforms DX with Knowledge as a Service and connecting tools.
+description: Transform your developer experience with proven strategies to eliminate context switching and connect engineering tools. Learn how to boost developer productivity and reduce cognitive load with modern DX practices.
+canonical: https://tooljump.dev/docs/developer-experience
 ---
+
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData 
+  type="BreadcrumbList" 
+  data={{
+    breadcrumbs: [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tooljump.dev/"
+      },
+      {
+        "@type": "ListItem", 
+        "position": 2,
+        "name": "Documentation",
+        "item": "https://tooljump.dev/docs/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Developer Experience",
+        "item": "https://tooljump.dev/docs/developer-experience"
+      }
+    ]
+  }} 
+/>
 
 # Developer Experience - How ToolJump Transforms Engineering Workflows
 
 ## What is Developer Experience?
 
-Developer Experience (DX) refers to how easy, efficient, and enjoyable it is for engineers to work with the tools, processes, and systems in their development environment. It encompasses everything from the time it takes to find information to the cognitive load required to complete tasks.
+[Developer experience](/docs/developer-experience) (DX) is the foundation of engineering productivity - encompassing how easy, efficient, and enjoyable it is for engineers to work with their tools, processes, and systems. In today's complex development environments, [connecting tools](/docs/connecting-your-tools-resources) effectively and implementing [Knowledge as a Service](/docs/knowledge-as-a-service) strategies are critical for optimizing developer experience and reducing cognitive load.
 
 ## The Current State of Developer Experience
 
@@ -23,7 +52,7 @@ Most engineering teams struggle with poor developer experience due to:
 
 ## How ToolJump Improves Developer Experience
 
-ToolJump transforms developer experience by implementing [**Knowledge as a Service**](./knowledge-as-a-service) directly in your existing workflow:
+ToolJump transforms [developer experience](/docs/developer-experience) by implementing [**Knowledge as a Service**](/docs/knowledge-as-a-service) directly in your existing workflow:
 
 ### 1. **Eliminates Context Switching**
 
@@ -126,7 +155,7 @@ ToolJump helps you measure and improve developer experience through:
 ## Implementing Better Developer Experience
 
 ### **Phase 1: Connect Core Tools**
-Start by connecting your most frequently used tools:
+Start by [connecting tools](/docs/connecting-your-tools-resources) - your most frequently used tools:
 - Source control (GitHub/GitLab)
 - Cloud provider (AWS/GCP/Azure)
 - Monitoring (Datadog/New Relic)
