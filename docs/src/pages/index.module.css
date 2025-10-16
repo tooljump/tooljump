@@ -239,7 +239,7 @@
   
   .heroContent {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1rem;
     text-align: center;
   }
   
@@ -264,6 +264,14 @@
   
   .heroTitle {
     font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    display: none;
+  }
+  
+  .primaryButton {
+    display: none;
   }
   
   .heroButtons {
