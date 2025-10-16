@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface StructuredDataProps {
-  type: 'Organization' | 'SoftwareApplication' | 'FAQ';
+  type: 'Organization' | 'SoftwareApplication' | 'FAQ' | 'BreadcrumbList' | 'Article';
   data: Record<string, any>;
 }
 
@@ -81,8 +81,57 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
                 "@type": "Answer",
                 "text": "ToolJump can connect GitHub, AWS, GCP, Azure, Datadog, PagerDuty, Terraform, CI/CD pipelines, feature flags, and many other developer tools through its extensible integration framework."
               }
+            },
+            {
+              "@type": "Question",
+              "name": "What is Knowledge as a Service?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Knowledge as a Service (KaaS) is a paradigm that provides dynamic, contextual, and actionable information exactly when and where developers need it, transforming how engineering teams access and share knowledge across their development ecosystem."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I start connecting tools with ToolJump?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Start by installing the Chrome extension, then connect your core tools like GitHub, AWS, and monitoring platforms. ToolJump provides step-by-step guides for connecting tools and creating custom integrations."
+              }
             }
           ]
+        };
+      
+      case 'BreadcrumbList':
+        return {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": data.breadcrumbs || []
+        };
+      
+      case 'Article':
+        return {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": data.headline || "ToolJump Documentation",
+          "description": data.description || "Learn how to connect your developer tools with ToolJump",
+          "author": {
+            "@type": "Organization",
+            "name": "ToolJump"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "ToolJump",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://tooljump.dev/img/tooljump.png"
+            }
+          },
+          "datePublished": data.datePublished || new Date().toISOString(),
+          "dateModified": data.dateModified || new Date().toISOString(),
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": data.url || "https://tooljump.dev"
+          }
         };
       
       default:

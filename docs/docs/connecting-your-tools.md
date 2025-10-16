@@ -2,15 +2,15 @@
 id: connecting-your-tools-resources
 title: Connecting Tools - Complete Guide to Developer Tool Integration
 sidebar_label: Connecting your tools
-keywords: [connecting tools, tool integration, developer tool connectivity, service integration, connect engineering tools]
-description: Complete guide to connecting developer tools across your organization. Learn best practices for tool integration, tagging strategies, and building a connected toolchain.
+keywords: [connecting tools, tool integration, developer tool connectivity, service integration, connect engineering tools, knowledge as a service]
+description: Complete guide to connecting developer tools across your organization. Learn best practices for tool integration, tagging strategies, and building a connected toolchain with Knowledge as a Service.
 ---
 
 # Connecting Tools - Complete Guide to Developer Tool Integration
 
 You probably use many tools in your organisation. From source control, to observability, from code/security scanners to data platforms, from ci/cd to documentation platforms, all of these tools perform vital roles in your software delivery process.
 
-[**ToolJump**](./) is a [Knowledge as a Service](/docs/knowledge-as-a-service) platform that helps you quickly navigate between these tools by automatically detecting context and providing one-click access to related resources across your entire toolchain. Instead of manually searching for the same service or repository across different platforms, ToolJump connects the dots for you, dramatically improving your [developer experience](/docs/developer-experience).
+[**ToolJump**](./) is a [Knowledge as a Service](/docs/knowledge-as-a-service) platform that helps you quickly navigate between these tools by automatically detecting context and providing one-click access to related resources across your entire toolchain. Instead of manually searching for the same service or repository across different platforms, ToolJump connects the dots for you, dramatically improving your [developer experience](/docs/developer-experience) through intelligent [connecting tools](/docs/connecting-your-tools-resources) strategies.
 
 To operate these tools at lightning speed and make your organisation truly efficient, you need to have consistent information across these tools. For example, a given service (say webshop) should be called the same across the source control tool, the CI/CD tool, the observability tool, the code scanning tool etc.
 

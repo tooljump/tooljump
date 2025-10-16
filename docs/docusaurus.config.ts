@@ -100,6 +100,27 @@ const config: Config = {
         priority: 0.5,
         ignorePatterns: ['/integrations/archive/**', '/integrations/tags/**'],
         filename: 'sitemap.xml',
+        createSitemapItems: async (params) => {
+          const {defaultCreateSitemapItems, ...rest} = params;
+          const items = await defaultCreateSitemapItems(rest);
+          
+          // Set priority levels based on page type
+          return items.map((item) => {
+            if (item.url === 'https://tooljump.dev/') {
+              return {...item, priority: 1.0};
+            }
+            if (item.url.includes('/docs/') && !item.url.includes('/docs/recipes/')) {
+              return {...item, priority: 0.8};
+            }
+            if (item.url.includes('/integrations/') && !item.url.includes('/tags/')) {
+              return {...item, priority: 0.6};
+            }
+            if (item.url.includes('/tags/') || item.url.includes('/recipes/')) {
+              return {...item, priority: 0.4};
+            }
+            return item;
+          });
+        },
       },
     ],
   ],
@@ -112,6 +133,13 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/tooljump-social-card.jpg',
+    metadata: [
+      {name: 'keywords', content: 'connecting tools, knowledge as a service, developer experience, tool integration, engineering productivity'},
+      {property: 'og:type', content: 'website'},
+      {property: 'og:site_name', content: 'ToolJump'},
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'twitter:site', content: '@tooljump'},
+    ],
     navbar: {
       title: 'ToolJump',
       logo: {
@@ -152,6 +180,11 @@ const config: Config = {
         {
           to: '/docs/developer-experience',
           label: 'Developer Experience',
+          position: 'left',
+        },
+        {
+          to: '/faq',
+          label: 'FAQ',
           position: 'left',
         },
         {

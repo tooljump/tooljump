@@ -2,8 +2,8 @@
 id: developer-experience
 title: Developer Experience - How ToolJump Transforms Engineering Workflows
 sidebar_label: Developer Experience
-keywords: [developer experience, DX, improve developer productivity, engineering workflow, developer tools]
-description: Improve developer experience by eliminating context switching and connecting engineering tools. Learn how ToolJump transforms DX with Knowledge as a Service.
+keywords: [developer experience, DX, improve developer productivity, engineering workflow, developer tools, connecting tools, knowledge as a service]
+description: Improve developer experience by eliminating context switching and connecting engineering tools. Learn how ToolJump transforms DX with Knowledge as a Service and connecting tools.
 ---
 
 # Developer Experience - How ToolJump Transforms Engineering Workflows

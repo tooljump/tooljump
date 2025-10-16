@@ -89,10 +89,13 @@ export default function Home(): ReactNode {
 
   return (
     <Layout
-      title="Connect Your Developer Tools | Knowledge as a Service Platform"
-      description="Connect GitHub, AWS, Datadog, CI/CD and more with a Knowledge as a Service platform embedded where engineers work. Improve developer experience and eliminate context switching.">
+      title="Connecting Tools | Knowledge as a Service for Developer Experience"
+      description="Connect GitHub, AWS, Datadog, CI/CD and more with Knowledge as a Service. Improve developer experience by connecting tools and eliminating context switching.">
       <Head>
-        <meta name="keywords" content="connecting tools, knowledge as a service, developer experience, developer tool integration, engineering productivity" />
+        <meta name="keywords" content="connecting tools, knowledge as a service, developer experience, developer tool integration, engineering productivity, tool connectivity" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ToolJump" />
+        <link rel="canonical" href="https://tooljump.dev/" />
       </Head>
       <StructuredData type="Organization" data={{}} />
       <StructuredData type="SoftwareApplication" data={{}} />

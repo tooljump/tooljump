@@ -2,8 +2,8 @@
 id: knowledge-as-a-service
 title: Knowledge as a Service - The Future of Developer Tool Integration
 sidebar_label: Knowledge as a Service
-keywords: [knowledge as a service, kaas, developer tool integration, engineering knowledge management, tool connectivity]
-description: Knowledge as a Service (KaaS) transforms developer workflows by connecting tools and delivering contextual information where engineers work. Learn how ToolJump implements KaaS.
+keywords: [knowledge as a service, kaas, developer tool integration, engineering knowledge management, tool connectivity, connecting tools, developer experience]
+description: Knowledge as a Service (KaaS) transforms developer workflows by connecting tools and delivering contextual information where engineers work. Learn how ToolJump implements KaaS to improve developer experience.
 ---
 
 # Knowledge as a Service - The Future of Developer Tool Integration
