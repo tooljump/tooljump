@@ -137,7 +137,12 @@ const config: Config = {
         },
         {
           to: '/docs/connecting-your-tools-resources',
-          label: 'Connecting your tools',
+          label: 'Connect Tools',
+          position: 'left',
+        },
+        {
+          to: '/docs/developer-experience',
+          label: 'Developer Experience',
           position: 'left',
         },
         {
@@ -172,8 +177,16 @@ const config: Config = {
               to: '/docs/writing-integrations',
             },
             {
-              label: 'Connecting your tools',
+              label: 'Connecting tools',
               to: '/docs/connecting-your-tools-resources',
+            },
+            {
+              label: 'Developer Experience',
+              to: '/docs/developer-experience',
+            },
+            {
+              label: 'Knowledge as a Service',
+              to: '/docs/knowledge-as-a-service',
             },
           ],
         },

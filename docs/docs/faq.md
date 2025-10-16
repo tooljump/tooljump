@@ -1,8 +1,12 @@
 ---
 id: faq
-title: FAQ
+title: FAQ - Connecting Tools and Developer Experience | ToolJump
 sidebar_label: FAQ
 ---
+
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData type="FAQ" data={{}} />
 
 # Frequently Asked Questions
 

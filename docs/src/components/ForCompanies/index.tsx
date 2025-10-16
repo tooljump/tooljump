@@ -15,12 +15,12 @@ export default function ForCompanies(): ReactNode {
     {
       icon: '⚙️',
       title: 'Setup & Integration',
-      description: 'Get ToolJump configured and integrated into your company'
+      description: 'Get ToolJump configured and integrated into your company to connect your developer tools'
     },
     {
       icon: '🔗',
       title: 'Custom Connectors',
-      description: 'Build tailored integrations for your specific tools and processes'
+      description: 'Build tailored integrations for your specific tools and processes to improve developer experience'
     },
     {
       icon: '🛡️',
@@ -40,7 +40,7 @@ export default function ForCompanies(): ReactNode {
               </Heading>
               <p className={styles.subtitle}>
                 Need help getting ToolJump integrated into your organization? 
-                Our team can help you set up, customize, and scale ToolJump for your specific needs.
+                Our team can help you set up, customize, and scale ToolJump for your specific needs to improve <a href="/docs/developer-experience">developer experience</a> through <a href="/docs/knowledge-as-a-service">Knowledge as a Service</a>.
               </p>
             </div>
           </div>

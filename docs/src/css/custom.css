@@ -768,6 +768,14 @@ h6 {
 
 /* Mobile navbar sidebar styling */
 @media (max-width: 996px) {
+  [class*="problemSolution"] .col {
+    margin-bottom: 15px;
+  }
+
+  [class*="problemSolution"] [class*="header"] {
+    margin-bottom: 0;
+  }
+
   .navbar-sidebar__backdrop {
     z-index: 9998;
     height: 100vh;

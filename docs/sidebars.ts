@@ -45,11 +45,13 @@ const sidebars: SidebarsConfig = {
       label: 'Integrations examples',
       href: '/integrations', // points to blog routeBasePath configured in docusaurus.config.ts
     },
+    'developer-experience',
+    'knowledge-as-a-service',
+    'connecting-your-tools-resources',
     'deploying',
     'security',
     'faq',
     'implement',
-    'connecting-your-tools-resources',
     {
       type: 'category',
       label: 'Tools integration guides',

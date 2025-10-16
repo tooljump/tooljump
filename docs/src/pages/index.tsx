@@ -8,6 +8,7 @@ import TryItOut from '@site/src/components/TryItOut';
 import ProblemSolution from '@site/src/components/ProblemSolution';
 import ForCompanies from '@site/src/components/ForCompanies';
 import SlideshowDemo from '@site/src/components/SlideshowDemo';
+import StructuredData from '@site/src/components/StructuredData';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
@@ -24,7 +25,7 @@ function HomepageHeader() {
             Your engineering tools don&apos;t talk to each other.<br/><span style={{marginTop: '18px', display: 'inline-block'}}>We fix that.</span>
             </Heading>
             <p className={styles.heroSubtitle}>
-            Knowledge as a Service - embedded directly where your engineers work
+            Knowledge as a Service platform for connecting tools - embedded directly where your engineers work to improve developer experience
             </p>
             <div className={styles.heroButtons}>
               <Link
@@ -87,8 +88,10 @@ export default function Home(): ReactNode {
 
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title="ToolJump - Knowledge as a Service for Developer Tools | Connect Your Engineering Tools"
+      description="Connect your developer tools with ToolJump's Knowledge as a Service platform. Improve developer experience by linking GitHub, AWS, Datadog, and CI/CD tools. Stop context switching, start shipping faster.">
+      <StructuredData type="Organization" data={{}} />
+      <StructuredData type="SoftwareApplication" data={{}} />
       <HomepageHeader />
       {renderMainContent()}
     </Layout>

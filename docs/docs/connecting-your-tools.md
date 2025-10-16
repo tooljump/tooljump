@@ -1,14 +1,14 @@
 ---
 id: connecting-your-tools-resources
-title: Connecting your tools & resources
-sidebar_label: Connecting your tools & resources
+title: Connecting Tools - Complete Guide to Developer Tool Integration
+sidebar_label: Connecting your tools
 ---
 
-# Connecting your tools & resources
+# Connecting Tools - Complete Guide to Developer Tool Integration
 
 You probably use many tools in your organisation. From source control, to observability, from code/security scanners to data platforms, from ci/cd to documentation platforms, all of these tools perform vital roles in your software delivery process.
 
-[**ToolJump**](./) is a Knowledge As A Service platform that helps you quickly navigate between these tools by automatically detecting context and providing one-click access to related resources across your entire toolchain. Instead of manually searching for the same service or repository across different platforms, ToolJump connects the dots for you.
+[**ToolJump**](./) is a [Knowledge as a Service](/docs/knowledge-as-a-service) platform that helps you quickly navigate between these tools by automatically detecting context and providing one-click access to related resources across your entire toolchain. Instead of manually searching for the same service or repository across different platforms, ToolJump connects the dots for you, dramatically improving your [developer experience](/docs/developer-experience).
 
 To operate these tools at lightning speed and make your organisation truly efficient, you need to have consistent information across these tools. For example, a given service (say webshop) should be called the same across the source control tool, the CI/CD tool, the observability tool, the code scanning tool etc.
 
@@ -77,7 +77,7 @@ If you go with (2), you have a few options:
 
 In conclusion, if you follow the steps to set up your tools to use consistent names, to leverage tagging and to map resources from tools that don't support tagging, you will be already in a much better shape than 90% of the companies.
 
-However, no matter the maturity level of your service organisation, [ToolJump](./) can help connecting tools so your engineers spend less time connecting the dots and more time shipping value.
+However, no matter the maturity level of your service organisation, [ToolJump](./) can help [connecting tools](/docs/connecting-your-tools-resources) so your engineers spend less time connecting the dots and more time shipping value.
 
 ---
 
