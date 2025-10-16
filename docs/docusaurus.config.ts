@@ -95,6 +95,11 @@ const config: Config = {
     './plugins/integrations-data-plugin.js',
   ],
 
+  // Global script to periodically remove any accidental `inert` attributes
+  scripts: [
+    { src: '/js/inert-cleaner.js' },
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/tooljump-social-card.jpg',

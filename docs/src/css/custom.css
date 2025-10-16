@@ -369,14 +369,34 @@
   .navbar__item {
     margin: 0.25rem 0;
   }
+
+  .navbar__items {
+    /* align-items: baseline; */
+  }
+
   
   .navbar-get-started-button {
     margin-left: 0 !important;
     margin-right: 0 !important;
     margin-top: 0.5rem !important;
-    display: block !important;
+    display: none !important;
     text-align: center !important;
     width: 100%;
+  }
+
+  .navbar-sidebar--show {
+    .navbar__logo {
+      visibility: hidden !important;
+    }
+    .navbar__title {
+      font-size: 19px;
+    }
+    [href*="github.com"] {
+      display: none !important;
+    }
+    .navbar-sidebar__back {
+      display: none !important;
+    }
   }
   
   .navbar__link {
@@ -750,6 +770,7 @@ h6 {
 @media (max-width: 996px) {
   .navbar-sidebar__backdrop {
     z-index: 9998;
+    height: 100vh;
   }
   .navbar-sidebar {
     z-index: 9999;
@@ -809,4 +830,9 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--ifm-color-emphasis-400);
+}
+
+
+.navbar-sidebar__items--show-secondary {
+  transform: none !important;
 }
