@@ -840,3 +840,20 @@ html {
 .btn-primary p {
   margin-bottom: 0;
 }
+
+/* Demos doc full-width layout */
+.demos-fullwidth .container {
+  max-width: 100% !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.demos-fullwidth .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.demos-fullwidth .col {
+  padding-left: 0;
+  padding-right: 0;
+}

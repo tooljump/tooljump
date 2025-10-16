@@ -34,7 +34,7 @@ function HomepageHeader() {
               </Link>
               <Link
                 className={styles.secondaryButton}
-                to="/demos">
+                to="/docs/demos">
                 Watch demos
               </Link>
             </div>

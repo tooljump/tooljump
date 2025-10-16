@@ -3,6 +3,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   docsSidebar: [
     'why',
+    'demos',
     'getting-started',
     {
       type: 'category',
@@ -38,6 +39,11 @@ const sidebars: SidebarsConfig = {
         'writing-integrations/data',
         'writing-integrations/debugging',
       ],
+    },
+    {
+      type: 'link',
+      label: 'Integrations examples',
+      href: '/integrations', // points to blog routeBasePath configured in docusaurus.config.ts
     },
     'deploying',
     'security',
