@@ -23,6 +23,7 @@ interface SlideshowProps {
 
 const Slideshow: React.FC<SlideshowProps> = ({ slides, headerText, forceWhiteText = false, autostart = true }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentImageSrc, setCurrentImageSrc] = useState<string>('');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMouseVisible, setIsMouseVisible] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
@@ -36,6 +37,8 @@ const Slideshow: React.FC<SlideshowProps> = ({ slides, headerText, forceWhiteTex
   const barRef = useRef<HTMLDivElement>(null);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const prevSlideRef = useRef<number>(currentSlide);
+  const imageCacheRef = useRef<Map<string, string>>(new Map()); // imageUrl -> objectUrl
+  const ongoingFetchesRef = useRef<Map<string, Promise<string>>>(new Map());
 
   // Function to find clickable element by index and get its coordinates
   const getSpanCoordinates = (spanIndex: number) => {
@@ -335,6 +338,69 @@ const Slideshow: React.FC<SlideshowProps> = ({ slides, headerText, forceWhiteTex
     }, 1000);
   };
 
+  // Preload image and serve from in-memory cache to avoid repeat network requests
+  const preloadImage = async (url: string): Promise<string> => {
+    if (!url) return '';
+    const cached = imageCacheRef.current.get(url);
+    if (cached) return cached;
+
+    const inFlight = ongoingFetchesRef.current.get(url);
+    if (inFlight) return inFlight;
+
+    const fetchPromise = (async () => {
+      const response = await fetch(url, { credentials: 'same-origin' });
+      if (!response.ok) throw new Error(`Failed to load image: ${url}`);
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      imageCacheRef.current.set(url, objectUrl);
+      ongoingFetchesRef.current.delete(url);
+      return objectUrl;
+    })();
+
+    ongoingFetchesRef.current.set(url, fetchPromise);
+    return fetchPromise;
+  };
+
+  // Load current slide image from cache (or fetch once) and opportunistically preload next
+  useEffect(() => {
+    const current = slides[currentSlide]?.image;
+    let cancelled = false;
+    setCurrentImageSrc('');
+    setImageLoaded(false);
+    if (current) {
+      preloadImage(current)
+        .then((objectUrl) => {
+          if (!cancelled) setCurrentImageSrc(objectUrl);
+        })
+        .catch(() => {
+          // Fallback to direct URL if caching fails
+          if (!cancelled) setCurrentImageSrc(current);
+        });
+    }
+
+    // Preload next slide image to eliminate fetch on loop
+    const nextIndex = (currentSlide + 1) % slides.length;
+    const nextUrl = slides[nextIndex]?.image;
+    if (nextUrl) {
+      preloadImage(nextUrl).catch(() => void 0);
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [currentSlide, slides]);
+
+  // Cleanup cached object URLs on unmount
+  useEffect(() => {
+    return () => {
+      for (const objectUrl of imageCacheRef.current.values()) {
+        URL.revokeObjectURL(objectUrl);
+      }
+      imageCacheRef.current.clear();
+      ongoingFetchesRef.current.clear();
+    };
+  }, []);
+
   // Handle image load
   const handleImageLoad = () => {
     setImageLoaded(true);
@@ -488,7 +554,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ slides, headerText, forceWhiteTex
           {/* Image slideshow */}
           <div className={styles.imageContainer}>
             <img 
-              src={currentSlideData.image}
+              src={currentImageSrc}
               alt={currentSlideData.alt}
               className={styles.slideImage}
               onLoad={handleImageLoad}
