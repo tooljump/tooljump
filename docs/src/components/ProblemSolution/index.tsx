@@ -78,7 +78,7 @@ export default function ProblemSolution(): ReactNode {
           <div className="col col--12">
             <div className={styles.solutionHeader}>
               <Heading as="h2" className={styles.solutionTitle}>
-                The <span className={styles.solutionHighlight}>Solution</span>: Improve Developer Experience
+                The <span className={styles.solutionHighlight}>Solution</span>: Improve Developer Experience with ToolJump
               </Heading>
               <p className={styles.solutionSubtitle}>
                 ToolJump transforms developer experience by eliminating context switching, encoding tribal knowledge, and accelerating incident response - all within the tools you already use.
