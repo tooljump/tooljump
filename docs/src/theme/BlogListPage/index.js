@@ -27,9 +27,9 @@ export default function BlogListPage(props) {
     <Layout title={metadata?.title} description={metadata?.description}>
       <main className="container margin-vert--lg">
         <header className="margin-bottom--lg">
-          <h1>ToolJump Integrations</h1>
+          <h1>ToolJump Integrations Examples</h1>
           <p className="intro-text">
-            ToolJump integrations are JavaScript modules that run in response to specific contexts and return structured data that can be displayed in the browser. This section covers everything you need to know to create your own integrations.
+            Browse pre-built integrations that connect your developer tools and workflows. Use these integrations as examples and references when building your own custom integrations.
           </p>
         </header>
 
@@ -90,6 +90,21 @@ export default function BlogListPage(props) {
               </Link>
             );
           })}
+        </section>
+
+        <section className="margin-top--xl">
+          <div className="text--center">
+            <h2>Want to build your own integration?</h2>
+            <p className="margin-bottom--md">
+              Don't see what you need? Create custom integrations to connect your specific tools and workflows.
+            </p>
+            <Link
+              className="button button--primary button--lg"
+              to="/docs/writing-integrations"
+            >
+              Learn how to write integrations →
+            </Link>
+          </div>
         </section>
       </main>
     </Layout>
