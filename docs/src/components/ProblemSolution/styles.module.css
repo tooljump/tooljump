@@ -22,13 +22,41 @@
 .title {
   font-size: 3rem;
   font-weight: 800;
-  margin: 0 0 3rem 0;
+  margin: 0 0 1.5rem 0;
   color: #1e293b;
   line-height: 1.2;
 }
 
 [data-theme='dark'] .title {
   color: #f1f5f9;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #64748b;
+  max-width: 800px;
+  margin: 0 auto 1rem auto;
+}
+
+[data-theme='dark'] .subtitle {
+  color: #94a3b8;
+}
+
+.dxLink {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0066cc;
+  text-decoration: none;
+  margin-bottom: 3rem;
+  transition: all 0.2s ease;
+}
+
+.dxLink:hover {
+  color: #0052a3;
+  text-decoration: none;
+  transform: translateX(5px);
 }
 
 .problemHighlight {
@@ -132,8 +160,15 @@
 
 
 
+.problemBadge {
+  font-size: 3rem;
+  padding: 1.5rem 2rem 0 2rem;
+  text-align: center;
+  opacity: 0.8;
+}
+
 .problemText {
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
 }
 
 .problemText h3 {
@@ -225,6 +260,47 @@
     font-size: 1.5rem;
   }
   
+}
+
+/* Solution Section */
+.solutionHeader {
+  text-align: center;
+  margin: 6rem 0 3rem 0;
+  position: relative;
+  z-index: 2;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border: 2px solid rgba(59, 130, 246, 0.1);
+}
+
+[data-theme='dark'] .solutionHeader {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.solutionTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+[data-theme='dark'] .solutionTitle {
+  color: #f1f5f9;
+}
+
+.solutionSubtitle {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #64748b;
+  max-width: 800px;
+  margin: 0 auto 1.5rem auto;
+}
+
+[data-theme='dark'] .solutionSubtitle {
+  color: #94a3b8;
 }
 
 /* Integrations Section */

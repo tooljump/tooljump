@@ -51,12 +51,16 @@ export default function ProblemSolution(): ReactNode {
           <div className="col col--12">
             <div className={styles.header}>
               <Heading as="h2" className={styles.title}>
-                The problems <span className={styles.tryHighlight}>ToolJump</span> solves:
+                The <span className={styles.problemHighlight}>Problem</span>: Developer Context Switching
               </Heading>
+              <p className={styles.subtitle}>
+                Without ToolJump, developers face daily challenges that slow them down and increase risk:
+              </p>
               <div className={clsx('row', styles.problemsRow)}>
                 {problems.map((problem, idx) => (
                   <div key={idx} className="col col--4">
                     <div className={clsx('card', 'card--elevated', styles.problemSection)}>
+                      <div className={styles.problemBadge}>❌</div>
                       <div className={styles.problemText}>
                         <h3>{problem.title}</h3>
                         <p>{problem.description}</p>
@@ -65,6 +69,25 @@ export default function ProblemSolution(): ReactNode {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Solution Section */}
+        <div className="row">
+          <div className="col col--12">
+            <div className={styles.solutionHeader}>
+              <Heading as="h2" className={styles.solutionTitle}>
+                The <span className={styles.solutionHighlight}>Solution</span>: Improve Developer Experience
+              </Heading>
+              <p className={styles.solutionSubtitle}>
+                ToolJump transforms developer experience by eliminating context switching, encoding tribal knowledge, and accelerating incident response - all within the tools you already use.
+              </p>
+              <Link
+                className={styles.dxLink}
+                to="/docs/developer-experience">
+                Discover how ToolJump improves DX →
+              </Link>
             </div>
           </div>
         </div>

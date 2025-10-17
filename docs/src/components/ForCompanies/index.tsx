@@ -36,7 +36,7 @@ export default function ForCompanies(): ReactNode {
           <div className="col col--12">
             <div className={styles.header}>
               <Heading as="h2" className={styles.title}>
-                For <span className={styles.highlight}>Companies</span>
+                Implement <span className={styles.highlight}>Knowledge as a Service</span> in your <span className={styles.highlight}>organisation</span>
               </Heading>
               <p className={styles.subtitle}>
                 Need help getting ToolJump integrated into your organization? 
