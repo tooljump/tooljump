@@ -246,4 +246,4 @@ If you follow the best practices, no! ToolJump integrations:
 
 ---
 
-*Still have questions? [Get in touch](/implement) or join our [GitHub community](https://github.com/tooljump/tooljump/discussions).*
+*Still have questions? [Get in touch](/docs/implement) or join our [GitHub community](https://github.com/tooljump/tooljump/discussions).*

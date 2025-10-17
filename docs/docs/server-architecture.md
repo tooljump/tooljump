@@ -20,7 +20,7 @@ The server is responsible with:
 
 As every company runs their services in their own way, the ToolJump server was designed to be extremely flexible and extensible.
 
-If you need help setting up ToolJump in your organisation with the help of the ToolJump authors, you can reach out [here](./docs/implement).
+If you need help setting up ToolJump in your organisation with the help of the ToolJump authors, you can reach out [here](./implement).
 
 Next, let's go one by one and explore in detail how it happens:
 
