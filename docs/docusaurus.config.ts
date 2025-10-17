@@ -156,13 +156,12 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/tooljump.png',
+    image: 'img/og-tooljump.png',
     metadata: [
       {name: 'keywords', content: 'connecting tools, knowledge as a service, developer experience, tool integration, engineering productivity'},
       {property: 'og:type', content: 'website'},
       {property: 'og:site_name', content: 'ToolJump'},
       {name: 'twitter:card', content: 'summary_large_image'},
-      {name: 'twitter:site', content: '@tooljump'},
     ],
     navbar: {
       title: 'ToolJump',
