@@ -97,7 +97,7 @@ export default function ProblemSolution(): ReactNode {
         <div className="row">
           <div className="col col--12">
             <div className={styles.integrationsHeader}>
-              <Heading as="h4" className={styles.integrationsTitle}>
+              <Heading as="h2" className={styles.integrationsTitle}>
                 Available Integrations
               </Heading>
               <p className={styles.integrationsSubtitle}>

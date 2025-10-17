@@ -41,6 +41,7 @@
   background: var(--ifm-background-surface-color);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  overflow: visible; /* Allow bar to extend outside */
 }
 
 .demoItem:hover {
@@ -50,7 +51,8 @@
 
 .slideshowContainer {
   width: 100%;
-  overflow: hidden;
+  min-width: 0; /* Prevent child content from expanding the container */
+  overflow: visible; /* Allow bar to extend outside the frame */
 }
 
 .demoInfo {

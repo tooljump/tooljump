@@ -512,7 +512,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ slides, headerText, forceWhiteTex
       {/* Browser frame */}
       <div className={styles.browserFrame}>
         {/* Browser header */}
-        <div className={styles.browserHeader}>
+        <div className={`${styles.browserHeader} ${!isPlaying ? styles.dimmed : ''}`}>
           <div className={styles.browserControls}>
             <div className={styles.browserButton}></div>
             <div className={styles.browserButton}></div>
@@ -545,7 +545,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ slides, headerText, forceWhiteTex
         </div>
         
         {/* Browser content */}
-        <div className={styles.browserContent} ref={containerRef}>
+        <div className={`${styles.browserContent} ${!isPlaying ? styles.dimmed : ''}`} ref={containerRef}>
           {/* BarContent at the top */}
           <div className={styles.barContent} ref={barRef}>
             <BarContent data={currentSlideData.data} inDocs={true} hoveredButtonIndex={hoveredButtonIndex} />
