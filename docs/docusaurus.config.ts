@@ -253,10 +253,8 @@ const config: Config = {
         {
           title: 'Integrations',
           items: [
-            {
-              label: 'All Recipes',
-              to: '/docs/recipes',
-            },
+            // Dynamically populated by custom Footer component
+            // with first 10 integrations from integrations-data-plugin
           ],
         },
         {
@@ -270,11 +268,6 @@ const config: Config = {
               label: 'Issues',
               href: 'https://github.com/tooljump/tooljump/issues',
             },
-          ],
-        },
-        {
-          title: 'Legal',
-          items: [
             {
               label: 'Privacy Policy',
               to: '/docs/privacy',
