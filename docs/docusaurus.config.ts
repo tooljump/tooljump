@@ -136,6 +136,17 @@ const config: Config = {
   // Using Algolia DocSearch for better compatibility
   plugins: [
     './plugins/integrations-data-plugin.js',
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            to: '/docs/why',
+            from: '/docs',
+          },
+        ],
+      },
+    ],
   ],
 
   // Global script to periodically remove any accidental `inert` attributes
@@ -161,7 +172,7 @@ const config: Config = {
       },
       items: [
         {
-          to: '/docs/',
+          to: '/docs/why',
           label: 'Why ToolJump?',
           position: 'left',
         },
@@ -216,7 +227,7 @@ const config: Config = {
           items: [
             {
               label: 'Why ToolJump',
-              to: '/docs',
+              to: '/docs/why',
             },
             {
               label: 'How it works',

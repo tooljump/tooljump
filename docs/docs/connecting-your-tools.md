@@ -39,7 +39,7 @@ import StructuredData from '@site/src/components/StructuredData';
 
 Modern engineering teams rely on dozens of disconnected tools - from source control and observability platforms to CI/CD pipelines and monitoring systems. While each tool serves a critical purpose in your software delivery process, the lack of connectivity between them creates significant [developer experience](/docs/developer-experience) challenges that impact productivity and team efficiency.
 
-[**ToolJump**](./) is a [Knowledge as a Service](/docs/knowledge-as-a-service) platform that helps you quickly navigate between these tools by automatically detecting context and providing one-click access to related resources across your entire toolchain. Instead of manually searching for the same service or repository across different platforms, ToolJump connects the dots for you, dramatically improving your [developer experience](/docs/developer-experience) through intelligent [connecting tools](/docs/connecting-your-tools-resources) strategies.
+[**ToolJump**](/docs/why) is a [Knowledge as a Service](/docs/knowledge-as-a-service) platform that helps you quickly navigate between these tools by automatically detecting context and providing one-click access to related resources across your entire toolchain. Instead of manually searching for the same service or repository across different platforms, ToolJump connects the dots for you, dramatically improving your [developer experience](/docs/developer-experience) through intelligent [connecting tools](/docs/connecting-your-tools-resources) strategies.
 
 ## Why Connecting Tools Matters for Developer Experience
 
@@ -119,7 +119,7 @@ If you go with (2), you have a few options:
 
 In conclusion, if you follow the steps to set up your tools to use consistent names, to leverage tagging and to map resources from tools that don't support tagging, you will be already in a much better shape than 90% of the companies.
 
-However, no matter the maturity level of your service organisation, [ToolJump](./) can help [connecting tools](/docs/connecting-your-tools-resources) so your engineers spend less time connecting the dots and more time shipping value.
+However, no matter the maturity level of your service organisation, [ToolJump](/docs/why) can help [connecting tools](/docs/connecting-your-tools-resources) so your engineers spend less time connecting the dots and more time shipping value.
 
 ---
 
