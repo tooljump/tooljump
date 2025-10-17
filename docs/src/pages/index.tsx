@@ -22,7 +22,7 @@ function HomepageHeader() {
           <div className={styles.heroText}>
             <Heading as="h1" className={styles.heroTitle}>
             {/* <span className={styles.highlight}>days</span> */}
-            Your engineering tools don&apos;t talk to each other.<br/><span style={{marginTop: '18px', display: 'inline-block'}}>We fix that.</span>
+            Your engineering tools don&apos;t talk to each other.<br/><span style={{marginTop: '18px', display: 'inline-block'}}>ToolJump fixes that.</span>
             </Heading>
             <p className={styles.heroSubtitle}>
             Navigate your entire stack instantly - no context switching, no hunting, no guesswork
