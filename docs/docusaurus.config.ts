@@ -161,12 +161,12 @@ const config: Config = {
       },
       items: [
         {
-          to: '/docs',
+          to: '/docs/',
           label: 'Why ToolJump?',
           position: 'left',
         },
         {
-          to: '/demos',
+          to: '/docs/demos',
           label: 'Demos',
           position: 'left',
         },
@@ -193,11 +193,6 @@ const config: Config = {
         {
           to: '/docs/developer-experience',
           label: 'Developer Experience',
-          position: 'left',
-        },
-        {
-          to: '/faq',
-          label: 'FAQ',
           position: 'left',
         },
         {
