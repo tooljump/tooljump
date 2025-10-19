@@ -8,7 +8,7 @@ description: ToolJump's privacy policy explaining how we handle your data, what 
 
 # Privacy Policy
 
-**Last Updated: October 14, 2025**
+**Last Updated: October 20, 2025**
 
 This Privacy Policy describes how ToolJump ("we", "our", or "the extension") handles your information when you use the ToolJump Chrome Extension.
 
