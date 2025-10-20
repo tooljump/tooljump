@@ -927,7 +927,7 @@ const Popup: React.FC = () => {
       <TitleContainer>
         <Title>ToolJump Settings</Title>
         <HelpIcon 
-          href="http://localhost:3001/docs/getting-started" 
+          href="https://tooljump.dev/docs/getting-started" 
           target="_blank" 
           rel="noopener noreferrer"
           title="Open documentation"

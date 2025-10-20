@@ -20,7 +20,7 @@ try {
 /**
  * Extract all URLs matching the base URL from grep output
  * @param {string} grepOutput - Raw output from grep command
- * @param {string} baseUrl - Base URL to search for (e.g., 'http://localhost:3001')
+ * @param {string} baseUrl - Base URL to search for (e.g., 'https://tooljump.dev')
  * @returns {Set<string>} Set of unique URLs
  */
 function extractUrls(grepOutput, baseUrl) {
@@ -116,7 +116,7 @@ function testUrl(testUrl, verbose = false) {
 
 /**
  * Search the project for URLs matching the base URL
- * @param {string} baseUrl - Base URL to search for (e.g., 'http://localhost:3001')
+ * @param {string} baseUrl - Base URL to search for (e.g., 'https://tooljump.dev')
  * @returns {string} Grep output
  */
 function searchForUrls(baseUrl) {
@@ -207,7 +207,7 @@ async function testUrlSPA(testUrl, browser, verbose = false) {
 function parseArgs() {
   const args = process.argv.slice(2);
   const result = {
-    baseUrl: 'http://localhost:3001',
+    baseUrl: 'https://tooljump.dev',
     help: false,
     verbose: false,
     spa: false
@@ -249,7 +249,7 @@ Usage: test-links.js [OPTIONS] [URL]
 Test all URLs in the project matching a base URL to ensure they're accessible.
 
 Options:
-  -u, --url URL     Base URL to search for (default: http://localhost:3001)
+  -u, --url URL     Base URL to search for (default: https://tooljump.dev)
   -v, --verbose     Show verbose output with status for each URL
   -s, --spa         Use headless browser for SPA (requires puppeteer)
   -h, --help        Show this help message

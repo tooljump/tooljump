@@ -27,12 +27,12 @@ Think of it as a **GPS for your engineering tools**: wherever you are, ToolJump 
 
 ### Real-World Examples
 
-- [Jump instantly from a GitHub repo to the right logs in your monitoring system](http://localhost:3001/integrations/github-datadog-logs-alerts)
-- [See a clear label in your cloud provider when you're working in production vs staging](http://localhost:3001/integrations/aws-lambda-production-check)
-- [Discover the URLs of every service, for every environment, by just looking at its repository](http://localhost:3001/integrations/github-show-deployed-service-urls)
+- [Jump instantly from a GitHub repo to the right logs in your monitoring system](https://tooljump.dev/integrations/github-datadog-logs-alerts)
+- [See a clear label in your cloud provider when you're working in production vs staging](https://tooljump.dev/integrations/aws-lambda-production-check)
+- [Discover the URLs of every service, for every environment, by just looking at its repository](https://tooljump.dev/integrations/github-show-deployed-service-urls)
 - Define your company's knowledge base as small, reviewable code snippets stored in source control - safe, auditable, and versioned
 
-[More demos](http://localhost:3001/demos)
+[More demos](https://tooljump.dev/docs/demos)
 
 ### The Impact
 
@@ -46,7 +46,7 @@ With ToolJump, **teams spend less time wandering around and more time shipping**
 
 ## Getting Started: 3 Simple Steps
 
-Follow the [Getting started →](http://localhost:3001/docs/getting-started#step-1-install-the-chrome-extension) guide to set it up
+Follow the [Getting started →](https://tooljump.dev/docs/getting-started#step-1-install-the-chrome-extension) guide to set it up
 
 ---
 
@@ -74,7 +74,7 @@ ToolJump is comprised of 3 main components:
 
 **Important:** ToolJump is self-hosted. You host it yourself and are responsible for deployment, security, monitoring, and storing secrets. We do not store anything on our side.
 
-[Learn more about architecture →](http://localhost:3001/docs/architecture)
+[Learn more about architecture →](https://tooljump.dev/docs/architecture)
 
 ---
 
@@ -103,9 +103,9 @@ Browse our gallery of pre-built integrations connecting 10+ tools:
 - AWS Lambda ↔ PagerDuty On-call
 - And many more...
 
-[Start writing integrations →](http://localhost:3001/docs/writing-integrations)
+[Start writing integrations →](https://tooljump.dev/docs/writing-integrations)
 
-[Browse integration gallery →](http://localhost:3001/integrations)
+[Browse integration gallery →](https://tooljump.dev/integrations)
 
 ---
 
@@ -127,7 +127,7 @@ ToolJump is designed with security as a core principle:
 - ✅ Enable rate limiting in your API Gateway
 - ✅ Keep dependencies updated
 
-[Learn more about security →](http://localhost:3001/docs/security)
+[Learn more about security →](https://tooljump.dev/docs/security)
 
 ---
 
@@ -159,7 +159,7 @@ docker run -p 3000:3000 --env-file .env tooljump
 - Rolling updates with zero downtime
 - ConfigMaps and Secrets management
 
-[Learn more about deployment →](http://localhost:3001/docs/deploying)
+[Learn more about deployment →](https://tooljump.dev/docs/deploying)
 
 ---
 
@@ -167,23 +167,23 @@ docker run -p 3000:3000 --env-file .env tooljump
 
 While ToolJump is fully open source and free to use, implementing it across your organization with battle-tested DevEx expertise can save weeks of trial and error. Professional implementation includes seamless integration with your internal auth, tailored rollout based on your biggest bottlenecks, team enablement, and enterprise features with ongoing support.
 
-[Learn more about professional implementation →](http://localhost:3001/docs/implement)
+[Learn more about professional implementation →](https://tooljump.dev/docs/implement)
 
 ---
 
 ## Documentation
 
-**Full documentation is available at:** http://localhost:3001/docs/
+**Full documentation is available at:** https://tooljump.dev/docs/
 
 ### Quick Links
-- [Getting Started](http://localhost:3001/docs/getting-started)
-- [Core Concepts](http://localhost:3001/docs/core-concepts)
-- [Writing Integrations](http://localhost:3001/docs/writing-integrations)
-- [Integration Gallery](http://localhost:3001/integrations)
-- [Architecture](http://localhost:3001/docs/architecture)
-- [Security](http://localhost:3001/docs/security)
-- [Deployment](http://localhost:3001/docs/deploying)
-- [FAQ](http://localhost:3001/docs/faq)
+- [Getting Started](https://tooljump.dev/docs/getting-started)
+- [Core Concepts](https://tooljump.dev/docs/core-concepts)
+- [Writing Integrations](https://tooljump.dev/docs/writing-integrations)
+- [Integration Gallery](https://tooljump.dev/integrations)
+- [Architecture](https://tooljump.dev/docs/architecture)
+- [Security](https://tooljump.dev/docs/security)
+- [Deployment](https://tooljump.dev/docs/deploying)
+- [FAQ](https://tooljump.dev/docs/faq)
 
 ---
 
