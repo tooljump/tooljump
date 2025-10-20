@@ -23,12 +23,12 @@ jobs:
           echo "🔍 Verifying GitHub token permissions..."
           
           # Test if we can access the repository
-          curl -H "Authorization: token ${{ secrets.NPM_TOKEN }}" \
+          curl -H "Authorization: token ${{ secrets.NPMJS_TOKEN }}" \
                -H "Accept: application/vnd.github.v3+json" \
                https://api.github.com/repos/${{ github.repository }} || echo "❌ Cannot access repository"
           
           # Test if we can access packages
-          curl -H "Authorization: token ${{ secrets.NPM_TOKEN }}" \
+          curl -H "Authorization: token ${{ secrets.NPMJS_TOKEN }}" \
                -H "Accept: application/vnd.github.v3+json" \
                https://api.github.com/user/packages || echo "❌ Cannot access packages"
           
@@ -40,7 +40,7 @@ jobs:
           node-version: '20'
           cache: 'yarn'
           registry-url: 'https://npm.pkg.github.com'
-          token: '${{ secrets.NPM_TOKEN }}'
+          token: '${{ secrets.NPMJS_TOKEN }}'
 
       - name: Extract version from tag
         id: get_version
@@ -81,11 +81,11 @@ jobs:
         run: |
           # Configure npm to use GitHub Packages for @tooljump scope
           npm config set @tooljump:registry https://npm.pkg.github.com
-          npm config set //npm.pkg.github.com/:_authToken ${{ secrets.NPM_TOKEN }}
+          npm config set //npm.pkg.github.com/:_authToken ${{ secrets.NPMJS_TOKEN }}
           
           # Create .npmrc file for better authentication
           echo "@tooljump:registry=https://npm.pkg.github.com" > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPMJS_TOKEN }}" >> .npmrc
           echo "//npm.pkg.github.com/:always-auth=true" >> .npmrc
           
           # Test authentication
