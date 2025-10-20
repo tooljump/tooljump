@@ -1,0 +1,133 @@
+name: Publish create-tooljump Package to NPM Registry
+
+on:
+  push:
+    tags:
+      - 'c*'  # Triggers on tags like c1.0.0, c2.1.3, etc.
+
+jobs:
+  publish-create-tooljump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Allow pushing version bump commits
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main  # Checkout main branch instead of the tag
+          fetch-depth: 0  # Fetch all history so we can access the tag
+
+      - name: Verify GitHub Token Permissions
+        run: |
+          echo "🔍 Verifying GitHub token permissions..."
+          
+          # Test if we can access the repository
+          curl -H "Authorization: token ${{ secrets.NPMJS_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${{ github.repository }} || echo "❌ Cannot access repository"
+          
+          # Test if we can access packages
+          curl -H "Authorization: token ${{ secrets.NPMJS_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/user/packages || echo "❌ Cannot access packages"
+          
+          echo "✅ Token permission check completed"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+          token: '${{ secrets.NPMJS_TOKEN }}'
+
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          # Extract version from tag (c1.0.1 -> 1.0.1)
+          VERSION=${GITHUB_REF#refs/tags/c}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📌 Detected version: $VERSION"
+
+      - name: Update package version
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          echo "🔄 Updating create-tooljump/package.json to version $VERSION..."
+          
+          cd create-tooljump
+          # Update version in package.json
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.version = '$VERSION';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+          
+          echo "✅ Package version updated to $VERSION"
+
+      - name: Commit version changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add create-tooljump/package.json
+          git diff --staged --quiet || git commit -m "chore: bump create-tooljump version to ${{ steps.get_version.outputs.version }}"
+          git push origin main
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Configure npm for NPM Registry
+        run: |
+          # Configure npm to use public NPM registry
+          npm config set registry https://registry.npmjs.org/
+          
+          # Create .npmrc file for authentication
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPMJS_TOKEN }}" > .npmrc
+          
+          # Test authentication
+          echo "🔐 Testing authentication..."
+          npm whoami || echo "❌ Authentication failed"
+
+      - name: Publish package
+        run: |
+          cd create-tooljump
+          VERSION="${{ steps.get_version.outputs.version }}"
+          PACKAGE_NAME="create-tooljump"
+          
+          echo ""
+          echo "=========================================="
+          echo "📦 Publishing: $PACKAGE_NAME@$VERSION"
+          echo "=========================================="
+          
+          # Check if package already exists at this version
+          echo "🔍 Checking if $PACKAGE_NAME@$VERSION already exists..."
+          
+          if npm view "$PACKAGE_NAME@$VERSION" > /dev/null 2>&1; then
+            echo "⚠️  Package $PACKAGE_NAME@$VERSION already exists. Skipping..."
+            exit 0
+          fi
+          
+          # Show what will be published
+          echo "📋 Files to be published:"
+          npm pack --dry-run 2>&1 | grep -E "^\s+[0-9]" || echo "  (unable to list files)"
+          echo ""
+          
+          # Publish the package
+          echo "🚀 Publishing $PACKAGE_NAME@$VERSION..."
+          
+          if npm publish --access public --verbose 2>&1; then
+            echo "✅ Successfully published $PACKAGE_NAME@$VERSION"
+          else
+            echo "❌ Failed to publish $PACKAGE_NAME@$VERSION"
+            exit 1
+          fi
+          
+          echo ""
+          echo "=========================================="
+          echo "✅ Package published successfully!"
+          echo "=========================================="
+          echo "📦 Package: $PACKAGE_NAME@$VERSION"
+          echo "🌍 Access: Public"
+          echo "🏢 Registry: https://registry.npmjs.org/"
+

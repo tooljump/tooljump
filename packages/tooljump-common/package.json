@@ -1,0 +1,27 @@
+{
+  "name": "@tooljump/common",
+  "description": "Common functionality for ToolJump; Connect your dev tools (GitHub, AWS, monitoring, etc.) so knowledge and navigation live where engineers work - no context switching, no tribal knowledge.",
+  "version": "1.0.6",
+  "main": "dist/index.js",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:cov": "vitest run --coverage"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "zod": "^3.25.67",
+    "@tooljump/logger": "*"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.20",
+    "typescript": "^5.0.0",
+    "vitest": "^3.2.4",
+    "@vitest/coverage-v8": "^2.1.4"
+  }
+}
