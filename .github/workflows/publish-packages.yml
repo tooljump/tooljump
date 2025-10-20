@@ -88,6 +88,17 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Build all packages
+        run: |
+          # Get all @tooljump packages and build them using Lerna's dependency sorting
+          echo "🔨 Building all packages in dependency order..."
+          yarn lerna run build --sort
+
+      - name: Run tests
+        run: |
+          echo "🧪 Running tests for all packages..."
+          yarn lerna run test
+
       - name: Verify workspace setup
         run: |
           echo "📦 Workspace packages:"
@@ -123,11 +134,24 @@ jobs:
             });
           "
 
-      - name: Build all packages
+      - name: Verify build artifacts
         run: |
-          # Get all @tooljump packages and build them using Lerna's dependency sorting
-          echo "🔨 Building all packages in dependency order..."
-          yarn lerna run build --sort
+          echo "🔍 Verifying build artifacts exist..."
+          cd packages
+          for package in */; do
+            if [ -f "$package/package.json" ]; then
+              package_name=$(node -e "console.log(require('./$package/package.json').name)")
+              if [[ "$package_name" == @tooljump/* ]]; then
+                if [ -f "$package/dist/index.js" ]; then
+                  echo "✅ $package_name - dist/index.js exists"
+                else
+                  echo "❌ $package_name - dist/index.js missing!"
+                  exit 1
+                fi
+              fi
+            fi
+          done
+          echo "✅ All build artifacts verified"
 
       - name: Configure npm for GitHub Packages
         run: |
