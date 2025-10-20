@@ -201,11 +201,9 @@ ToolJump is fully open source. Contributions are welcome!
 
 ---
 
-## License
+## Disclaimer of Warranty and Liability
 
-See [LICENSE](./LICENSE) file for details.
-
----
+This project is provided “AS IS” and without any warranty of any kind, express or implied. By using this software, you acknowledge that the authors and contributors are not liable for any damages, losses, or issues arising from its use. For full details, see the [Apache License 2.0](./LICENSE) included in this repository.
 
 *All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of ToolJump by those owners.*
 
