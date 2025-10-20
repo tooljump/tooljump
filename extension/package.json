@@ -38,7 +38,7 @@
     "styled-components": "^6.1.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.56.1",
     "@types/chrome": "^0.0.254",
     "@types/lodash": "^4.17.20",
     "@types/react": "^18.2.0",
