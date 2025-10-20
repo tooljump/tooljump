@@ -1,4 +1,4 @@
-name: Publish Packages to GitHub Packages
+name: Publish Packages to NPM Registry
 
 on:
   push:
@@ -39,8 +39,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'yarn'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@tooljump'
+          registry-url: 'https://registry.npmjs.org'
           token: '${{ secrets.NPMJS_TOKEN }}'
 
       - name: Extract version from tag
@@ -153,21 +152,17 @@ jobs:
           done
           echo "✅ All build artifacts verified"
 
-      - name: Configure npm for GitHub Packages
+      - name: Configure npm for NPM Registry
         run: |
-          # Configure npm to use GitHub Packages for @tooljump scope
-          npm config set @tooljump:registry https://npm.pkg.github.com
-          npm config set //npm.pkg.github.com/:_authToken ${{ secrets.NPMJS_TOKEN }}
-          # npm config set //npm.pkg.github.com/:always-auth true
+          # Configure npm to use public NPM registry
+          npm config set registry https://registry.npmjs.org/
           
-          # Create .npmrc file for better authentication
-          echo "@tooljump:registry=https://npm.pkg.github.com" > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPMJS_TOKEN }}" >> .npmrc
-          echo "//npm.pkg.github.com/:always-auth=true" >> .npmrc
+          # Create .npmrc file for authentication
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPMJS_TOKEN }}" > .npmrc
           
           # Test authentication
           echo "🔐 Testing authentication..."
-          npm whoami --registry=https://npm.pkg.github.com || echo "❌ Authentication failed"
+          npm whoami || echo "❌ Authentication failed"
 
       - name: Publish packages
         run: |
@@ -202,14 +197,14 @@ jobs:
                 version=$(node -e "console.log(require('./package.json').version)")
                 echo "🔍 Checking if $package_name@$version already exists..."
                 
-                if npm view "$package_name@$version" --registry=https://npm.pkg.github.com > /dev/null 2>&1; then
+                if npm view "$package_name@$version" > /dev/null 2>&1; then
                   echo "⚠️  Package $package_name@$version already exists. Skipping..."
                   skipped_packages+=("$package_name@$version (already published)")
                   cd ..
                   continue
                 fi
                 
-                # Publish the package using npm (since we're publishing to GitHub Packages)
+                # Publish the package using npm (since we're publishing to NPM Registry)
                 echo "🚀 Publishing $package_name@$version..."
                 echo "📁 Current directory: $(pwd)"
                 echo "📋 Files to be published:"
@@ -217,7 +212,7 @@ jobs:
                 echo ""
                 
                 # Publish with error handling
-                if npm publish --access restricted --registry=https://npm.pkg.github.com --verbose 2>&1; then
+                if npm publish --access public --verbose 2>&1; then
                   echo "✅ Successfully published $package_name@$version"
                   published_packages+=("$package_name@$version")
                 else
@@ -277,7 +272,7 @@ jobs:
 
       - name: Show publish summary
         run: |
-          echo "✅ All packages published successfully to GitHub Packages!"
-          echo "📦 Packages published as private packages"
-          echo "🔒 Access: Restricted (private)"
-          echo "🏢 Registry: https://npm.pkg.github.com" 
+          echo "✅ All packages published successfully to NPM Registry!"
+          echo "📦 Packages published as public packages"
+          echo "🌍 Access: Public"
+          echo "🏢 Registry: https://registry.npmjs.org/" 

@@ -25,7 +25,6 @@
     "@vitest/coverage-v8": "^2.1.4"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
+    "access": "public"
   }
 }
