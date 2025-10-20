@@ -1,0 +1,112 @@
+---
+id: hello-world
+title: Hello World
+sidebar_label: Hello World
+keywords: [hello world integration, tooljump tutorial, first integration, integration example, custom integration]
+description: Create your first ToolJump integration with this step-by-step Hello World tutorial. Learn the basics of integration development and data display.
+---
+
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import ConditionalQueryParam from '@site/src/components/ConditionalQueryParam';
+
+<ConditionalQueryParam param="from_extension">
+
+:::tip Welcome to ToolJump Demo Integration
+
+You clicked on a tool from the context bar - nice! 
+
+In a live environment, this button would take you directly to the tool you wanted.
+
+Since this is a demo integration that does not have the context of your organisation, please read below how to create your own integrations, adapted for your use-cases, or review the [demos](/docs/demos) section for inspiration
+
+:::
+
+</ConditionalQueryParam>
+
+# Hello World Integration
+
+Let's start with the simplest possible integration  -  one that just displays a Hello World message on any GitHub page.
+
+<BarContentPreview data={[
+    {
+      type: 'text',
+      content: 'Hello world!',
+      status: 'important'
+    }
+  ]} title="How it looks in the extension" />
+
+## The code
+
+Create a file called `hello.integration.js` with the following contents:
+```javascript
+module.exports = {
+    metadata: {
+        name: 'hello-world',
+        description: 'A simple hello world integration',
+        match: {
+            contextType: 'github'
+        }
+    },
+    run: async function () {
+        return [
+            {
+                type: 'text',
+                content: 'Hello World!',
+                status: 'important'
+            }
+        ];
+    }
+};
+```
+
+## Breaking It Down
+
+### Metadata Section
+
+The metadata section describes the integration and when it should be processed (in our case, on all GitHub pages).
+
+```javascript
+metadata: {
+    name: 'hello-world',                    // Unique identifier
+    description: 'A simple hello world integration', // Human-readable description
+    match: { // Context matching rules
+        contextType: 'github'
+    }          
+}
+```
+
+### Run Function
+
+The run function processes the integration and returns the results which will be shown on the bar in the browser.
+
+```javascript
+run: async function () {
+    return [/* results */];
+}
+```
+
+### Result
+
+There are many types of results available, but for now let's stick with a simple text
+
+```javascript
+{
+    type: 'text',           // Result type (text, link, or dropdown)
+    content: 'Hello World!' // What to display
+}
+```
+
+## Testing Your Integration
+
+1. Save the file as `hello-world.integration.js` in your integrations directory
+2. Navigate to any Github repo that matches your context (e.g., `https://github.com/tooljump/tooljump`)
+3. The integration should run and display "Hello World!"
+
+If it doesn't work, check the [Debugging](./debugging.md) guide.
+
+## Next Steps
+
+Now that you understand the basics, learn about:
+- **[Result Types](./result-types.mdx)** - Different ways to display information
+- **[When to Run](./when-to-run.md)** - Controlling when integrations execute
+- **[Caching](./caching.md)** - Making integrations faster

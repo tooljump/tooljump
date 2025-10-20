@@ -1,0 +1,143 @@
+---
+slug: github-aws-infrastructure
+title: "GitHub → AWS: Show infrastructure (Lambdas) for this repo"
+subtitle: Show Lambda functions deployed for a given repository
+tags: [github, aws, lambda, infrastructure]
+icons: [github, aws, lambda]
+keywords: [github aws integration, lambda infrastructure, connecting github aws, developer tool integration, repository infrastructure]
+description: Connect GitHub repositories with AWS Lambda infrastructure. See deployed Lambda functions, costs, and monitoring data directly from your GitHub repository page.
+canonical: https://tooljump.dev/integrations/github-aws-infrastructure
+slides:
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 1
+    description: View Lambda functions belonging to this repo
+    data:
+      - type: dropdown
+        content: "AWS Infra (4 lambdas)"
+        icon: lambda
+        items:
+          - type: link
+            content: 'shop-order-processing'
+            href: #
+            icon: lambda
+          - type: link
+            content: 'shop-delivery-processing'
+            href: #
+            icon: lambda
+          - type: link
+            content: 'shop-payment-processing'
+            href: #
+            icon: lambda
+          - type: link
+            content: 'shop-refund-processing'
+            href: #
+            icon: lambda
+      - type: text
+        content: Other integrations ...
+  - image: /img/slide-aws-lambda.png
+    alt: AWS Lambda
+    url: "https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/shop-order-processing?tab=code"
+    targetSpanIndex: 1
+    description: Open the Lambda for this repo directly in AWS Console
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.aws.infrastructure.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import SlideshowWrapper from '@site/src/components/SlideshowWrapper';
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData 
+  type="Article" 
+  data={{
+    headline: "GitHub → AWS: Show infrastructure (Lambdas) for this repo",
+    description: "Connect GitHub repositories with AWS Lambda infrastructure. See deployed Lambda functions, costs, and monitoring data directly from your GitHub repository page.",
+    url: "https://tooljump.dev/integrations/github-aws-infrastructure",
+    datePublished: "2024-01-01T00:00:00Z",
+    dateModified: new Date().toISOString()
+  }} 
+/>
+
+<SlideshowWrapper slides={frontMatter.slides} />
+
+## How does this help you?
+
+* See your AWS infrastructure (Lambda functions) directly from your Github repositories
+* Jump directly to each function in the AWS Console
+
+:::tip
+You can easily modify this integration to return other tagged resources, including EC2s, ECS, EKS, SQS, etc
+:::
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'dropdown',
+      content: 'AWS Infra (4 lambdas)',
+      icon: 'lambda',
+      items: [
+        {
+          type: 'link',
+          content: 'my-app-server',
+          href: '#',
+          icon: 'lambda',
+        },
+        {
+          type: 'link',
+          content: 'my-app-dispatcher',
+          href: '#',
+          icon: 'lambda',
+        },
+        {
+          type: 'link',
+          content: 'my-app-producer',
+          href: '#',
+          icon: 'lambda',
+        },
+        {
+          type: 'link',
+          content: 'my-app-processor',
+          href: '#',
+          icon: 'lambda',
+        },
+      ]
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+We assume Lambda functions are tagged with the repository name (tag key `repository`, value matching the GitHub repo, e.g. `company/webshop`). We use the AWS Resource Groups Tagging API to query `lambda:function` resources in `us-east-1` filtered by that tag, then render a dropdown of the first 10 functions. If there are more, a final "More…" item links to the Lambda console filtered by the `repository` tag.
+
+Notes:
+- Only the `us-east-1` region is scanned to keep things simple and fast.
+- Each item links to the function details page in the AWS console.
+
+## Prerequisites
+For the code below to work, please follow the guide on [Connecting to AWS](/docs/recipes/connecting-to-aws). Provide `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as secrets.
+
+In addition, the AWS identity used by the integration must allow querying the Resource Groups Tagging API. At minimum, grant `tag:GetResources`:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["tag:GetResources"],
+      "Resource": "*"
+    }
+  ]
+}
+```
+No `lambda:ListFunctions` permission is required for this example.
+
+## Code
+<CodeBlock language="javascript" title="github.aws.infrastructure.integration.example.js">
+{IntegrationCode}
+</CodeBlock>
