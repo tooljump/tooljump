@@ -1,0 +1,117 @@
+---
+slug: github-show-deployed-service-urls
+title: "Github: Show deployed service URLs"
+subtitle: Quick links to staging and production endpoints of this service
+tags: [github, environments, urls, deploys]
+icons: [github, link]
+keywords: [github deployed urls, service endpoints, staging production urls, github deployment, environment urls]
+description: GitHub integration that shows deployed service URLs for staging and production environments directly from your repository page.
+slides:
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 1
+    description: Open staging and production URLs for this service instantly
+    data:
+      - type: dropdown
+        content: Deployed URLs
+        items:
+          - type: link
+            content: 'Staging - https://staging.my-webshop.com'
+            href: 'https://staging.my-webshop.com'
+            icon: link
+          - type: link
+            content: 'PROD US - https://my-webshop.com'
+            href: 'https://my-webshop.com'
+            icon: link
+            status: important
+          - type: link
+            content: 'PROD EU - https://my-webshop.eu'
+            href: 'https://my-webshop.eu'
+            icon: link
+            status: important
+      - type: text
+        content: Other integrations ...
+  - image: /img/slide-webshop.png
+    alt: Webshop
+    url: https://staging.staging.com
+    description: Here's the deployed URL for this service
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.deployed-urls.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import SlideshowWrapper from '@site/src/components/SlideshowWrapper';
+
+<SlideshowWrapper slides={frontMatter.slides} />
+
+## How does this help you?
+
+* Quickly access the staging and production URLs for repositories
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'dropdown',
+      content: 'Deployed URLs',
+      items: [
+        {
+          type: 'link',
+          content: 'Staging - https://staging.mywebshop.com',
+          href: 'https://staging.mywebshop.com',
+          icon: 'link'
+        },
+        {
+          type: 'link',
+          content: 'PROD US - https://my-webshop.com',
+          href: 'https://my-webshop.com',
+          icon: 'link',
+          status: 'important',
+        },
+        {
+          type: 'link',
+          content: 'PROD EU - https://my-webshop.eu',
+          href: 'https://my-webshop.eu',
+          icon: 'link',
+          status: 'important',
+        }
+      ]
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+There are two common ways to map a repository to its deployed URLs:
+
+1. Data file (simple): Keep a small mapping file alongside your integrations that lists, for each repo, the staging and production URLs. This is easy to start with and version‑controlled.
+2. Service catalog (scalable): Query your source of truth (e.g., Backstage, Datadog Service Catalog) to resolve environment endpoints dynamically. This is preferable when you already maintain a catalog.
+
+Below, we implement approach number 1 (the simple data file approach) and render a dropdown with links to staging and production.
+
+### Example data file (`deployed-urls.data.json`)
+```json
+{
+  "mappings": {
+    "company/webshop": {
+      "production": "https://webshop.company.com",
+      "staging": "https://staging.webshop.company.com"
+    },
+    "company/notifier": {
+      "production": "https://notifier.company.com",
+      "staging": "https://staging.notifier.company.com"
+    }
+  }
+}
+```
+
+## Prerequisites
+No external auth required. Add the data file (e.g., `deployed-urls.data.json`) to your data directory in your Github repository. Learn more about data files in [Data](/docs/writing-integrations/data).
+
+## Code
+<CodeBlock language="javascript" title="github.deployed-urls.integration.example.js">
+{IntegrationCode}
+</CodeBlock>
