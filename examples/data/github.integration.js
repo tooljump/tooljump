@@ -5,7 +5,7 @@ module.exports = {
         match: {
             contextType: 'github',
             context: {
-                'page.repository': { equals: 'MihaiValentin/lunr-languages' } // TODO
+                'page.repository': { equals: 'tooljump/tooljump' } // TODO
             }
         },
         cache: 300

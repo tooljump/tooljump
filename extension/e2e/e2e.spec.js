@@ -75,7 +75,7 @@ import { expect } from '@playwright/test';
 
     // 3) Navigate to a website
     const page = await context.newPage();
-    await page.goto('https://github.com/MihaiValentin/lunr-languages', { waitUntil: 'domcontentloaded' });
+    await page.goto('https://github.com/tooljump/tooljump', { waitUntil: 'domcontentloaded' });
     
     await new Promise((r) => {
         setTimeout(r, 5000);
