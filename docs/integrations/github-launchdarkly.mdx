@@ -1,0 +1,109 @@
+---
+slug: github-launchdarkly
+title: "GitHub → LaunchDarkly: Show feature flags for this repo"
+subtitle: Show feature flags tagged with this repository
+tags: [github, launchdarkly, feature-flags]
+icons: [github, launchdarkly]
+keywords: [github launchdarkly integration, feature flags, github feature flags, launchdarkly integration, feature flag management]
+description: Connect GitHub repositories with LaunchDarkly feature flags. View active feature flags and their status directly from your GitHub repository page.
+slides:
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 1
+    description: See feature flags tagged to this repo
+    data:
+      - type: dropdown
+        content: Feature Flags (3 flags)
+        icon: launchdarkly
+        items:
+          - type: link
+            content: new-checkout-flow
+            href: '#'
+            icon: launchdarkly
+          - type: link
+            content: enable-payments-v2
+            href: '#'
+            icon: launchdarkly
+          - type: link
+            content: beta-features
+            href: '#'
+            icon: launchdarkly
+      - type: text
+        content: "Other integrations ..."
+  - image: /img/slide-ld-flag.png
+    alt: Webshop
+    url: https://app.launchdarkly.com/features/mycompany/webshop/new-checkout-flow
+    description: Here's the feature flag page
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.launchdarkly.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import SlideshowWrapper from '@site/src/components/SlideshowWrapper';
+
+<SlideshowWrapper slides={frontMatter.slides} />
+
+## How does this help you?
+
+* See your LaunchDarkly feature flags directly from your GitHub repositories
+* Jump directly to each feature flag in the LaunchDarkly dashboard
+* Quickly identify which flags are associated with specific repositories
+
+:::tip
+You can easily modify this integration to return other tagged resources or use different tag formats
+:::
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'dropdown',
+      content: 'Feature Flags (3 flags)',
+      icon: 'launchdarkly',
+      items: [
+        {
+          type: 'link',
+          content: 'new-checkout-flow',
+          href: '#',
+          icon: 'launchdarkly',
+        },
+        {
+          type: 'link',
+          content: 'enable-payments-v2',
+          href: '#',
+          icon: 'launchdarkly',
+        },
+        {
+          type: 'link',
+          content: 'beta-features',
+          href: '#',
+          icon: 'launchdarkly',
+        },
+      ]
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+We query LaunchDarkly's API for feature flags tagged with the repository name (tag key `repository`, value matching the GitHub repo name, e.g. `my-repo`). We extract the last part of the repository path (after the final `/`) and use that as the tag value. We then render a dropdown of the first 10 flags. If there are more, a final "More…" item links to the LaunchDarkly flags page filtered by the `repository` tag.
+
+Notes:
+- Only the first 10 flags are shown to keep the dropdown manageable
+- Each item links to the specific feature flag page in LaunchDarkly
+- The "More…" link goes to the LaunchDarkly flags list with the tag filter applied
+
+## Prerequisites
+For the code below to work, you need a LaunchDarkly access token with read permissions for feature flags. Provide `LAUNCHDARKLY_ACCESS_TOKEN` as a secret.
+
+The LaunchDarkly access token must have the following permissions:
+- `read:flag` - to read feature flags
+- `read:project` - to access project information
+
+## Code
+<CodeBlock language="javascript" title="github.launchdarkly.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

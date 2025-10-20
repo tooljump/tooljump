@@ -1,0 +1,31 @@
+{
+  "name": "@tooljump/create-tooljump",
+  "version": "1.0.3",
+  "description": "CLI tool to create new ToolJump projects",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "create-tooljump": "index.js"
+  },
+  "scripts": {
+    "test": "node index.js test-project",
+    "release": "yarn publish"
+  },
+  "keywords": [
+    "tooljump",
+    "cli",
+    "generator"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "inquirer": "^9.2.12",
+    "fs-extra": "^11.1.1"
+  },
+  "files": [
+    "index.js"
+  ]
+}
