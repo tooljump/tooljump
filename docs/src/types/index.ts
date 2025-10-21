@@ -1,0 +1,1 @@
+../../../extension/src/types/index.ts

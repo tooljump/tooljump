@@ -1,0 +1,1 @@
+../../../extension/src/components/BarContent.tsx

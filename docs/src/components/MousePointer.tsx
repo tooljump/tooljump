@@ -1,0 +1,48 @@
+import React from 'react';
+import styles from './MousePointer.module.css';
+
+interface MousePointerProps {
+  x: number;
+  y: number;
+  isClicking?: boolean;
+  visible?: boolean;
+  slowApproach?: boolean;
+}
+
+const MousePointer: React.FC<MousePointerProps> = ({ 
+  x, 
+  y, 
+  isClicking = false, 
+  visible = true,
+  slowApproach = false
+}) => {
+  if (!visible) return null;
+
+  return (
+    <div 
+      className={`${styles.mousePointer} ${isClicking ? styles.clicking : ''} ${slowApproach ? styles.slowApproach : ''}`}
+      style={{
+        left: x,
+        top: y,
+      }}
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 1792 1792"
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.mouseIcon}
+      >
+        <path
+          d="M1389 1043q31 30 14 69-17 40-59 40h-382l201 476q10 25 0 49t-34 35l-177 75q-25 10-49 0t-35-34l-191-452-312 312q-19 19-45 19-12 0-24-5-40-17-40-59v-1504q0-42 40-59 12-5 24-5 27 0 45 19z"
+          fill="currentColor"
+          style={{
+            color: '#000000'
+          }}
+        />
+      </svg>
+    </div>
+  );
+};
+
+export default MousePointer;
