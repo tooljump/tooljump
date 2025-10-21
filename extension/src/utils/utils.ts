@@ -101,8 +101,12 @@ export function sanitizeHtmlContent(html: string): string {
   // Remove script tags and their content
   let sanitized = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
   
-  // Remove event handler attributes
-  sanitized = sanitized.replace(/\s*on\w+\s*=\s*["'][^"']*["']/gi, '');
+  // Remove event handler attributes (repeat until no more found)
+  let prevSanitized;
+  do {
+    prevSanitized = sanitized;
+    sanitized = sanitized.replace(/\s*on\w+\s*=\s*["'][^"']*["']/gi, '');
+  } while (sanitized !== prevSanitized);
   
   // Remove javascript: URLs
   sanitized = sanitized.replace(/javascript:/gi, '');
