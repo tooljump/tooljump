@@ -1,0 +1,36 @@
+.mousePointer {
+  position: absolute;
+  z-index: 10000;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mousePointer.slowApproach {
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.mouseIcon {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.1s ease;
+}
+
+.mousePointer.clicking .mouseIcon {
+  transform: scale(0.9);
+}
+
+.mousePointer.clicking {
+  animation: clickPulse 0.2s ease-in-out;
+}
+
+@keyframes clickPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

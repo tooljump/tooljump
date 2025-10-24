@@ -1,0 +1,114 @@
+---
+slug: github-datadog-logs-alerts
+title: "GitHub → Datadog: Show active alerts & logs"
+subtitle: View current alerts and jump directly to logs
+tags: [github, datadog, logs, alerts, observability]
+icons: [github, datadog]
+keywords: [github datadog integration, monitoring alerts, observability integration, connecting github datadog, developer monitoring]
+description: Connect GitHub repositories with Datadog monitoring. View active alerts, logs, and performance metrics directly from your GitHub repository page.
+canonical: https://tooljump.dev/integrations/github-datadog-logs-alerts
+slides:
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 1
+    description: See active alerts for this repo at a glance
+    data:
+      - type: link
+        content: "4 active alerts"
+        href: '#'
+        icon: datadog
+        status: important
+      - type: link
+        content: "Logs"
+        href: '#'
+        icon: datadog
+      - type: text
+        content: Other integrations ...
+  - image: /img/slide-datadog-alerts.jpg
+    alt: GitHub Repository Screenshot
+    url: https://app.datadoghq.com/monitors?service=shop-orders
+    description: Here are the active alerts for the shop-process-order lambda
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 2
+    description: See active alerts for this repo at a glance
+    data:
+      - type: link
+        content: "4 active alerts"
+        href: '#'
+        icon: datadog
+        status: important
+      - type: link
+        content: "Logs"
+        href: '#'
+        icon: datadog
+      - type: text
+        content: Other integrations ...
+  - image: /img/slide-datadog-logs.png
+    alt: GitHub Repository Screenshot
+    url: https://app.datadoghq.com/logs?service=shop-orders
+    description: Here are the active alerts for the shop-process-order lambda
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.datadog.logs-alerts.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import SlideshowWrapper from '@site/src/components/SlideshowWrapper';
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData 
+  type="Article" 
+  data={{
+    headline: "GitHub → Datadog: Show active alerts & logs",
+    description: "Connect GitHub repositories with Datadog monitoring. View active alerts, logs, and performance metrics directly from your GitHub repository page.",
+    url: "https://tooljump.dev/integrations/github-datadog-logs-alerts",
+    datePublished: "2024-01-01T00:00:00Z",
+    dateModified: new Date().toISOString()
+  }} 
+/>
+
+<SlideshowWrapper slides={frontMatter.slides} />
+
+## How does this help you?
+
+* You will notice any active alerts on the repo, which can help you fix issues faster
+* You will be able to navigate directly to the logs for the repo
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'link',
+      content: '3 active alerts',
+      icon: 'datadog',
+      href: '#',
+      status: 'important',
+    },
+    {
+      type: 'link',
+      content: 'Logs',
+      icon: 'datadog',
+      href: '#',
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+We assume the alerts and logs are tagged with the repository name. We then query alerts in Datadog by the tag with the repo name, and filter the active alerts.
+
+## Prerequisites
+For the code below to work, please follow the guide on [Connecting to Datadog](/docs/recipes/connecting-to-datadog).
+
+## Code
+<CodeBlock language="javascript" title="github.datadog.logs-alerts.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

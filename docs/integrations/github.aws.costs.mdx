@@ -1,0 +1,80 @@
+---
+slug: github-aws-costs
+title: "GitHub → AWS: Show infrastructure costs"
+subtitle: Surface last 30 days AWS cost by repo tag
+tags: [github, aws, costs]
+icons: [github, aws, aws-cost]
+keywords: [github aws costs, infrastructure costs, aws cost tracking, github aws integration, cost management]
+description: GitHub AWS integration that shows infrastructure costs for the last 30 days, helping teams understand the cost impact of their repositories and services.
+slides:
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 1
+    description: See last 30‑day AWS cost for resources tagged to this repo
+    data:
+      - type: link
+        content: "Costs 30d: $2950"
+        href: '#'
+        icon: cost
+      - type: text
+        content: Other integrations ...
+  - image: /img/slide-aws-cost.png
+    alt: AWS Cost Explorer
+    url: https://eu-central-1.console.aws.amazon.com/costs?service=shop-orders
+    targetSpanIndex: 1
+    description: Here's AWS Cost Explorer pre‑filtered to this repo’s tag
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.aws.costs.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import SlideshowWrapper from '@site/src/components/SlideshowWrapper';
+
+<SlideshowWrapper slides={frontMatter.slides} />
+
+## How does this help you?
+
+* See the last 30 days AWS cost for infra tagged with this repository
+* Jump directly to AWS Cost Explorer pre-filtered by the repo tag
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'link',
+      content: 'Costs 30d: $2950',
+      href: '#',
+      icon: 'cost',
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+We assume AWS resources are tagged with the repository name (tag key `repository`, value matching the GitHub repo, e.g. `company/webshop`). We then query AWS Cost Explorer for the past 30 days, filtered by that tag across all services, and sum the total cost.
+
+## Prerequisites
+For the code below to work, please follow the guide on [Connecting to AWS](/docs/recipes/connecting-to-aws). Provide `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as secrets.
+
+In addition, the AWS identity used by the integration must allow querying the Cost Explorer API. At minimum, grant `ce:GetCostAndUsage`:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["ce:GetCostAndUsage"],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+## Code
+<CodeBlock language="javascript" title="github.aws.costs.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

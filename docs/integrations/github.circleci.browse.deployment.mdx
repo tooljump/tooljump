@@ -1,0 +1,64 @@
+---
+slug: github-circleci-browse-deployment
+title: "GitHub → CircleCI: Browse deployment"
+subtitle: Dropdown to browse deployed revisions (staging, prod)
+tags: [github, circleci, deploys, environments]
+icons: [github, circleci]
+keywords: [github circleci integration, deployment browsing, ci cd integration, github circleci, deployment management]
+description: Connect GitHub repositories with CircleCI deployments. Browse deployed revisions across staging and production environments directly from your GitHub page.
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.circleci.browse.deployment.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+
+## How does this help you?
+
+- One-click to browse the exact Git commit deployed to each environment
+- Reduces guesswork when debugging differences between environments
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'dropdown',
+      content: 'Browse deployment',
+      href: '#',
+      icon: 'github',
+      items: [
+        {
+            type: 'href',
+            content: 'Browse code deployed in Staging (ba02cc)',
+            href: '#',
+            icon: 'github'
+        },
+        {
+            type: 'href',
+            content: 'Browse code deployed in Production (ca339a)',
+            href: '#',
+            icon: 'github'
+        }
+      ]
+    }
+  ]} title="How it looks in the extension" />
+
+## Approaches
+
+- Insights by workflow name (implemented): Use CircleCI Insights for conventional workflow names (e.g., `deploy-staging`, `deploy-prod`) on branch `main`, find the latest successful run, resolve the pipeline to get the commit SHA, and link to the GitHub tree. Simple and widely applicable.
+- Pipelines + workflows traversal: List recent pipelines for the repo/branch, then fetch workflows per pipeline to find the most recent successful deploy job per environment. More API calls, similar outcome.
+- Artifact or metadata lookup: Emit an artifact or store metadata (e.g., commit SHA, release tag, URL) during deploy jobs and fetch it via the Artifacts API. More setup, flexible if your org already publishes metadata.
+
+## Assumptions
+
+- Branch: `main`. Adjust in the example if your default deploy branch differs.
+- Workflows: `deploy-staging` and `deploy-prod`. Rename to match your pipeline.
+- Output: a dropdown labeled `Browse deployment` with `Staging` and `Prod` items linking to `https://github.com/<org>/<repo>/tree/<sha>`.
+
+## Prerequisites
+For the code below to work, please follow the guide on [Connecting to CircleCI](/docs/recipes/connecting-to-circleci). Provide `CIRCLECI_API_TOKEN` as a secret.
+
+## Code
+
+<CodeBlock language="javascript" title="github.circleci.browse.deployment.integration.example.js">
+{IntegrationCode}
+</CodeBlock>

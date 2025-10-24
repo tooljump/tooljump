@@ -1,0 +1,20 @@
+# Data files are designed to store data that can be queried from your integrations
+---
+schema-version: v2
+dd-service: tooljump
+
+# Optional: assign to your owning team if you have one
+# team: library-maintainers
+
+# Code repositories
+repos:
+  - name: Source Code
+    provider: GitHub
+    url: https://github.com/tooljump/tooljump
+
+# Documentation links
+docs:
+  - name: Homepage
+    provider: Website
+    url: https://tooljump.dev
+

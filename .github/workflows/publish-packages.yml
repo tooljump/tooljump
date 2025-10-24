@@ -1,0 +1,278 @@
+name: Publish Packages to NPM Registry
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on tags like v1.0.0, v2.1.3, etc.
+
+jobs:
+  publish-packages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Allow pushing version bump commits
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main  # Checkout main branch instead of the tag
+          fetch-depth: 0  # Fetch all history so we can access the tag
+
+      - name: Verify GitHub Token Permissions
+        run: |
+          echo "🔍 Verifying GitHub token permissions..."
+          
+          # Test if we can access the repository
+          curl -H "Authorization: token ${{ secrets.NPMJS_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${{ github.repository }} || echo "❌ Cannot access repository"
+          
+          # Test if we can access packages
+          curl -H "Authorization: token ${{ secrets.NPMJS_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/user/packages || echo "❌ Cannot access packages"
+          
+          echo "✅ Token permission check completed"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+          token: '${{ secrets.NPMJS_TOKEN }}'
+
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          # Extract version from tag (v1.0.1 -> 1.0.1)
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📌 Detected version: $VERSION"
+
+      - name: Update package versions
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          echo "🔄 Updating all package.json files to version $VERSION..."
+          
+          cd packages
+          for package in */; do
+            if [ -f "$package/package.json" ]; then
+              package_name=$(node -e "console.log(require('./$package/package.json').name)")
+              if [[ "$package_name" == @tooljump/* ]]; then
+                echo "  Updating $package_name to $VERSION"
+                cd "$package"
+                # Update version in package.json
+                node -e "
+                  const fs = require('fs');
+                  const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+                  pkg.version = '$VERSION';
+                  fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+                "
+                cd ..
+              fi
+            fi
+          done
+          
+          echo "✅ All package versions updated to $VERSION"
+
+      - name: Commit version changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add packages/*/package.json
+          git diff --staged --quiet || git commit -m "chore: bump package versions to ${{ steps.get_version.outputs.version }}"
+          git push origin main
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build all packages
+        run: |
+          # Get all @tooljump packages and build them using Lerna's dependency sorting
+          echo "🔨 Building all packages in dependency order..."
+          yarn lerna run build --sort
+
+      - name: Run tests
+        run: |
+          echo "🧪 Running tests for all packages..."
+          yarn lerna run test
+
+      - name: Verify workspace setup
+        run: |
+          echo "📦 Workspace packages:"
+          yarn workspaces info
+          echo ""
+          echo "🧪 Testing package resolution:"
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Discover all @tooljump packages dynamically
+            const packagesDir = path.join(process.cwd(), 'packages');
+            const packages = fs.readdirSync(packagesDir, { withFileTypes: true })
+              .filter(dirent => dirent.isDirectory())
+              .map(dirent => {
+                const packageJsonPath = path.join(packagesDir, dirent.name, 'package.json');
+                if (fs.existsSync(packageJsonPath)) {
+                  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+                  return packageJson.name;
+                }
+                return null;
+              })
+              .filter(name => name && name.startsWith('@tooljump/'));
+            
+            console.log('📦 Discovered packages:');
+            packages.forEach(pkg => {
+              try {
+                require.resolve(pkg);
+                console.log('✅ ' + pkg);
+              } catch (e) {
+                console.log('❌ ' + pkg + ' - ' + e.message);
+              }
+            });
+          "
+
+      - name: Verify build artifacts
+        run: |
+          echo "🔍 Verifying build artifacts exist..."
+          cd packages
+          for package in */; do
+            if [ -f "$package/package.json" ]; then
+              package_name=$(node -e "console.log(require('./$package/package.json').name)")
+              if [[ "$package_name" == @tooljump/* ]]; then
+                if [ -f "$package/dist/index.js" ]; then
+                  echo "✅ $package_name - dist/index.js exists"
+                else
+                  echo "❌ $package_name - dist/index.js missing!"
+                  exit 1
+                fi
+              fi
+            fi
+          done
+          echo "✅ All build artifacts verified"
+
+      - name: Configure npm for NPM Registry
+        run: |
+          # Configure npm to use public NPM registry
+          npm config set registry https://registry.npmjs.org/
+          
+          # Create .npmrc file for authentication
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPMJS_TOKEN }}" > .npmrc
+          
+          # Test authentication
+          echo "🔐 Testing authentication..."
+          npm whoami || echo "❌ Authentication failed"
+
+      - name: Publish packages
+        run: |
+          # Discover and publish all @tooljump packages
+          cd packages
+          
+          # Arrays to track results
+          declare -a published_packages
+          declare -a skipped_packages
+          declare -a failed_packages
+          
+          for package in */; do
+            if [ -f "$package/package.json" ]; then
+              # Check if it's a @tooljump package
+              package_name=$(node -e "console.log(require('./$package/package.json').name)")
+              if [[ "$package_name" == @tooljump/* ]]; then
+                echo ""
+                echo "=========================================="
+                echo "📦 Processing: $package_name"
+                echo "=========================================="
+                cd "$package"
+                
+                # Verify the package is built
+                if [ ! -d "dist" ]; then
+                  echo "❌ Package $package_name is not built. Skipping..."
+                  skipped_packages+=("$package_name (no dist directory)")
+                  cd ..
+                  continue
+                fi
+                
+                # Check if package already exists at this version
+                version=$(node -e "console.log(require('./package.json').version)")
+                echo "🔍 Checking if $package_name@$version already exists..."
+                
+                if npm view "$package_name@$version" > /dev/null 2>&1; then
+                  echo "⚠️  Package $package_name@$version already exists. Skipping..."
+                  skipped_packages+=("$package_name@$version (already published)")
+                  cd ..
+                  continue
+                fi
+                
+                # Publish the package using npm (since we're publishing to NPM Registry)
+                echo "🚀 Publishing $package_name@$version..."
+                echo "📁 Current directory: $(pwd)"
+                echo "📋 Files to be published:"
+                npm pack --dry-run 2>&1 | grep -E "^\s+[0-9]" || echo "  (unable to list files)"
+                echo ""
+                
+                # Publish with error handling
+                if npm publish --access public --verbose 2>&1; then
+                  echo "✅ Successfully published $package_name@$version"
+                  published_packages+=("$package_name@$version")
+                else
+                  echo "❌ Failed to publish $package_name@$version"
+                  failed_packages+=("$package_name@$version")
+                fi
+                
+                cd ..
+              fi
+            fi
+          done
+          
+          # Print summary
+          echo ""
+          echo "=========================================="
+          echo "📊 PUBLISH SUMMARY"
+          echo "=========================================="
+          
+          echo ""
+          echo "✅ Published (${#published_packages[@]}):"
+          if [ ${#published_packages[@]} -eq 0 ]; then
+            echo "  (none)"
+          else
+            for pkg in "${published_packages[@]}"; do
+              echo "  - $pkg"
+            done
+          fi
+          
+          echo ""
+          echo "⚠️  Skipped (${#skipped_packages[@]}):"
+          if [ ${#skipped_packages[@]} -eq 0 ]; then
+            echo "  (none)"
+          else
+            for pkg in "${skipped_packages[@]}"; do
+              echo "  - $pkg"
+            done
+          fi
+          
+          echo ""
+          echo "❌ Failed (${#failed_packages[@]}):"
+          if [ ${#failed_packages[@]} -eq 0 ]; then
+            echo "  (none)"
+          else
+            for pkg in "${failed_packages[@]}"; do
+              echo "  - $pkg"
+            done
+          fi
+          
+          echo ""
+          echo "=========================================="
+          
+          # Exit with error if any packages failed
+          if [ ${#failed_packages[@]} -gt 0 ]; then
+            echo "❌ Some packages failed to publish!"
+            exit 1
+          fi
+
+      - name: Show publish summary
+        run: |
+          echo "✅ All packages published successfully to NPM Registry!"
+          echo "📦 Packages published as public packages"
+          echo "🌍 Access: Public"
+          echo "🏢 Registry: https://registry.npmjs.org/" 

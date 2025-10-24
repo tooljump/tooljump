@@ -1,0 +1,64 @@
+---
+slug: github-next-deploy
+title: "GitHub: Next deploy time"
+subtitle: Show when this repo will be deployed next
+tags: [github, deploys, schedule]
+icons: [github]
+keywords: [github deployment schedule, next deploy time, github ci cd, deployment timing, github automation]
+description: GitHub integration that shows the next scheduled deployment time for your repository, helping teams plan releases and coordinate deployments.
+slides:
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 1
+    description: Next deploy countdown — know when changes go live
+    isLastSlide: true
+    data:
+      - type: text
+        content: Next deploy in 2h
+        status: relevant
+      - type: text
+        content: Other integrations ...
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import IntegrationCode from '!!raw-loader!@site/../examples/data/github.next-deploy.integration.example.js';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import SlideshowWrapper from '@site/src/components/SlideshowWrapper';
+
+<SlideshowWrapper slides={frontMatter.slides} />
+
+## How does this help you?
+
+- Quick, readable countdown for the next production deploy
+
+## Preview
+
+<BarContentPreview data={[
+    {
+      type: 'text',
+      content: 'Next deploy in 2h',
+      status: 'relevant'
+    }
+  ]} title="How it looks in the extension" />
+
+## High level approach
+Hardcode your organization’s deployment schedule (or read it via an API call from your CI/CD system) and compute the next matching slot relative to the current time. This example uses:
+
+- Days: Tuesday, Wednesday, Thursday
+- Times: 09:00, 15:00, 20:00 (local time)
+
+It returns a simple text item like `Next deploy: 1d 3h`
+
+## Prerequisites
+No external auth or data files required.
+
+## Code
+<CodeBlock language="javascript" title="github.next-deploy.integration.example.js">
+{IntegrationCode}
+</CodeBlock>
+
+:::tip
+You can also change the status to values like `important` or `relevant` (or do not set status) depending on how soon the next deploy is.
+For example, if the next deploy is in 1h, it should be important and show with red. If it is in 3 hours, it can be shown wih yellow as relevant.
+:::

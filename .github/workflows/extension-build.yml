@@ -1,0 +1,72 @@
+name: Build Extension
+permissions:
+  contents: read
+  pull-requests: read
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths: [ 'extension/**', '.github/workflows/extension-build.yml' ]
+  pull_request:
+    branches: [ main ]
+    paths: [ 'extension/**', '.github/workflows/extension-build.yml' ]
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: |
+          cd extension
+          yarn install --frozen-lockfile
+
+      - name: Build extension
+        run: |
+          cd extension
+          yarn build
+
+      - name: Validate build
+        run: |
+          cd extension
+          node scripts/check-dist.js
+
+      - name: Create production ZIP
+        run: |
+          cd extension
+          yarn package
+
+      - name: Create development ZIP
+        run: |
+          cd extension
+          yarn package:dev
+
+      - name: Upload production ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tooljump-extension-production
+          path: extension/tooljump-extension.zip
+          retention-days: 30
+
+      - name: Upload development ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tooljump-extension-development
+          path: extension/tooljump-extension-dev.zip
+          retention-days: 30
+
+      - name: Show build summary
+        run: |
+          echo "✅ Extension build completed successfully!"
+          echo "📦 Production ZIP: tooljump-extension.zip"
+          echo "🔧 Development ZIP: tooljump-extension-dev.zip"
+          echo "📥 Download from Actions tab → Artifacts"

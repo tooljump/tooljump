@@ -1,0 +1,26 @@
+{
+  "name": "@tooljump/integrations-fs",
+  "description": "File system integration for ToolJump; Connect your dev tools (GitHub, AWS, monitoring, etc.) so knowledge and navigation live where engineers work - no context switching, no tribal knowledge.",
+  "version": "1.0.6",
+  "main": "dist/index.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:cov": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "js-yaml": "^4.1.0",
+    "@tooljump/common": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^3.2.4",
+    "@vitest/coverage-v8": "^2.1.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
