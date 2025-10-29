@@ -1,0 +1,120 @@
+---
+id: why
+title: Why ToolJump?
+sidebar_label: Why ToolJump
+keywords: [connecting tools, developer experience, knowledge as a service, tool integration, engineering productivity, context switching]
+description: Stop context switching between disconnected tools. ToolJump connects GitHub, AWS, Datadog, CI/CD and more with Knowledge as a Service to boost developer experience and eliminate productivity killers.
+canonical: https://tooljump.dev/docs/why
+slides:
+  - image: /img/slide-github.png
+    alt: Github
+    url: https://github.com/mycompany/webshop
+    targetSpanIndex: 1
+    description: Shows the AWS infrastructure for this repo
+    data:
+      - type: dropdown
+        content: "AWS Infra (4 lambdas)"
+        icon: lambda
+        items:
+          - type: link
+            content: 'shop-order-processing'
+            href: #
+            icon: lambda
+          - type: link
+            content: 'shop-delivery-processing'
+            href: #
+            icon: lambda
+          - type: link
+            content: 'shop-payment-processing'
+            href: #
+            icon: lambda
+          - type: link
+            content: 'shop-refund-processing'
+            href: #
+            icon: lambda
+      - type: text
+        content: Other integrations ...
+  - image: /img/slide-aws-lambda.png
+    alt: AWS Lambda
+    url: "https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/shop-order-processing?tab=code"
+    targetSpanIndex: 1
+    description: Here is the lambda associated to this repo
+    isLastSlide: true
+    data:
+      - type: text
+        content: Other integrations ...
+---
+
+import Link from '@docusaurus/Link';
+
+Modern software engineering runs on an ecosystem of tools: GitHub, AWS, GCP, Azure, Datadog, PagerDuty, Terraform, CI/CD pipelines, feature flags, data warehouses, marketing tools and many more.
+
+These tools are powerful but they have a major flaw: **they're not connected and don’t talk to each other**!
+
+## The result?  
+- Engineers spend countless hours context-switching, clicking through tabs, and hunting for information loosing focus and negatively impacting the developer productivity.  
+- Critical knowledge lives in Slack threads, stale documentation, or in the heads of a few senior engineers, negatively affecting the overall developer experience.  
+- Onboarding new engineers takes weeks and mistakes happen more often than anyone admits *(for example debugging the wrong environment or shipping to production instead of staging)*.
+
+For leaders, this translates into **millions lost every year in wasted engineering time, slower delivery, and costly mistakes** - a silent tax on every software project.  
+
+## The alternatives?
+- **Developer portals tried to solve this.** But asking engineers to leave the tools they already use and open “yet another portal” doesn’t work.  
+- **Documentation doesn’t solve this either.** Documentation is inherently static and gets outdated really quick and contributes more to losing focus rather than gaining development speed. 
+
+## That’s why we built **ToolJump!**  
+
+ToolJump brings **[Knowledge as a Service](/docs/knowledge-as-a-service)** directly into the tools your engineers already use, revolutionizing how teams approach [connecting tools](/docs/connecting-your-tools-resources) and improving [developer experience](/docs/developer-experience).  
+
+Imagine a single bar that follows you across your tools - GitHub, AWS, Datadog, CI/CD - and instantly shows you valuable insights by connecting them together into one ecosystem. **No searching, no bookmarks, no context switching - just answers where you need them.**
+
+Think of it as a GPS for your engineering tools: wherever you are, ToolJump shows you the path forward - whether it’s debugging logs, exploring related infra, or finding the right docs. **All without leaving the screen you’re already on.**
+
+Here are just a few examples of how ToolJump can help:
+- Jump instantly from a GitHub repo to the right logs in your monitoring system. <Link to="/integrations/github-datadog-logs-alerts" target="_blank" rel="noopener noreferrer">demo</Link>
+- Navigate from a Github repo to the related infrastructure in your cloud provider with a single click. <Link to="/integrations/github-aws-infrastructure" target="_blank" rel="noopener noreferrer">demo</Link>
+- Discover the URLs of every service, for every environment, by just looking at its repository. <Link to="/integrations/github-show-deployed-service-urls" target="_blank" rel="noopener noreferrer">demo</Link> 
+- See a clear label in your cloud provider when you’re working in production vs staging. <Link to="/integrations/aws-lambda-production-check" target="_blank" rel="noopener noreferrer">demo</Link> 
+- Show feature flags for a given repository <Link to="/integrations/github-launchdarkly" target="_blank" rel="noopener noreferrer">demo</Link> 
+- Define your company’s knowledge base as small, reviewable code snippets stored in source control - safe, auditable, and versioned.
+
+import Slideshow from '@site/src/components/Slideshow';
+
+<Slideshow slides={frontMatter.slides} autostart={false} />
+
+<br/>
+
+<div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+  <Link
+    className="btn-primary"
+    to="/docs/demos"
+    style={{
+      fontSize: '1.1rem',
+      padding: '0.85rem 2.2rem',
+      borderRadius: '0.5rem',
+      fontWeight: 600,
+      boxShadow: 'var(--ifm-global-shadow-md)',
+      textDecoration: 'none',
+      transition: 'all 0.2s',
+    }}
+  >
+    View All Demos
+  </Link>
+</div>
+
+
+With ToolJump, **teams spend less time wandering around and more time shipping.** That means higher focus, higher productivity, faster delivery with less operational mistakes and greater output with the same headcount.
+
+- What used to take 5 - 10 minutes of tool-hopping now takes a few seconds. And that’s just for a single developer - now multiply it by 10, 50, or 200 engineers, and the impact becomes massive across the entire organization.  
+- What used to require tribal knowledge is now encoded and shared across the entire organisation.  
+- And what used to be risky guesswork is now a guided, reliable, deterministic path.  
+
+**ToolJump implements [Knowledge as a Service](/docs/knowledge-as-a-service) by [connecting your tools](/docs/connecting-your-tools-resources), your people, and the knowledge in your organisation.**
+
+It transforms scattered information into living, contextual guidance - so your engineers can focus on building, not searching, while dramatically improving the [developer experience](/docs/developer-experience). This approach to [connecting tools](/docs/connecting-your-tools-resources) creates a seamless workflow that eliminates context switching and accelerates productivity.  
+
+Explore our [integration examples gallery](/integrations) to see more real-world use cases.
+
+Ready to get started? Head over to our [Getting Started](./getting-started.mdx) guide or [View our demos](./demos)!
+
+Learn more about our [architecture and how it works](/docs/architecture).  

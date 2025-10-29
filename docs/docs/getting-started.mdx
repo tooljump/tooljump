@@ -1,0 +1,149 @@
+---
+id: getting-started
+title: Getting Started
+sidebar_label: Getting Started
+keywords: [getting started, tooljump setup, chrome extension, developer tools, knowledge as a service]
+description: Start connecting tools in minutes with ToolJump's Knowledge as a Service platform. Install the Chrome extension, connect GitHub, AWS, Datadog, and boost your developer experience instantly.
+canonical: https://tooljump.dev/docs/getting-started
+---
+
+import {ConfigValue} from '@site/src/components/Config';
+import BarContentPreview from '@site/src/components/BarContentPreview';
+import ChromeExtensionLink from '@site/src/components/ChromeExtensionLink';
+import DemoRepoLink from '@site/src/components/DemoRepoLink';
+
+# Getting Started with ToolJump
+
+ToolJump revolutionizes [developer experience](/docs/developer-experience) by making it easy to [connect your tools](/docs/connecting-your-tools-resources) - GitHub, AWS, Datadog, CI/CD, and more - with a single context bar that delivers [Knowledge as a Service](/docs/knowledge-as-a-service) directly in your workflow. Get started in just a few minutes with our step-by-step guide.
+
+
+---
+
+## Step 1: Install the Chrome Extension
+
+<ChromeExtensionLink />
+
+
+<br/>The extension installs in <strong>Demo Mode</strong>, so you can see ToolJump in action immediately.
+
+### Pin the Extension
+Make sure to pin the ToolJump extension to your Chrome toolbar for easy access:
+
+<img src="/img/pin.png" alt="Pin the ToolJump extension" style={{display: 'block', margin: '2rem auto', borderRadius: 8, width: '550px'}} />
+
+---
+
+## Step 2: Try the Demo
+
+Visit <DemoRepoLink /> to see ToolJump in action. This is just a demo so that you can see how ToolJump would look like on your repositories (or other engineering tools). You'll see a context bar at the top of the GitHub page showing:
+
+- **Real-time alerts** from your monitoring tools
+- **Quick links** to logs, costs, and deployment status  
+- **Team information** like who's on-call
+- **Environment URLs** for different deployments
+
+To adapt it to your company and workflows, follow the next steps!
+
+<BarContentPreview 
+  data={[
+    { type: 'link', content: '3 alerts', href: 'https://www.npmjs.com/package/lunr-languages', status: 'important', icon: 'datadog' },
+    { type: 'link', content: 'Logs', href: 'https://www.npmjs.com/package/lunr-languages', icon: 'datadog' },
+    { type: 'link', content: 'Cost 30d: $351', href: 'https://www.npmjs.com/package/lunr-languages' },
+    { type: 'link', content: 'Oncall: John', href: 'https://www.npmjs.com/package/lunr-languages', icon: 'pagerduty' },
+    { type: 'link', content: 'Deployed 3d ago', href: 'https://www.npmjs.com/package/lunr-languages', icon: 'circleci' },
+    { 
+        type: 'dropdown',
+        content: 'URLs',
+        items: [
+            { content: 'Dev: http://dev.my.service', href: 'http://dev.my.service' },
+            { content: 'QA: http://qa.my.service', href: 'http://qa.my.service' },
+            { content: 'Prod: http://prod.my.service', href: 'http://prod.my.service', status: 'important' }
+        ]
+    }
+  ]}
+  title="What you'll see in the ToolJump bar"
+/>
+
+<div className="alert alert--success">
+  <strong>Demo Mode:</strong> This shows sample data. To connect your real tools, continue to Step 3.
+</div>
+
+---
+
+## Step 3: Set Up Your Server locally
+
+To connect your actual tools and data, you'll need to run your own ToolJump server.
+
+### Prerequisites
+Make sure you have these installed:
+- **Node.js 20+** 
+- **Yarn** or **NPM**
+
+### Quick Setup
+
+1. **Create your server:**
+   ```bash
+   npx create-tooljump
+   ```
+
+2. **Run npm install:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Configure the extension:**
+   - Open ToolJump extension settings
+   - Turn off "Demo Mode"
+   - Enter your server URL and the secure token you chose at step 1
+
+   <img src="/img/settings.png" alt="Extension Settings" width="280" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)', display: 'block', margin: '1rem auto' }} />
+
+5. **Test the connection:**
+   Visit <ConfigValue 
+     name="tooljumpRepoUrl" 
+     render={(url) => <a href={String(url)}>{String(url)}</a>} 
+   /> and you should see your ToolJump bar!
+
+The server comes with a few demo integrations that showcase what's possible with ToolJump.
+
+Want to understand the technical details? Read about our [server architecture](/docs/server-architecture) and [Chrome extension architecture](/docs/chrome-extension-architecture).
+
+To adapt it to your company and workflows, follow the next steps!
+
+---
+
+## Step 4: Build Your First Integration
+
+Now that your setup works, it's time to connect your tools and build custom integrations.
+
+<div className="card">
+  <div className="card__header">
+    <h4 className="card__title">Ready to build?</h4>
+    <p className="card__subtitle">Learn how to create integrations for your specific tools and workflows or browse our gallery of predefined integrations connecting more than 10+ tools.</p>
+  </div>
+  <div className="card__content" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+    <a href="/docs/writing-integrations" className="btn-primary" style={{ padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <span>Start Building Integrations →</span>
+    </a>
+    <a href="/integrations" className="btn-secondary" style={{ padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <span>Integrations Gallery</span>
+    </a>
+  </div>
+</div>
+
+Also explore [integration recipes](/docs/recipes) for specific tools like [AWS](/docs/recipes/connecting-to-aws), [Datadog](/docs/recipes/connecting-to-datadog), and [GitHub](/docs/recipes/connecting-to-github).
+
+---
+
+## Need Help?
+
+- **Extension not working?** Check that it's pinned and try refreshing the page
+- **Server won't start?** Make sure Node.js 20+ is installed and ports aren't blocked
+- **Can't see the bar?** Verify you're on a supported site and demo mode is configured correctly
+
+For more help, check our [troubleshooting guide](/docs/writing-integrations/debugging) or [join our community](https://github.com/tooljump/tooljump/discussions).
