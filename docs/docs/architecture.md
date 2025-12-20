@@ -22,7 +22,7 @@ ToolJump's architecture enables powerful [connecting tools](/docs/connecting-you
 
 |                     | ToolJump Chrome Extension                    | ToolJump Server                    | ToolJump Integrations                    |
 |--------------------------|---------------------------------------------|-----------------------------------|------------------------------------------|
-| **What it does do?**   | Understands the pages you visit, sends the summary to the ToolJump server, and gets back useful insights and links to other tools | Based on the data received from extensions, runs the user-defined integrations and returns the results to the users  | Provides the logic for connecting tools between them |
+| **What does it do?**   | Understands the pages you visit, sends the summary to the ToolJump server, and gets back useful insights and links to other tools | Based on the data received from extensions, runs the user-defined integrations and returns the results to the users  | Provides the logic for connecting tools between them |
 | **Where is it Deployed?**   | In user's browser (client-side)               | Cloud / on‑prem server belonging to you/your company            | In a GitHub repo belonging to you/your company|
 | **How to install/deploy it?**       | [Download the Chrome extension](/docs/getting-started) to your browser and point it to your ToolJump server (5 mins)                | You or your DevOps team [can set it up](/docs/deploying) in your company (1-5 days)           | Your senior engineers can [write the integrations](/docs/writing-integrations) based on the knowhow of available tools in your company (1-5 days)                  |
 
