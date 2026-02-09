@@ -99,6 +99,21 @@ export default function Home(): ReactNode {
       <StructuredData type="Organization" data={{}} />
       <StructuredData type="SoftwareApplication" data={{}} />
       <HomepageHeader />
+      <section className={styles.walkthroughSection} aria-labelledby="walkthrough-heading">
+        <h2 id="walkthrough-heading" className={styles.walkthroughTitle}>
+          See how ToolJump actually works (5-minute walkthrough)
+        </h2>
+        <div className={styles.walkthroughVideoWrapper}>
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/6X2dpxCxCfA?si=Amps5uQvQhxvySlW"
+            title="ToolJump walkthrough video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className={styles.walkthroughIframe}
+          />
+        </div>
+      </section>
       {renderMainContent()}
     </Layout>
   );
