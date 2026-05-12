@@ -46,6 +46,7 @@ const sidebars: SidebarsConfig = {
       href: '/integrations', // points to blog routeBasePath configured in docusaurus.config.ts
     },
     'developer-experience',
+    'ai-coding-agents',
     'knowledge-as-a-service',
     'connecting-your-tools-resources',
     'deploying',

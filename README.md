@@ -34,6 +34,14 @@ Think of it as a **GPS for your engineering tools**: wherever you are, ToolJump 
 
 [More demos](https://tooljump.dev/docs/demos)
 
+### ToolJump in the AI Coding Era
+
+AI coding agents can read code, write patches, and reason about a repository, but they often lack the company-specific context around that code: where a service deploys, which infrastructure belongs to it, where its logs and alerts live, who owns it, and which runbooks are trusted.
+
+ToolJump integrations make that context explicit, versioned, and auditable. By codifying your software catalog and tool graph as small, reviewed JavaScript files plus optional YAML/JSON data files, ToolJump can serve humans through the browser context bar today and set up the foundation for AI coding agents to answer tooling questions with grounded, organization-specific knowledge instead of guesses.
+
+[Learn how ToolJump helps AI coding agents →](https://tooljump.dev/docs/ai-coding-agents)
+
 ### The Impact
 
 With ToolJump, **teams spend less time wandering around and more time shipping**. That means higher focus, higher productivity, faster delivery with fewer operational mistakes, and greater output with the same headcount.
@@ -206,4 +214,3 @@ ToolJump is fully open source. Contributions are welcome!
 This project is provided “AS IS” and without any warranty of any kind, express or implied. By using this software, you acknowledge that the authors and contributors are not liable for any damages, losses, or issues arising from its use. For full details, see the [Apache License 2.0](./LICENSE) included in this repository.
 
 *All product names, logos, trademarks, service marks, and any associated images or screenshots used or referenced in this project are the property of their respective owners. Any such use is for identification and reference purposes only and does not imply any affiliation with, endorsement by, or sponsorship of ToolJump by those owners.*
-

@@ -106,26 +106,28 @@ If you follow the best practices, no! ToolJump integrations:
 - **Zero maintenance overhead** - no complex configurations or UI to manage
 - **Knowledge as a Service** - delivers contextual information exactly where you need it
 
-### Why not use an AI solution that indexes all company information?
+### How does ToolJump work with AI coding agents?
 
-**AI solutions have fundamental limitations for developer workflows.** While they can answer questions, they suffer from:
+**AI coding agents are great at reasoning about code and helping developers make changes.** But agentic coding workflows still need grounded company context: which service a repo represents, where it deploys, which infrastructure belongs to it, where logs and alerts live, who owns it, and which runbooks are trusted.
 
-- **Users need to know what to ask** - AI requires you to formulate the right questions
-- **Hallucination risk** - AI can provide incorrect or made-up information
-- **Inconsistent answers** - Same question can get different responses each time
-- **No context awareness** - Doesn't understand what you're currently working on
-- **Generic responses** - Can't adapt to your specific tooling and workflows
+Used alone, AI tools can still struggle with:
 
-**ToolJump is fundamentally different with its [Knowledge as a Service](/docs/knowledge-as-a-service) approach:**
+- **Missing service context** - repository files rarely explain the full production tool graph
+- **Hallucination risk** - agents can infer relationships that sound plausible but are wrong
+- **Stale or scattered knowledge** - docs, Slack threads, and tribal knowledge are hard to trust consistently
+- **No direct tool navigation** - an answer is less useful if it does not lead to the exact dashboard, logs, deploy, or on-call source
 
-| ToolJump | AI Solutions |
+**ToolJump complements AI agents with its [Knowledge as a Service](/docs/knowledge-as-a-service) approach:**
+
+| AI agents with ToolJump | AI agents alone |
 |----------|--------------|
-| ✅ **Proactive** - shows relevant info automatically | ❌ Reactive - you must ask questions |
-| ✅ **Context-aware** - knows what repo/service you're viewing | ❌ Context-blind - no awareness of current work |
-| ✅ **Consistent** - same reliable results every time | ❌ Variable - different answers on repeat |
-| ✅ **Actionable** - direct links to tools and resources | ❌ Informational - just text responses |
-| ✅ **Customizable** - easy to modify and update workflows | ❌ Black box - hard to customize or debug |
-| ✅ **Developer Experience** - designed for engineering workflows | ❌ Generic - not optimized for dev teams |
+| **Grounded** - uses reviewed integrations and data files as company-approved context | **Inferential** - must guess from code, docs, or naming patterns |
+| **Context-aware** - starts from the repo, service, AWS resource, or page being viewed | **Context-limited** - often sees only the current repository or prompt |
+| **Deterministic** - the same integration returns the same tool relationship | **Variable** - answers can differ across prompts or models |
+| **Actionable** - returns direct links to logs, alerts, deploys, docs, and owners | **Text-first** - may explain where to look but not provide the exact path |
+| **Auditable** - tool relationships live in source control and code review | **Opaque** - hard to inspect why a relationship was suggested |
+
+This makes ToolJump an AI-ready [software catalog and tool graph](/docs/ai-coding-agents): useful for developers in the browser today, and a strong foundation for coding agents that need reliable service context tomorrow.
 
 ### What about tools like Zapier or IFTTT?
 

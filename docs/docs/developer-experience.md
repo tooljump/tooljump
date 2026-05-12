@@ -196,7 +196,8 @@ Ready to transform your team's developer experience?
 1. **[Get Started with ToolJump](/docs/getting-started)** - Set up your first integrations
 2. **[Connect Your Tools](/docs/connecting-your-tools-resources)** - Learn best practices for tool integration
 3. **[Write Custom Integrations](/docs/writing-integrations)** - Build integrations for your specific needs
-4. **[Enterprise Implementation](/docs/implement)** - Get help scaling ToolJump across your organization
+4. **[ToolJump for AI Coding Agents](/docs/ai-coding-agents)** - Make your software catalog and service context useful for agentic coding workflows
+5. **[Enterprise Implementation](/docs/implement)** - Get help scaling ToolJump across your organization
 
 Learn how to [deploy ToolJump](/docs/deploying) in your organization.
 

@@ -209,7 +209,8 @@ Ready to transform your development workflow into a Knowledge as a Service platf
 1. **[Try ToolJump](/docs/getting-started)** - Experience Knowledge as a Service in action
 2. **[Connect Your Tools](/docs/connecting-your-tools-resources)** - Build your knowledge foundation
 3. **[Write Custom Integrations](/docs/writing-integrations)** - Extend knowledge to your specific needs
-4. **[Enterprise Implementation](/docs/implement)** - Scale Knowledge as a Service across your organization
+4. **[ToolJump for AI Coding Agents](/docs/ai-coding-agents)** - Use reviewed tool relationships as service context for agentic coding
+5. **[Enterprise Implementation](/docs/implement)** - Scale Knowledge as a Service across your organization
 
 Ready to deploy? Check our [deployment guide](/docs/deploying) and [security best practices](/docs/security).
 
