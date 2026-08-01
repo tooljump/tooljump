@@ -35,7 +35,7 @@
     "lodash": "^4.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sanitize-html": "^2.17.0",
+    "sanitize-html": "^2.17.5",
     "styled-components": "^6.1.0"
   },
   "devDependencies": {
